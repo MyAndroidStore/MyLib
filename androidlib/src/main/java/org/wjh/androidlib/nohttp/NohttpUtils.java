@@ -6,7 +6,6 @@ import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.download.DownloadListener;
 import com.yanzhenjie.nohttp.download.DownloadRequest;
 import com.yanzhenjie.nohttp.download.SimpleDownloadListener;
-import com.yanzhenjie.nohttp.download.SyncDownloadExecutor;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
@@ -109,17 +108,17 @@ public class NohttpUtils {
 
 
     // file文件下载,支持取消,断点续传
-    public void downLoadFile(String url, String fileFolder, Object sign, boolean isRange, DownloadListener hcb) {
-        DownloadRequest request = new DownloadRequest(url, RequestMethod.GET, fileFolder, isRange, true);
+    public void downLoadFile(String url, String fileFolder, String fileName, Object sign, boolean isRange, DownloadListener hcb) {
+        DownloadRequest request = new DownloadRequest(url, RequestMethod.GET, fileFolder, fileName, isRange, true);
         request.setPriority(Priority.DEFAULT);
         request.setCancelSign(sign);
-        SyncDownloadExecutor.INSTANCE.execute(0, request, hcb);
+        NoHttp.getDownloadQueueInstance().add(0, request, hcb);
     }
 
-    public void downLoadFile(String url, String fileFolder, Object sign, boolean isRange, SimpleDownloadListener hcb) {
-        DownloadRequest request = new DownloadRequest(url, RequestMethod.GET, fileFolder, isRange, true);
+    public void downLoadFile(String url, String fileFolder, String fileName, Object sign, boolean isRange, SimpleDownloadListener hcb) {
+        DownloadRequest request = new DownloadRequest(url, RequestMethod.GET, fileFolder, fileName, isRange, true);
         request.setPriority(Priority.DEFAULT);
         request.setCancelSign(sign);
-        SyncDownloadExecutor.INSTANCE.execute(0, request, hcb);
+        NoHttp.getDownloadQueueInstance().add(0, request, hcb);
     }
 }
