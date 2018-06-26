@@ -15,7 +15,7 @@
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 ```
 > 轮播图的使用
-- butterknife (布局)
+
 `rect(方块), oval(圆点)`
 ```
 <org.jbase.yxt.tj.ts.widget.BannerLayout
