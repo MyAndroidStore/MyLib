@@ -59,6 +59,11 @@ public class NohttpUtils {
         requestQueue.cancelBySign(sign);
     }
 
+
+    public static void cancleDownLoadBySign(Object sign) {
+        NoHttp.getDownloadQueueInstance().cancelBySign(sign);
+    }
+
     /**
      * 取消队列中所有请求。
      */
@@ -66,6 +71,9 @@ public class NohttpUtils {
         requestQueue.cancelAll();
     }
 
+    public static void cancleDownLoadAll() {
+        NoHttp.getDownloadQueueInstance().cancelAll();
+    }
 
     /**********************详细拆分***********************/
 
