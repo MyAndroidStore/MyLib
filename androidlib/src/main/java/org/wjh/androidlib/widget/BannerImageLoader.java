@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
  * Created by Administrator on 2016/12/21 0021.
  */
 
-public class BammerImageLoader implements BannerLayout.ImageLoader {
+public class BannerImageLoader implements BannerLayout.ImageLoader {
     @Override
     public void displayImage(Context context, String path, ImageView imageView) {
         Glide.with(context).load(path)
