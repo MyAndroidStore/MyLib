@@ -17,7 +17,7 @@
 
 `rect(方块), oval(圆点)`
 ```
-<org.jbase.yxt.tj.ts.widget.BannerLayout
+<org.wjh.androidlib.widget.BannerLayout
     android:id="@+id/banner"
     android:layout_width="match_parent"
     android:layout_height="176dp"
