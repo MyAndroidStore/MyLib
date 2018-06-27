@@ -3,7 +3,6 @@
 - NoHttp (网络请求)
 - Gson (json工具)
 - Luban (图片压缩)
-- butterknife (黄油刀)
 - glide （3.8.0）图片加载
 
 > 框架默认添加如下权限(请勿重复添加)
@@ -36,6 +35,7 @@
     app:unSelectedIndicatorHeight="6dp"
     app:unSelectedIndicatorWidth="6dp" />
 ```
+`如果项目中用的不是glide 3.8.0版本(比如更高版本4.0+)，请开发者自己实现ImageLoader，请不要用本框架提供的BannerImageLoader `
 ```
 // 设置加载图片的方式
 bannerLayout.setImageLoader(new BannerImageLoader());
