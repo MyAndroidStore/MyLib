@@ -6,6 +6,7 @@
         <attr name="indicatorShape" format="enum">
             <enum name="rect" value="0" />
             <enum name="oval" value="1" />
+            <enum name="imageView" value="2" />
         </attr>
 
         <attr name="selectedIndicatorHeight" format="dimension|reference" />
@@ -28,6 +29,10 @@
         <attr name="autoPlayDuration" format="integer|reference" />
         <attr name="scrollDuration" format="integer|reference" />
         <attr name="isAutoPlay" format="boolean|reference" />
+
+        <attr name="selectedIndicatorSrc" format="reference" />
+        <attr name="unSelectedIndicatorSrc" format="reference" />
+
     </declare-styleable>
 
 </resources>

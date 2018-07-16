@@ -45,6 +45,10 @@ public class BannerLayout extends RelativeLayout {
     private Drawable unSelectedDrawable;
     private Drawable selectedDrawable;
 
+    // 临时保存
+    private Drawable unSelectedDrawableTemp;
+    private Drawable selectedDrawableTemp;
+
     private int WHAT_AUTO_PLAY = 1000;
 
     private boolean isAutoPlay = true;
@@ -72,7 +76,7 @@ public class BannerLayout extends RelativeLayout {
     private ImageLoader imageLoader;
 
     private enum Shape {
-        rect, oval
+        rect, oval, imageView
     }
 
     public void setListener(PageSelectedListener listener) {
@@ -157,6 +161,8 @@ public class BannerLayout extends RelativeLayout {
         autoPlayDuration = array.getInt(R.styleable.BannerLayoutStyle_autoPlayDuration, autoPlayDuration);
         scrollDuration = array.getInt(R.styleable.BannerLayoutStyle_scrollDuration, scrollDuration);
         isAutoPlay = array.getBoolean(R.styleable.BannerLayoutStyle_isAutoPlay, isAutoPlay);
+        unSelectedDrawableTemp = getResources().getDrawable(array.getResourceId(R.styleable.BannerLayoutStyle_unSelectedIndicatorSrc, R.drawable.ic_banner_unselect));
+        selectedDrawableTemp = getResources().getDrawable(array.getResourceId(R.styleable.BannerLayoutStyle_selectedIndicatorSrc, R.drawable.ic_banner_select));
         array.recycle();
 
         //绘制未选中状态图形
@@ -172,21 +178,38 @@ public class BannerLayout extends RelativeLayout {
             case rect:
                 unSelectedGradientDrawable.setShape(GradientDrawable.RECTANGLE);
                 selectedGradientDrawable.setShape(GradientDrawable.RECTANGLE);
+
+                unSelectedGradientDrawable.setColor(unSelectedIndicatorColor);
+                unSelectedGradientDrawable.setSize(unSelectedIndicatorWidth, unSelectedIndicatorHeight);
+                unSelectedLayerDrawable = new LayerDrawable(new Drawable[]{unSelectedGradientDrawable});
+                unSelectedDrawable = unSelectedLayerDrawable;
+
+                selectedGradientDrawable.setColor(selectedIndicatorColor);
+                selectedGradientDrawable.setSize(selectedIndicatorWidth, selectedIndicatorHeight);
+                selectedLayerDrawable = new LayerDrawable(new Drawable[]{selectedGradientDrawable});
+                selectedDrawable = selectedLayerDrawable;
                 break;
             case oval:
                 unSelectedGradientDrawable.setShape(GradientDrawable.OVAL);
                 selectedGradientDrawable.setShape(GradientDrawable.OVAL);
+
+                unSelectedGradientDrawable.setColor(unSelectedIndicatorColor);
+                unSelectedGradientDrawable.setSize(unSelectedIndicatorWidth, unSelectedIndicatorHeight);
+                unSelectedLayerDrawable = new LayerDrawable(new Drawable[]{unSelectedGradientDrawable});
+                unSelectedDrawable = unSelectedLayerDrawable;
+
+                selectedGradientDrawable.setColor(selectedIndicatorColor);
+                selectedGradientDrawable.setSize(selectedIndicatorWidth, selectedIndicatorHeight);
+                selectedLayerDrawable = new LayerDrawable(new Drawable[]{selectedGradientDrawable});
+                selectedDrawable = selectedLayerDrawable;
+                break;
+            case imageView:
+                // 未选中 指示器图片 选中的 指示器图片
+                unSelectedDrawable = unSelectedDrawableTemp;
+                selectedDrawable = selectedDrawableTemp;
                 break;
         }
-        unSelectedGradientDrawable.setColor(unSelectedIndicatorColor);
-        unSelectedGradientDrawable.setSize(unSelectedIndicatorWidth, unSelectedIndicatorHeight);
-        unSelectedLayerDrawable = new LayerDrawable(new Drawable[]{unSelectedGradientDrawable});
-        unSelectedDrawable = unSelectedLayerDrawable;
 
-        selectedGradientDrawable.setColor(selectedIndicatorColor);
-        selectedGradientDrawable.setSize(selectedIndicatorWidth, selectedIndicatorHeight);
-        selectedLayerDrawable = new LayerDrawable(new Drawable[]{selectedGradientDrawable});
-        selectedDrawable = selectedLayerDrawable;
 
     }
 
