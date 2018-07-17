@@ -15,37 +15,4 @@
 ```
 > 轮播图的使用
 
-`rect(方块), oval(圆点)`
-```
-<org.wjh.androidlib.widget.BannerLayout
-    android:id="@+id/banner"
-    android:layout_width="match_parent"
-    android:layout_height="176dp"
-    app:autoPlayDuration="4000"
-    app:indicatorMargin="10dp"
-    app:indicatorPosition="rightBottom"
-    app:indicatorShape="oval"
-    app:indicatorSpace="3dp"
-    app:isAutoPlay="true"
-    app:scrollDuration="600"
-    app:selectedIndicatorColor="@color/tab_content"
-    app:selectedIndicatorHeight="6dp"
-    app:selectedIndicatorWidth="6dp"
-    app:unSelectedIndicatorColor="#99ffffff"
-    app:unSelectedIndicatorHeight="6dp"
-    app:unSelectedIndicatorWidth="6dp" />
-```
-`如果项目中用的不是glide 3.8.0版本(比如更高版本4.0+)，请开发者自己实现ImageLoader，请不要用本框架提供的BannerImageLoader `
-```
-// 设置加载图片的方式
-bannerLayout.setImageLoader(new BannerImageLoader());
-// 设置图片url
-bannerLayout.setViewUrls(url集合);
-// 添加监听事件
-bannerLayout.setOnBannerItemClickListener(new BannerLayout.OnBannerItemClickListener() {
-    @Override
-    public void onItemClick(int position) {
-        ...
-    }
-});
-```
+https://www.jianshu.com/p/8e566da74b3e
