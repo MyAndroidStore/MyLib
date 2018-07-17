@@ -17,3 +17,8 @@
 > 轮播图的使用
 
 https://www.jianshu.com/p/8e566da74b3e
+> Toast的使用
+```
+ToastUtils.getInstance().shortToast("Toast详细内容");
+ToastUtils.getInstance().longToast("Toast详细内容");
+```

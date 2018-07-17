@@ -12,10 +12,17 @@
         android:orientation="vertical">
 
         <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="轮播图"
+        android:onClick="banner"/>
+
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="轮播图"
-            android:onClick="banner"/>
+            android:text="吐司连弹"
+            android:onClick="toast"/>
 
 
     </LinearLayout>
