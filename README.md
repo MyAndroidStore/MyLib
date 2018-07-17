@@ -3,7 +3,8 @@
 - NoHttp (网络请求)
 - Gson (json工具)
 - Luban (图片压缩)
-- glide （3.8.0）图片加载
+- Glide （3.8.0）图片加载
+- CircleImageview (2.2.0)圆形图片
 
 > 框架默认添加如下权限(请勿重复添加)
 ```
