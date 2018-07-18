@@ -10,6 +10,8 @@ import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
 
+import org.json.JSONObject;
+
 /**
  * 作者： macpro  on 2018/6/17.
  * 邮箱： xxx.com
@@ -107,13 +109,51 @@ public class NohttpUtils {
     // post请求String,支持优先级
     public void doPostStringByPriority(String url, RequestParams params, Object sign, Priority priority, NoHttpCallBack hcb) {
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
-        request.setPriority(Priority.DEFAULT);
         request.add(params.params());
         request.setPriority(priority);
         request.setCancelSign(sign);
         requestQueue.add(200, request, hcb);
     }
 
+    public void doByJson(String url, String JsonString, Object sign, NoHttpCallBack hcb) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(Priority.DEFAULT);
+        request.setCancelSign(sign);
+        requestQueue.add(200, request, hcb);
+
+        request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
+    }
+
+    public void doByJsonAndPriority(String url, String JsonString, Object sign, Priority priority, NoHttpCallBack hcb) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(priority);
+        request.setCancelSign(sign);
+        requestQueue.add(200, request, hcb);
+
+        request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
+    }
+
+    public void doByJson(String url, JSONObject jsonObject, Object sign, NoHttpCallBack hcb) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(Priority.DEFAULT);
+        request.setCancelSign(sign);
+        requestQueue.add(200, request, hcb);
+
+        request.setDefineRequestBodyForJson(jsonObject); // 传入JSONObject即可。
+    }
+
+    public void doByJsonAndPriority(String url, JSONObject jsonObject, Object sign, Priority priority, NoHttpCallBack hcb) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(priority);
+        request.setCancelSign(sign);
+        requestQueue.add(200, request, hcb);
+
+        request.setDefineRequestBodyForJson(jsonObject); // 传入JSONObject即可。
+    }
 
     // file文件下载,支持取消,断点续传
     public void downLoadFile(String url, String fileFolder, String fileName, Object sign, boolean isRange, DownloadListener hcb) {
