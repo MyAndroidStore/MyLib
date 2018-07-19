@@ -7,6 +7,8 @@ import android.view.View;
 
 import org.wjh.androidlib.utils.ToastUtils;
 import org.wjh.mylib.simple.BannerActivity;
+import org.wjh.mylib.simple.Bottom1Activity;
+import org.wjh.mylib.simple.Bottom2Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,5 +34,13 @@ public class MainActivity extends AppCompatActivity {
     public void toast(View view) {
         ToastUtils.getInstance().shortToast(++index + "");
         ToastUtils.getInstance().longToast(++index + "");
+    }
+
+    public void bottom1(View view) {
+        startActivity(Bottom1Activity.class);
+    }
+
+    public void bottom2(View view) {
+        startActivity(Bottom2Activity.class);
     }
 }

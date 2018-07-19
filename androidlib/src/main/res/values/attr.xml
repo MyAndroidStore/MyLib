@@ -35,4 +35,13 @@
 
     </declare-styleable>
 
+
+    <declare-styleable name="BottomTabStyle">
+        <attr name="selectedTextColor" format="color|reference" />
+        <attr name="unSelectedTextColor" format="color|reference" />
+        <attr name="middleSrc" format="reference" />
+        <attr name="middleText" format="string" />
+        <attr name="isOverParentLayout" format="boolean|reference" />
+    </declare-styleable>
+
 </resources>

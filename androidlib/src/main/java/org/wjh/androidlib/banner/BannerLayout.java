@@ -1,4 +1,4 @@
-package org.wjh.androidlib.widget;
+package org.wjh.androidlib.banner;
 
 import android.content.Context;
 import android.content.res.TypedArray;

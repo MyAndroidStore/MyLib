@@ -3,8 +3,8 @@ package org.wjh.mylib.simple;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import org.wjh.androidlib.widget.BannerImageLoader;
-import org.wjh.androidlib.widget.BannerLayout;
+import org.wjh.androidlib.banner.BannerImageLoader;
+import org.wjh.androidlib.banner.BannerLayout;
 import org.wjh.mylib.R;
 
 import java.util.ArrayList;

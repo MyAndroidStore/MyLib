@@ -8,7 +8,7 @@
     tools:context=".simple.BannerActivity">
 
 
-    <org.wjh.androidlib.widget.BannerLayout
+    <org.wjh.androidlib.banner.BannerLayout
         android:id="@+id/banner1"
         android:layout_width="match_parent"
         android:layout_height="168dp"
@@ -28,7 +28,7 @@
         app:unSelectedIndicatorWidth="6dp" />
 
 
-    <org.wjh.androidlib.widget.BannerLayout
+    <org.wjh.androidlib.banner.BannerLayout
         android:id="@+id/banner2"
         android:layout_width="match_parent"
         android:layout_height="168dp"
@@ -48,7 +48,7 @@
         app:unSelectedIndicatorWidth="6dp" />
 
 
-    <org.wjh.androidlib.widget.BannerLayout
+    <org.wjh.androidlib.banner.BannerLayout
         android:id="@+id/banner3"
         android:layout_width="match_parent"
         android:layout_height="168dp"
