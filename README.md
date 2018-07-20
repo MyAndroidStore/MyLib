@@ -59,3 +59,7 @@ https://www.jianshu.com/p/8e566da74b3e
 ToastUtils.getInstance().shortToast("Toast详细内容");
 ToastUtils.getInstance().longToast("Toast详细内容");
 ```
+> Base64ConvertUtils的使用(文件转换成base64)
+```
+Base64ConvertUtils.file2Base64();
+```
