@@ -141,7 +141,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
             FootViewHolder footViewHolder = (FootViewHolder) holder;
             switch (loadState) {
                 case LOADING: // 正在加载
-
+                    footViewHolder.getLinearLayout(R.id.layout).setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getProgressBar(R.id.pb_loading).setVisibility(View.VISIBLE);
                     footViewHolder.getTextView(R.id.tv_loading).setVisibility(View.VISIBLE);
                     footViewHolder.getLinearLayout(R.id.ll_end).setVisibility(View.GONE);
@@ -150,6 +150,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     break;
 
                 case LOAD_COMPLETE: // 加载完成
+                    footViewHolder.getLinearLayout(R.id.layout).setBackgroundColor(0);
                     footViewHolder.getProgressBar(R.id.pb_loading).setVisibility(View.INVISIBLE);
                     footViewHolder.getTextView(R.id.tv_loading).setVisibility(View.INVISIBLE);
                     footViewHolder.getLinearLayout(R.id.ll_end).setVisibility(View.GONE);
@@ -158,6 +159,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     break;
 
                 case LOAD_END: // 加载到底
+                    footViewHolder.getLinearLayout(R.id.layout).setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getProgressBar(R.id.pb_loading).setVisibility(View.GONE);
                     footViewHolder.getTextView(R.id.tv_loading).setVisibility(View.GONE);
                     footViewHolder.getLinearLayout(R.id.ll_end).setVisibility(View.VISIBLE);
@@ -165,6 +167,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     footViewHolder.getRelativeLayout(R.id.ll_error).setVisibility(View.GONE);
                     break;
                 case LOAD_ERROR: // 加载出错
+                    footViewHolder.getLinearLayout(R.id.layout).setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getProgressBar(R.id.pb_loading).setVisibility(View.GONE);
                     footViewHolder.getTextView(R.id.tv_loading).setVisibility(View.GONE);
                     footViewHolder.getLinearLayout(R.id.ll_end).setVisibility(View.GONE);
@@ -172,6 +175,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     footViewHolder.getRelativeLayout(R.id.ll_error).setVisibility(View.VISIBLE);
                     break;
                 case LOAD_NODATA:
+                    footViewHolder.getLinearLayout(R.id.layout).setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getProgressBar(R.id.pb_loading).setVisibility(View.GONE);
                     footViewHolder.getTextView(R.id.tv_loading).setVisibility(View.GONE);
                     footViewHolder.getLinearLayout(R.id.ll_end).setVisibility(View.GONE);
