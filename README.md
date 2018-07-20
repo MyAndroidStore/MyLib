@@ -48,7 +48,7 @@ NoHttp.initialize(this);
 Logger.setDebug(true);
 // 设置NoHttp打印Log的TAG
 Logger.setTag("NoHttpSample");
-
+// ToastUtils全局初始化
 ToastUtils.init(this);
 ```
 > 轮播图的使用
