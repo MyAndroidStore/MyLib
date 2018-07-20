@@ -18,18 +18,18 @@
 
 `root build.gradle `
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+allprojects {
+    repositories {
+	    ...
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 `module build.gradle `
 ```
-	dependencies {
-	        implementation 'com.github.MyAndroidStore:MyLib:2.0.9'
-	}
+dependencies {
+    implementation 'com.github.MyAndroidStore:MyLib:2.0.9'
+}
 ```
 `如果报错，如下：v4、v7包重复(如果其他包冲突也可用此解决)`
 ![error.png](https://github.com/MyAndroidStore/MyLib/blob/master/pictures/20180720_103110.png?raw=true)
