@@ -199,6 +199,11 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
         return mContext;
     }
 
+    // 对外提供获取布局填充器的方法
+    public LayoutInflater getAttachInflater() {
+        return mInflater;
+    }
+
 
     // 设置Item的点击事件
     public void setOnItemClickListener(OnItemClickListener<T> listener) {
