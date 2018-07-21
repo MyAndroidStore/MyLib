@@ -2,29 +2,29 @@ package org.wjh.mylib.simple;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import org.wjh.androidlib.listadapter.LoadMoreMultiLayoutAdapter;
 import org.wjh.androidlib.listadapter.LoadMoreSingleLayoutAdapter;
 import org.wjh.androidlib.listadapter.LoadingState;
 import org.wjh.androidlib.listadapter.OnSlideUpListener;
 import org.wjh.mylib.R;
 import org.wjh.mylib.adapter.Adapter1;
+import org.wjh.mylib.adapter.Adapter2;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class List1Activity extends AppCompatActivity {
+public class List2Activity extends AppCompatActivity {
 
     int index = 0;
 
     private RecyclerView recyclerView;
-    Adapter1 adapter1;
+    Adapter2 adapter2;
 
 
     private Handler handler = new Handler() {
@@ -32,11 +32,11 @@ public class List1Activity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            if (adapter1.getAttachDatas().size() == 60) {
-                adapter1.setLoadState(LoadingState.LOAD_END);
+            if (adapter2.getAttachDatas().size() == 60) {
+                adapter2.setLoadState(LoadingState.LOAD_END);
             } else {
-                adapter1.addData(getData());
-                adapter1.setLoadState(LoadingState.LOAD_COMPLETE);
+                adapter2.addData(getData());
+                adapter2.setLoadState(LoadingState.LOAD_COMPLETE);
 
             }
 
@@ -47,19 +47,19 @@ public class List1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list1);
+        setContentView(R.layout.activity_list2);
 
         recyclerView = (RecyclerView) findViewById(R.id.rv);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        adapter1 = new Adapter1(this, R.layout.item1);
-        recyclerView.setAdapter(adapter1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter2 = new Adapter2(this);
+        recyclerView.setAdapter(adapter2);
 
         // 模拟设置加载出错
-        adapter1.setLoadState(LoadingState.LOAD_ERROR);
+        adapter2.setLoadState(LoadingState.LOAD_ERROR);
 
 
-        adapter1.setOnFooterErrorListener(new LoadMoreSingleLayoutAdapter.OnFooterErrorListener() {
+        adapter2.setOnFooterErrorListener(new LoadMoreMultiLayoutAdapter.OnFooterErrorListener() {
             @Override
             public void onClick() {
                 request();
@@ -78,7 +78,7 @@ public class List1Activity extends AppCompatActivity {
 
     private void request() {
 
-        adapter1.setLoadState(LoadingState.LOADING);
+        adapter2.setLoadState(LoadingState.LOADING);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -95,7 +95,7 @@ public class List1Activity extends AppCompatActivity {
         List<String> strings = new ArrayList<>();
 
 
-        for (int i = 0; i < 39; i++) {
+        for (int i = 0; i < 20; i++) {
 
             strings.add("测试" + (++index));
         }

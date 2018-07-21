@@ -10,6 +10,7 @@ import org.wjh.mylib.simple.BannerActivity;
 import org.wjh.mylib.simple.Bottom1Activity;
 import org.wjh.mylib.simple.Bottom2Activity;
 import org.wjh.mylib.simple.List1Activity;
+import org.wjh.mylib.simple.List2Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,5 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void rv1(View view) {
         startActivity(List1Activity.class);
+    }
+
+    public void rv2(View view) {
+        startActivity(List2Activity.class);
     }
 }

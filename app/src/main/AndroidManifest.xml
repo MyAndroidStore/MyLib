@@ -20,7 +20,8 @@
         <activity android:name=".simple.BannerActivity" />
         <activity android:name=".simple.Bottom1Activity" />
         <activity android:name=".simple.Bottom2Activity" />
-        <activity android:name=".simple.List1Activity"></activity>
+        <activity android:name=".simple.List1Activity" />
+        <activity android:name=".simple.List2Activity"></activity>
     </application>
 
 </manifest>

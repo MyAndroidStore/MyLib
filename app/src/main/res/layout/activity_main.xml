@@ -43,6 +43,12 @@
             android:onClick="rv1"
             android:text="单布局列表" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="rv2"
+            android:text="多布局列表" />
+
 
     </LinearLayout>
 
