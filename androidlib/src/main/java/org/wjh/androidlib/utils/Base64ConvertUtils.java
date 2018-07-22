@@ -5,26 +5,33 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class Base64ConvertUtils {
 
     public static String file2Base64(String file) {
 
-        Bitmap bitmap = BitmapFactory.decodeFile(file);
-        ByteArrayOutputStream out = null;
-        try {
-            out = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.flush();
-            out.close();
-            byte[] imgBytes = out.toByteArray();
+        String convertResult = "";
 
-            return Base64.encodeToString(imgBytes, Base64.NO_WRAP);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
+        Bitmap bitmap = BitmapFactory.decodeFile(file);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+        byte[] imgBytes = out.toByteArray();
+
+        convertResult = Base64.encodeToString(imgBytes, Base64.NO_WRAP);
+
+        try {
+            out.close();
+        } catch (IOException e) {
             e.printStackTrace();
-            return null;
+        } finally {
+            bitmap.recycle();
         }
+
+
+        return convertResult;
 
     }
 }
