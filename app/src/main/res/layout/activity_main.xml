@@ -49,6 +49,12 @@
             android:onClick="rv2"
             android:text="多布局列表" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="imgChoice"
+            android:text="知乎图库选择" />
+
 
     </LinearLayout>
 

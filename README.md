@@ -1,10 +1,11 @@
 # MyLib
 > 框架默认集成如下依赖(请勿重复集成)
-- NoHttp (网络请求[包含okhttp])
-- Gson (json工具)
-- Luban (图片压缩)
+- NoHttp (1.1.10)网络请求[包含okhttp]
+- Gson (1.1.3)json工具
+- Luban (2.8.2)图片压缩
 - Glide （3.8.0）图片加载
 - CircleImageview (2.2.0)圆形图片
+- Matisse (0.5.1)知乎图片选择框架
 
 > 框架默认添加如下权限(请勿重复添加)
 ```
