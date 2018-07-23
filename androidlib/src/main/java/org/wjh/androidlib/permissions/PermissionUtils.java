@@ -70,6 +70,7 @@ public class PermissionUtils {
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        ToastUtils.getInstance().shortToast("权限授予失败");
                     }
                 })
                 .show();
