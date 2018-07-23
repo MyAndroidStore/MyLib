@@ -16,4 +16,7 @@
     <string name="error_discribe">点击加载更多</string>
     <string name="no_data_discribe">无数据</string>
     <string name="loading">加载中...</string>
+    <!--知乎-->
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
+
 </resources>

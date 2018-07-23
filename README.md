@@ -6,6 +6,7 @@
 - Glide （3.8.0）图片加载
 - CircleImageview (2.2.0)圆形图片
 - Matisse (0.5.1)知乎图片选择框架
+- AndPermission (2.0.0-rc11)权限处理
 
 > 框架默认添加如下权限(请勿重复添加)
 ```
