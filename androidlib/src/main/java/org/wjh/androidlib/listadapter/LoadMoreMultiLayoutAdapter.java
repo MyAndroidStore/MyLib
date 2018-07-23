@@ -112,7 +112,7 @@ public abstract class LoadMoreMultiLayoutAdapter<T> extends RecyclerView.Adapter
 
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TYPE_FOOTER) {
-            View view = mInflater.inflate(R.layout.layout_refresh_footer, parent, false);
+            View view = mInflater.inflate(R.layout.refresh_footer, parent, false);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
