@@ -7,6 +7,7 @@ import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 
 import com.yanzhenjie.permission.Action;
@@ -115,6 +116,101 @@ public class PermissionUtils {
                 .start();
     }
 
+
+    /**
+     * Request permissions.
+     *
+     * @param context                上下文对象
+     * @param permissionDiscribeName 权限描述：eg.存储、拍照
+     * @param listener               权限回调
+     * @param permissions            需要申请的权限
+     */
+    public static void requestPermission(final Fragment fragment, final String permissionDiscribeName, final GrantedListener listener, final String... permissions) {
+
+        AndPermission.with(fragment)
+                .runtime()
+                .permission(permissions)
+                .rationale(new RuntimeRationale())
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        listener.successfully();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(@NonNull List<String> permissionList) {
+
+                        if (AndPermission.hasAlwaysDeniedPermission(fragment, permissions)) {
+                            showSettingDialog(fragment, permissionDiscribeName, listener, permissions);
+                        } else {
+                            ToastUtils.getInstance().shortToast("权限授予失败");
+                        }
+                    }
+                })
+                .start();
+    }
+
+
+    /**
+     * Display setting dialog.
+     */
+    private static void showSettingDialog(final Fragment fragment, String permissionName, final GrantedListener listener, final String... permissions) {
+
+        String message = "请在设置中开启" + permissionName + "权限";
+
+        new AlertDialog.Builder(fragment.getActivity())
+                .setCancelable(false)
+                .setTitle("提示")
+                .setMessage(message)
+                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setPermission(fragment, listener, permissions);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ToastUtils.getInstance().shortToast("权限授予失败");
+                    }
+                })
+                .show();
+    }
+
+
+    /**
+     * Set permissions.
+     */
+    private static void setPermission(final Fragment fragment, final GrantedListener listener, final String... permissions) {
+        AndPermission.with(fragment)
+                .runtime()
+                .setting()
+                .onComeback(new Setting.Action() {
+                    @Override
+                    public void onAction() {
+
+                        AndPermission.with(fragment)
+                                .runtime()
+                                .permission(permissions)
+                                .rationale(new RuntimeRationale())
+                                .onGranted(new Action<List<String>>() {
+                                    @Override
+                                    public void onAction(List<String> permissions) {
+                                        listener.successfully();
+                                    }
+                                })
+                                .onDenied(new Action<List<String>>() {
+                                    @Override
+                                    public void onAction(List<String> data) {
+                                        ToastUtils.getInstance().shortToast("权限授予失败");
+                                    }
+                                })
+                                .start();
+                    }
+                })
+                .start();
+    }
 
     public static boolean isCameraCanUse() {
         boolean canUse = true;
