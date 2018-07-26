@@ -21,7 +21,7 @@ public class WaitDialog extends LoadingDialog {
 
         if (dialog != null && !dialog.isShowing()) {
             dialog.show();
-            dialog.setContentView(R.layout.waiting_dialog);
+            dialog.setContentView(R.layout.mylib_waiting_dialog);
         }
 
     }

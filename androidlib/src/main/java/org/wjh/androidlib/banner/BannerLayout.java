@@ -161,8 +161,8 @@ public class BannerLayout extends RelativeLayout {
         autoPlayDuration = array.getInt(R.styleable.BannerLayoutStyle_autoPlayDuration, autoPlayDuration);
         scrollDuration = array.getInt(R.styleable.BannerLayoutStyle_scrollDuration, scrollDuration);
         isAutoPlay = array.getBoolean(R.styleable.BannerLayoutStyle_isAutoPlay, isAutoPlay);
-        unSelectedDrawableTemp = getResources().getDrawable(array.getResourceId(R.styleable.BannerLayoutStyle_unSelectedIndicatorSrc, R.drawable.ic_banner_unselect));
-        selectedDrawableTemp = getResources().getDrawable(array.getResourceId(R.styleable.BannerLayoutStyle_selectedIndicatorSrc, R.drawable.ic_banner_select));
+        unSelectedDrawableTemp = getResources().getDrawable(array.getResourceId(R.styleable.BannerLayoutStyle_unSelectedIndicatorSrc, R.drawable.mylib_ic_banner_unselect));
+        selectedDrawableTemp = getResources().getDrawable(array.getResourceId(R.styleable.BannerLayoutStyle_selectedIndicatorSrc, R.drawable.mylib_ic_banner_select));
         array.recycle();
 
         //绘制未选中状态图形

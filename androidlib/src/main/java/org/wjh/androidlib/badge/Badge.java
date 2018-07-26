@@ -34,9 +34,9 @@ public class Badge extends RelativeLayout {
         super(context, attrs);
 
         // 加载布局
-        LayoutInflater.from(context).inflate(R.layout.badge, this, true);
-        this.badge_tv = findViewById(R.id.badge);
-        this.badge_dot = findViewById(R.id.badge_dot);
+        LayoutInflater.from(context).inflate(R.layout.mylib_badge, this, true);
+        this.badge_tv = findViewById(R.id.mylib_badge_num);
+        this.badge_dot = findViewById(R.id.mylib_badge_dot);
         this.layout = findViewById(R.id.layout_badge);
         this.layout.setVisibility(GONE);
 
@@ -51,20 +51,20 @@ public class Badge extends RelativeLayout {
 
             // 红底白字
             case REDSOLID:
-                this.layout.setBackgroundResource(R.drawable.notice1);
+                this.layout.setBackgroundResource(R.drawable.mylib_notice1);
                 this.badge_tv.setTextColor(getResources().getColor(R.color.badge_white));
                 this.badge_dot.setVisibility(GONE);
                 this.badge_tv.setVisibility(VISIBLE);
                 break;
             // 白底红字+描边红
             case WHITESOLID:
-                this.layout.setBackgroundResource(R.drawable.notice2);
+                this.layout.setBackgroundResource(R.drawable.mylib_notice2);
                 this.badge_tv.setTextColor(getResources().getColor(R.color.badge_red));
                 this.badge_dot.setVisibility(GONE);
                 this.badge_tv.setVisibility(VISIBLE);
                 break;
             case DOT:
-                this.badge_dot.setBackgroundResource(R.drawable.notice3);
+                this.badge_dot.setBackgroundResource(R.drawable.mylib_notice3);
                 this.layout.setBackgroundColor(0);
                 this.badge_dot.setVisibility(VISIBLE);
                 this.badge_tv.setVisibility(GONE);

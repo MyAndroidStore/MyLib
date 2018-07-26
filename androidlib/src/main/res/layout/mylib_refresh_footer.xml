@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout"
+    android:id="@+id/mylib_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bg_color"
@@ -9,7 +9,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_error"
+        android:id="@+id/mylib_rl_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -27,7 +27,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/ll_no_data"
+        android:id="@+id/mylib_ll_no_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -71,7 +71,7 @@
 
 
     <LinearLayout
-        android:id="@+id/ll_end"
+        android:id="@+id/mylib_ll_end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -115,13 +115,13 @@
 
 
     <ProgressBar
-        android:id="@+id/pb_loading"
+        android:id="@+id/mylib_pb_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/progressbar_refresh" />
+        android:indeterminateDrawable="@drawable/mylib_progressbar_refresh" />
 
     <TextView
-        android:id="@+id/tv_loading"
+        android:id="@+id/mylib_tv_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loading"

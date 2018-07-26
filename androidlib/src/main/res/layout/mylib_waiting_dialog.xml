@@ -8,12 +8,12 @@
 
 
     <ProgressBar
-        android:id="@+id/pb"
+        android:id="@+id/mylib_pb"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:indeterminateDrawable="@drawable/progress" />
+        android:indeterminateDrawable="@drawable/mylib_progress" />
 
     <TextView
         android:layout_width="match_parent"

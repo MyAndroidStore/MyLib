@@ -35,10 +35,10 @@ public class BottomBarItem extends RelativeLayout {
 
 
         // 加载布局
-        LayoutInflater.from(context).inflate(R.layout.bottom_bar_item, this, true);
-        img = findViewById(R.id.bottom_bar_img);
+        LayoutInflater.from(context).inflate(R.layout.mylib_bottom_bar_item, this, true);
+        img = findViewById(R.id.mylib_bottom_bar_img);
         tv = findViewById(R.id.bottom_bar_tv);
-        badge = findViewById(R.id.bottombar_badge);
+        badge = findViewById(R.id.mylib_bottombar_badge);
 
         img.setImageDrawable(DrawableSelectorUtils.getStateListDrawable(context, imgResUnSelected, imgResSelected));
         tv.setText(title);

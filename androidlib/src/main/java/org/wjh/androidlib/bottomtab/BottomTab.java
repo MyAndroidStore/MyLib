@@ -57,12 +57,12 @@ public class BottomTab extends LinearLayout {
         getAttrs(context, attrs);
 
         this.mContext = context;
-        LayoutInflater.from(context).inflate(R.layout.bottom_bar, this, true);
-        this.line = findViewById(R.id.line);
-        this.mTabHost = findViewById(R.id.tabHost);
-        this.middleImg = findViewById(R.id.middleImg);
-        this.middleTv = findViewById(R.id.middle_tv);
-        this.middle_layout = findViewById(R.id.middle_layout);
+        LayoutInflater.from(context).inflate(R.layout.mylib_bottom_bar, this, true);
+        this.line = findViewById(R.id.mylib_line);
+        this.mTabHost = findViewById(R.id.mylib_tabHost);
+        this.middleImg = findViewById(R.id.mylib_middleImg);
+        this.middleTv = findViewById(R.id.mylib_middle_tv);
+        this.middle_layout = findViewById(R.id.mylib_middle_layout);
     }
 
 
@@ -75,7 +75,7 @@ public class BottomTab extends LinearLayout {
     private void getAttrs(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomTabStyle);
         isOverparentLayout = ta.getBoolean(R.styleable.BottomTabStyle_isOverParentLayout, false);
-        middleSrc = ta.getResourceId(R.styleable.BottomTabStyle_middleSrc, R.drawable.notice1);
+        middleSrc = ta.getResourceId(R.styleable.BottomTabStyle_middleSrc, R.drawable.mylib_notice1);
         middleText = ta.getString(R.styleable.BottomTabStyle_middleText);
         unSelectedTextColor = ta.getColor(R.styleable.BottomTabStyle_unSelectedTextColor, unSelectedTextColor);
         selectedTextColor = ta.getColor(R.styleable.BottomTabStyle_selectedTextColor, selectedTextColor);

@@ -5,7 +5,7 @@
     android:minHeight="50dp">
 
     <ImageView
-        android:id="@+id/bottom_bar_img"
+        android:id="@+id/mylib_bottom_bar_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -14,21 +14,21 @@
         android:minWidth="24dp" />
 
     <org.wjh.androidlib.badge.Badge
-        android:id="@+id/bottombar_badge"
+        android:id="@+id/mylib_bottombar_badge"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="-9dp"
         android:layout_marginStart="-9dp"
         android:layout_marginTop="4dp"
-        android:layout_toEndOf="@id/bottom_bar_img"
-        android:layout_toRightOf="@id/bottom_bar_img" />
+        android:layout_toEndOf="@id/mylib_bottom_bar_img"
+        android:layout_toRightOf="@id/mylib_bottom_bar_img" />
 
     <TextView
         android:id="@+id/bottom_bar_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bottom_bar_img"
+        android:layout_below="@id/mylib_bottom_bar_img"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="6dp"
         android:layout_marginTop="3dp"
