@@ -11,14 +11,23 @@ public abstract class LoadingDialog {
 
     private Context mContext;
 
-    public LoadingDialog(Context context) {
-        this.mContext = context;
+    public LoadingDialog() {
+    }
+
+    public Context getmContext() {
+        return mContext;
+    }
+
+    public void setmContext(Context mContext) {
+        this.mContext = mContext;
     }
 
     // 子类去实现显示dialog
     public abstract void show();
+
     // 子类去实现dialog关闭
     public abstract void dismiss();
+
     // 子类去实现dialog是否正在显示
     public abstract boolean isShowing();
 }

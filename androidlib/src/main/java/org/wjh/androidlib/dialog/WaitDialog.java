@@ -1,6 +1,5 @@
 package org.wjh.androidlib.dialog;
 
-import android.content.Context;
 import android.support.v7.app.AlertDialog;
 
 import org.wjh.androidlib.R;
@@ -9,10 +8,10 @@ public class WaitDialog extends LoadingDialog {
 
     private AlertDialog dialog;
 
-    public WaitDialog(Context context) {
-        super(context);
+    public WaitDialog() {
+        super();
 
-        dialog = new AlertDialog.Builder(context, R.style.DialogNoBackgroundDimStyle).create();
+        dialog = new AlertDialog.Builder(getmContext(), R.style.DialogNoBackgroundDimStyle).create();
         dialog.setCancelable(false);
     }
 
