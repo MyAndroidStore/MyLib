@@ -6,9 +6,10 @@ import android.view.KeyEvent;
 
 import org.wjh.androidlib.R;
 
-public class WaitDialog extends LoadingDialog implements DialogInterface.OnKeyListener {
+public class WaitCanBackDialog extends LoadingDialog implements DialogInterface.OnKeyListener {
 
     private AlertDialog dialog;
+    private DismissListener listener;
 
     @Override
     public void show() {
@@ -28,6 +29,11 @@ public class WaitDialog extends LoadingDialog implements DialogInterface.OnKeyLi
 
     }
 
+    public WaitCanBackDialog(AlertDialog dialog, DismissListener listener) {
+        this.dialog = dialog;
+        this.listener = listener;
+    }
+
     @Override
     public void dismiss() {
         if (dialog != null && dialog.isShowing())
@@ -41,6 +47,9 @@ public class WaitDialog extends LoadingDialog implements DialogInterface.OnKeyLi
 
     @Override
     public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+        dialogInterface.dismiss();
+        if (listener != null)
+            listener.goBack();
         return false;
     }
 }
