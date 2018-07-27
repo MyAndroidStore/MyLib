@@ -10,13 +10,16 @@ public class WaitDialog extends LoadingDialog {
 
     public WaitDialog() {
         super();
-
-        dialog = new AlertDialog.Builder(getmContext(), R.style.DialogNoBackgroundDimStyle).create();
-        dialog.setCancelable(false);
     }
 
     @Override
     public void show() {
+
+        if (dialog == null) {
+            dialog = new AlertDialog.Builder(getmContext(), R.style.DialogNoBackgroundDimStyle).create();
+            dialog.setCancelable(false);
+        }
+
 
         if (dialog != null && !dialog.isShowing()) {
             dialog.show();
