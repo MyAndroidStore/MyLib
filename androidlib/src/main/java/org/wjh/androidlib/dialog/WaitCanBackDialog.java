@@ -11,6 +11,10 @@ public class WaitCanBackDialog extends LoadingDialog implements DialogInterface.
     private AlertDialog dialog;
     private DismissListener listener;
 
+    public WaitCanBackDialog(DismissListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public void show() {
 
@@ -27,11 +31,6 @@ public class WaitCanBackDialog extends LoadingDialog implements DialogInterface.
             dialog.setContentView(R.layout.mylib_waiting_dialog);
         }
 
-    }
-
-    public WaitCanBackDialog(AlertDialog dialog, DismissListener listener) {
-        this.dialog = dialog;
-        this.listener = listener;
     }
 
     @Override
