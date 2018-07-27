@@ -32,7 +32,7 @@ allprojects {
 `module build.gradle `
 ```
 dependencies {
-    implementation 'com.github.MyAndroidStore:MyLib:2.0.9'
+    implementation 'com.github.MyAndroidStore:MyLib:2.3.5'
 }
 ```
 `如果报错，如下：v4、v7包冲突`
