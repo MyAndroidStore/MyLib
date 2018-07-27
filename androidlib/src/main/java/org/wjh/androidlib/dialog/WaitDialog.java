@@ -8,10 +8,6 @@ public class WaitDialog extends LoadingDialog {
 
     private AlertDialog dialog;
 
-    public WaitDialog() {
-        super();
-    }
-
     @Override
     public void show() {
 

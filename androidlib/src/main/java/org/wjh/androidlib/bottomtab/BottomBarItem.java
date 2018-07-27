@@ -7,8 +7,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.wjh.androidlib.R;
-import org.wjh.androidlib.utils.DrawableSelectorUtils;
 import org.wjh.androidlib.badge.Badge;
+import org.wjh.androidlib.utils.DrawableSelectorUtils;
 
 
 /**

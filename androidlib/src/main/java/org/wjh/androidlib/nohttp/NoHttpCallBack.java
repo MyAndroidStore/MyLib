@@ -1,6 +1,5 @@
 package org.wjh.androidlib.nohttp;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.yanzhenjie.nohttp.error.NetworkError;
@@ -33,7 +32,7 @@ public abstract class NoHttpCallBack implements OnResponseListener<String> {
     public NoHttpCallBack(Context context, LoadingDialog loadingDialog) {
         this.mContext = context;
         this.mLoadingDialog = loadingDialog;
-        this.mLoadingDialog.setmContext(context);
+        this.mLoadingDialog.setContext(context);
     }
 
     @Override

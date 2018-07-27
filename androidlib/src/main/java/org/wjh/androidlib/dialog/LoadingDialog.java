@@ -18,7 +18,7 @@ public abstract class LoadingDialog {
         return mContext;
     }
 
-    public void setmContext(Context mContext) {
+    public void setContext(Context mContext) {
         this.mContext = mContext;
     }
 
