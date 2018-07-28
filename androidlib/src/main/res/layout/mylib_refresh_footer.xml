@@ -1,12 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mylib_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg_color"
-    android:gravity="center"
     android:orientation="horizontal">
 
+    <!--第一次加载开始-->
+
+    <RelativeLayout
+        android:id="@+id/mylib_rl_first"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/mylib_progressbar_list" />
+
+    </RelativeLayout>
+
+    <!--加载中-->
+
+    <RelativeLayout
+        android:id="@+id/mylib_rl_lading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/mylib_pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/mylib_progressbar_refresh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/mylib_pb_loading"
+            android:text="@string/loading"
+            android:textColor="@color/text_color"
+            android:textSize="12dp" />
+
+    </RelativeLayout>
+
+    <!--加载到底-->
+
+    <LinearLayout
+        android:id="@+id/mylib_ll_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:background="@color/bg_line" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/end_discribe"
+            android:textColor="@color/text_color"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_weight="1"
+            android:background="@color/bg_line" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!--加载出错-->
 
     <RelativeLayout
         android:id="@+id/mylib_rl_error"
@@ -25,6 +111,9 @@
             android:textSize="14dp" />
 
     </RelativeLayout>
+
+
+    <!--无数据-->
 
     <LinearLayout
         android:id="@+id/mylib_ll_no_data"
@@ -70,62 +159,4 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/mylib_ll_end"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0.3dp"
-            android:layout_weight="1"
-            android:alpha="0.5"
-            android:background="@color/bg_line" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/end_discribe"
-            android:textColor="@color/text_color"
-            android:textSize="14dp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0.3dp"
-            android:layout_weight="1"
-            android:background="@color/bg_line" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-
-    <ProgressBar
-        android:id="@+id/mylib_pb_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/mylib_progressbar_refresh" />
-
-    <TextView
-        android:id="@+id/mylib_tv_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/loading"
-        android:textColor="@color/text_color"
-        android:textSize="12dp" />
-
-</LinearLayout>
+</FrameLayout>

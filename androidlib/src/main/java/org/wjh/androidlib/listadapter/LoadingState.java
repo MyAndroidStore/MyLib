@@ -6,8 +6,8 @@ package org.wjh.androidlib.listadapter;
  */
 public enum LoadingState {
 
-    // 加载中、加载完成、加载到底、加载出错了
-    LOADING(1), LOAD_COMPLETE(2), LOAD_END(3), LOAD_ERROR(4), LOAD_NODATA(5);
+    // 首次加载、加载中、加载完成、加载到底、加载出错了
+    LOAD_FIRST(0), LOADING(1), LOAD_COMPLETE(2), LOAD_END(3), LOAD_ERROR(4), LOAD_NODATA(5);
 
     private int mState;
 
