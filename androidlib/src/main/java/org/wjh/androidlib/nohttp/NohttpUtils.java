@@ -12,6 +12,9 @@ import com.yanzhenjie.nohttp.rest.RequestQueue;
 
 import org.json.JSONObject;
 
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * 作者： macpro  on 2018/6/17.
  * 邮箱： xxx.com
@@ -120,6 +123,26 @@ public class NohttpUtils {
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
         request.setPriority(Priority.DEFAULT);
         request.setCancelSign(sign);
+        requestQueue.add(200, request, hcb);
+
+        request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
+    }
+
+    public void doByJsonAndHeader(String url, String JsonString, HeaderParams headerParams, Object sign, NoHttpCallBack hcb) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(Priority.DEFAULT);
+        request.setCancelSign(sign);
+
+        Map<String, String> map = headerParams.params();
+
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> next = iterator.next();
+            request.addHeader(next.getKey(), next.getValue());
+        }
+
         requestQueue.add(200, request, hcb);
 
         request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。

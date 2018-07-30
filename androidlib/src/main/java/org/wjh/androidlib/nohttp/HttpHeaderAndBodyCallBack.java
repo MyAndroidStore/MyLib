@@ -73,6 +73,6 @@ public abstract class HttpHeaderAndBodyCallBack extends NoHttpCallBack {
 
 
     public abstract void onCookie(List<HttpCookie> cookies);
-    
+
     public abstract void onCookieError();
 }
