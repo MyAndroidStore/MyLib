@@ -24,7 +24,7 @@ public class TsnackBarUtils {
         if (mContext == null)
             throw new TsnackBarUtilsInitException();
         else
-            mStateBarHeight += (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? ScreenUtil.getActionBarHeight(mContext) : 0);
+            mStateBarHeight = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? ScreenUtil.getStatusHeight(mContext) : 0);
     }
 
     public static TsnackBarUtils getInstance() {
