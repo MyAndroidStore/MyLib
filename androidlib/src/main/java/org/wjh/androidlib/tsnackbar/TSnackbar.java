@@ -397,11 +397,13 @@ public final class TSnackbar {
         tv.setGravity(Gravity.CENTER);
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, 46);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
+        int paddingTop = 0;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            params.setMargins(0, ScreenUtil.getStatusHeight(mContext) / 2, 0, 0);
+            paddingTop = ScreenUtil.getStatusHeight(mContext) / 2;
         }
+        tv.setPadding(0, paddingTop, 0, 0);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         tv.setLayoutParams(params);
 
         return this;
