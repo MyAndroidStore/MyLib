@@ -11,12 +11,13 @@ import com.yanzhenjie.nohttp.cache.DBCacheStore;
 import com.yanzhenjie.nohttp.cookie.DBCookieStore;
 
 import org.wjh.androidlib.utils.ToastUtils;
+import org.wjh.androidlib.utils.TsnackBarUtils;
 
 /**
  * 作者： macpro  on 2018/6/17.
  * 邮箱： xxx.com
  */
-public class MyApplication extends Application{
+public class MyApplication extends Application {
 
 
     @Override
@@ -32,19 +33,19 @@ public class MyApplication extends Application{
 
         ToastUtils.init(this);
 
+        TsnackBarUtils.init(this, 50);
     }
 
 
-
-    private InitializationConfig initNohttpConfig(){
+    private InitializationConfig initNohttpConfig() {
 
         // InitializationConfig config = InitializationConfig.newBuilder(context)
-                // .addHeader("Token", "123") // 全局请求头。
-                // .addHeader("Token", "456") // 全局请求头，不会覆盖上面的。
-                // .addParam("AppVersion", "1.0.0") // 全局请求参数。
-                // .addParam("AppType", "Android") // 全局请求参数。
-                // .addParam("AppType", "iOS") // 全局请求参数，不会覆盖上面的两个。
-                // .build();
+        // .addHeader("Token", "123") // 全局请求头。
+        // .addHeader("Token", "456") // 全局请求头，不会覆盖上面的。
+        // .addParam("AppVersion", "1.0.0") // 全局请求参数。
+        // .addParam("AppType", "Android") // 全局请求参数。
+        // .addParam("AppType", "iOS") // 全局请求参数，不会覆盖上面的两个。
+        // .build();
 
         return InitializationConfig.newBuilder(this)
                 // 全局连接服务器超时时间，单位毫秒，默认10s。
