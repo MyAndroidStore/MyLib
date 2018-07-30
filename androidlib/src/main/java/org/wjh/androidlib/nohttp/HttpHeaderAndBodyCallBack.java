@@ -40,6 +40,8 @@ public abstract class HttpHeaderAndBodyCallBack extends NoHttpCallBack {
 
         if (cookies != null && cookies.size() > 0) {
             onCookie(cookies);
+        } else {
+            onCookieError();
         }
 
 
@@ -71,4 +73,6 @@ public abstract class HttpHeaderAndBodyCallBack extends NoHttpCallBack {
 
 
     public abstract void onCookie(List<HttpCookie> cookies);
+    
+    public abstract void onCookieError();
 }
