@@ -1,8 +1,8 @@
 package org.wjh.mylib;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import org.wjh.androidlib.utils.ToastUtils;

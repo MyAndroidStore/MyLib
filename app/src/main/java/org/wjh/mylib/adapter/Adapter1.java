@@ -5,8 +5,6 @@ import android.content.Context;
 import org.wjh.androidlib.listadapter.LoadMoreSingleLayoutAdapter;
 import org.wjh.mylib.R;
 
-import java.util.List;
-
 public class Adapter1 extends LoadMoreSingleLayoutAdapter<String>{
 
 

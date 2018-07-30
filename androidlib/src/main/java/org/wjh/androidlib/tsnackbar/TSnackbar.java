@@ -38,6 +38,8 @@ import android.support.design.widget.SwipeDismissBehavior;
 import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -220,9 +222,9 @@ public final class TSnackbar {
         mContext = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         if (appearDirection == APPEAR_FROM_BOTTOM_TO_TOP) {
-            mView = (SnackbarLayout) inflater.inflate(R.layout.view_bsnackbar_layout, mParent, false);
+            mView = (SnackbarLayout) inflater.inflate(R.layout.mylib_view_bsnackbar_layout, mParent, false);
         } else {
-            mView = (SnackbarLayout) inflater.inflate(R.layout.view_tsnackbar_layout, mParent, false);
+            mView = (SnackbarLayout) inflater.inflate(R.layout.mylib_view_tsnackbar_layout, mParent, false);
         }
         mAccessibilityManager = (AccessibilityManager)
                 mContext.getSystemService(Context.ACCESSIBILITY_SERVICE);
@@ -235,9 +237,9 @@ public final class TSnackbar {
         mContext = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(mContext);
         if (appearDirection == APPEAR_FROM_BOTTOM_TO_TOP) {
-            mView = (SnackbarLayout) inflater.inflate(R.layout.view_bsnackbar_layout, mParent, false);
+            mView = (SnackbarLayout) inflater.inflate(R.layout.mylib_view_bsnackbar_layout, mParent, false);
         } else {
-            mView = (SnackbarLayout) inflater.inflate(R.layout.view_tsnackbar_layout, mParent, false);
+            mView = (SnackbarLayout) inflater.inflate(R.layout.mylib_view_tsnackbar_layout, mParent, false);
         }
         mAccessibilityManager = (AccessibilityManager)
                 mContext.getSystemService(Context.ACCESSIBILITY_SERVICE);
@@ -386,6 +388,25 @@ public final class TSnackbar {
         return this;
     }
 
+
+    public TSnackbar setTextInMiddle() {
+        final TextView tv = mView.getMessageView();
+        final Button actionView = mView.getActionView();
+
+        actionView.setVisibility(View.GONE);
+        tv.setGravity(Gravity.CENTER);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, 46);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            params.setMargins(0, ScreenUtil.getStatusHeight(mContext) / 2, 0, 0);
+        }
+        tv.setLayoutParams(params);
+
+        return this;
+    }
+
     /**
      * show loading progressBar
      *
@@ -467,6 +488,15 @@ public final class TSnackbar {
         } else if (prompt == Prompt.WARNING) {
             setBackgroundColor(mContext.getResources().getColor(Prompt.WARNING.getBackgroundColor()));
             addIcon(Prompt.WARNING.getResIcon(), 0, 0);
+        } else if (prompt == Prompt.SUCCESS_NOICON) {
+            setBackgroundColor(mContext.getResources().getColor(Prompt.SUCCESS_NOICON.getBackgroundColor()));
+            setTextInMiddle();
+        } else if (prompt == Prompt.ERROR_NOICON) {
+            setBackgroundColor(mContext.getResources().getColor(Prompt.ERROR_NOICON.getBackgroundColor()));
+            setTextInMiddle();
+        } else if (prompt == Prompt.WARNING_NOICON) {
+            setBackgroundColor(mContext.getResources().getColor(Prompt.WARNING_NOICON.getBackgroundColor()));
+            setTextInMiddle();
         }
         return this;
     }
@@ -974,7 +1004,7 @@ public final class TSnackbar {
             // Now inflate our content. We need to do this manually rather than using an <include>
             // in the layout since older versions of the Android do not inflate includes with
             // the correct Context.
-            LayoutInflater.from(context).inflate(R.layout.view_tsnackbar_layout_include, this);
+            LayoutInflater.from(context).inflate(R.layout.mylib_view_tsnackbar_layout_include, this);
             ViewCompat.setAccessibilityLiveRegion(this,
                     ViewCompat.ACCESSIBILITY_LIVE_REGION_POLITE);
             ViewCompat.setImportantForAccessibility(this,

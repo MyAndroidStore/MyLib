@@ -8,15 +8,19 @@ public enum Prompt {
      */
     ERROR(R.drawable.mylib_common_bounced_icon_error, R.color.prompt_error),
 
+    ERROR_NOICON(0, R.color.prompt_error),
+
     /**
      * 橘黄色,警告
      */
     WARNING(R.drawable.mylib_common_bounced_icon_warning, R.color.prompt_warning),
+    WARNING_NOICON(0, R.color.prompt_warning),
 
     /**
      * 绿色,成功
      */
-    SUCCESS(R.drawable.mylib_common_bounced_icon_successful, R.color.prompt_success);
+    SUCCESS(R.drawable.mylib_common_bounced_icon_successful, R.color.prompt_success),
+    SUCCESS_NOICON(0, R.color.prompt_success);
 
     private int resIcon;
     private int backgroundColor;

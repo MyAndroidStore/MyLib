@@ -1,19 +1,16 @@
 package org.wjh.mylib.simple;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import org.wjh.androidlib.listadapter.LoadMoreMultiLayoutAdapter;
-import org.wjh.androidlib.listadapter.LoadMoreSingleLayoutAdapter;
 import org.wjh.androidlib.listadapter.LoadingState;
 import org.wjh.androidlib.listadapter.OnSlideUpListener;
 import org.wjh.mylib.R;
-import org.wjh.mylib.adapter.Adapter1;
 import org.wjh.mylib.adapter.Adapter2;
 
 import java.util.ArrayList;

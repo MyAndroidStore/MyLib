@@ -1,7 +1,7 @@
 package org.wjh.mylib.simple;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import org.wjh.androidlib.banner.BannerImageLoader;
 import org.wjh.androidlib.banner.BannerLayout;

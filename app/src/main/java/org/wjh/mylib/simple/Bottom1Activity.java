@@ -1,8 +1,7 @@
 package org.wjh.mylib.simple;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
 import org.wjh.androidlib.bottomtab.BottomBarEntity;
 import org.wjh.androidlib.bottomtab.BottomBarItem;
