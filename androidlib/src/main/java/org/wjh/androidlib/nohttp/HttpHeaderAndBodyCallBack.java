@@ -11,6 +11,7 @@ import com.yanzhenjie.nohttp.error.UnKnownHostError;
 import com.yanzhenjie.nohttp.rest.Response;
 
 import org.wjh.androidlib.R;
+import org.wjh.androidlib.dialog.LoadingDialog;
 import org.wjh.androidlib.utils.ToastUtils;
 
 import java.net.HttpCookie;
@@ -25,6 +26,10 @@ public abstract class HttpHeaderAndBodyCallBack extends NoHttpCallBack {
 
     public HttpHeaderAndBodyCallBack(Context context) {
         super(context);
+    }
+
+    public HttpHeaderAndBodyCallBack(Context context, LoadingDialog loadingDialog) {
+        super(context, loadingDialog);
     }
 
     @Override
