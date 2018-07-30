@@ -50,7 +50,7 @@ public class TsnackBarUtils {
 
         snackbar.setPromptThemBackground(Prompt.SUCCESS_NOICON);
 
-        snackbar.setMinHeight(mStateBarHeight, mToolBarHight);
+        snackbar.setMinHeight(0, mToolBarHight);
 
         snackbar.show();
     }
@@ -63,7 +63,7 @@ public class TsnackBarUtils {
 
         snackbar.setPromptThemBackground(Prompt.ERROR_NOICON);
 
-        snackbar.setMinHeight(mStateBarHeight, mToolBarHight);
+        snackbar.setMinHeight(0, mToolBarHight);
 
         snackbar.show();
     }
@@ -76,7 +76,7 @@ public class TsnackBarUtils {
 
         snackbar.setPromptThemBackground(Prompt.WARNING_NOICON);
 
-        snackbar.setMinHeight(mStateBarHeight, mToolBarHight);
+        snackbar.setMinHeight(0, mToolBarHight);
 
         snackbar.show();
     }
