@@ -50,12 +50,17 @@ public abstract class NoHttpCallBack implements OnResponseListener<String> {
         if (response.responseCode() == 200) {
             String json = response.get();
 
-            if (TextUtils.isEmpty(json)
-                    || (!json.startsWith("{") || !json.startsWith("["))
-                    || (!json.endsWith("{") || !json.endsWith("["))) {
+
+            if (TextUtils.isEmpty(json)) {
                 ToastUtils.getInstance().shortToast("获取数据失败(json)");
             } else {
-                onSucceed(json);
+
+                if (json.startsWith("{") && json.endsWith("}") || json.startsWith("[") && json.endsWith("]")) {
+                    onSucceed(json);
+                } else {
+                    ToastUtils.getInstance().shortToast("获取数据失败(json)");
+                }
+
             }
 
         } else {
