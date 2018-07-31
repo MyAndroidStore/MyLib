@@ -1,6 +1,7 @@
 package org.wjh.androidlib.nohttp;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.yanzhenjie.nohttp.error.NetworkError;
 import com.yanzhenjie.nohttp.error.NotFoundCacheError;
@@ -47,7 +48,16 @@ public abstract class NoHttpCallBack implements OnResponseListener<String> {
     public void onSucceed(int what, Response<String> response) {
 
         if (response.responseCode() == 200) {
-            onSucceed(response.get());
+            String json = response.get();
+
+            if (TextUtils.isEmpty(json)
+                    || (!json.startsWith("{") || !json.startsWith("["))
+                    || (!json.endsWith("{") || !json.endsWith("["))) {
+                ToastUtils.getInstance().shortToast("服务器数据错误(json)");
+            } else {
+                onSucceed(json);
+            }
+
         } else {
 
             Exception exception = response.getException();
