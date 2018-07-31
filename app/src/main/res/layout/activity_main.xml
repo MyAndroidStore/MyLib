@@ -54,7 +54,6 @@
             android:onClick="imgChoice"
             android:text="知乎图库选择" />
 
-
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

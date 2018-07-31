@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.zhihu.matisse.fileprovider"
@@ -20,7 +19,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths_public"></meta-data>
+                android:resource="@xml/file_paths_public" />
         </provider>
 
         <activity android:name=".MainActivity">
@@ -35,7 +34,7 @@
         <activity android:name=".simple.Bottom2Activity" />
         <activity android:name=".simple.List1Activity" />
         <activity android:name=".simple.List2Activity" />
-        <activity android:name=".simple.ImgChoiceActivity"></activity>
+        <activity android:name=".simple.ImgChoiceActivity" />
     </application>
 
 </manifest>

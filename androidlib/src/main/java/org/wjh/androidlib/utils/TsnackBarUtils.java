@@ -18,6 +18,7 @@ public class TsnackBarUtils {
     public static int mToolBarHight = 0;
     public static int mStateBarHeight = 0;
 
+    public TSnackbar mTSnackbar;
 
     private TsnackBarUtils() {
 
@@ -46,38 +47,44 @@ public class TsnackBarUtils {
 
         ViewGroup viewGroup = (ViewGroup) activity.findViewById(android.R.id.content).getRootView();
 
-        TSnackbar snackbar = TSnackbar.make(viewGroup, msg, TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
+        mTSnackbar = TSnackbar.make(viewGroup, msg, TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
 
-        snackbar.setPromptThemBackground(Prompt.SUCCESS_NOICON);
+        mTSnackbar.setPromptThemBackground(Prompt.SUCCESS_NOICON);
 
-        snackbar.setMinHeight(mStateBarHeight, mToolBarHight);
+        mTSnackbar.setMinHeight(mStateBarHeight, mToolBarHight);
 
-        snackbar.show();
+        mTSnackbar.show();
+    }
+
+    public void dissmissSnackbar() {
+
+        if (mTSnackbar != null && mTSnackbar.isShown())
+            mTSnackbar.rightNowClose();
     }
 
     public void showShortErrorNoIcon(Activity activity, String msg) {
 
         ViewGroup viewGroup = (ViewGroup) activity.findViewById(android.R.id.content).getRootView();
 
-        TSnackbar snackbar = TSnackbar.make(viewGroup, msg, TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
+        mTSnackbar = TSnackbar.make(viewGroup, msg, TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
 
-        snackbar.setPromptThemBackground(Prompt.ERROR_NOICON);
+        mTSnackbar.setPromptThemBackground(Prompt.ERROR_NOICON);
 
-        snackbar.setMinHeight(mStateBarHeight, mToolBarHight);
+        mTSnackbar.setMinHeight(mStateBarHeight, mToolBarHight);
 
-        snackbar.show();
+        mTSnackbar.show();
     }
 
     public void showShortWaringNoIcon(Activity activity, String msg) {
 
         ViewGroup viewGroup = (ViewGroup) activity.findViewById(android.R.id.content).getRootView();
 
-        TSnackbar snackbar = TSnackbar.make(viewGroup, msg, TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
+        mTSnackbar = TSnackbar.make(viewGroup, msg, TSnackbar.LENGTH_SHORT, TSnackbar.APPEAR_FROM_TOP_TO_DOWN);
 
-        snackbar.setPromptThemBackground(Prompt.WARNING_NOICON);
+        mTSnackbar.setPromptThemBackground(Prompt.WARNING_NOICON);
 
-        snackbar.setMinHeight(mStateBarHeight, mToolBarHight);
+        mTSnackbar.setMinHeight(mStateBarHeight, mToolBarHight);
 
-        snackbar.show();
+        mTSnackbar.show();
     }
 }
