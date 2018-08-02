@@ -1,9 +1,6 @@
 package org.wjh.androidlib.nohttp;
 
-import com.yanzhenjie.nohttp.Binary;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,11 +26,6 @@ public class RequestParams {
 
     public RequestParams put(String key, Object val) {
         this.map.put(key, val);
-        return this;
-    }
-
-    public RequestParams putBinarys(String key, Binary[] binaries) {
-        this.map.put(key, binaries);
         return this;
     }
 

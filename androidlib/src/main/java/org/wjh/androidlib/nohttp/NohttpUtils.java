@@ -1,6 +1,6 @@
 package org.wjh.androidlib.nohttp;
 
-import com.yanzhenjie.nohttp.FileBinary;
+import com.yanzhenjie.nohttp.Binary;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.Priority;
 import com.yanzhenjie.nohttp.RequestMethod;
@@ -17,7 +17,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -127,15 +126,20 @@ public class NohttpUtils {
     }
 
     // 文件上传
-    public void filesUpload(String url, RequestParams params, String key , List<File> fileList, Object sign, NoHttpCallBack hcb) {
+    public void doPostStringAndFiles(String url, RequestParams params, BinaryParams binaryParams, Object sign, NoHttpCallBack hcb) {
 
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
         request.setPriority(Priority.DEFAULT);
         request.add(params.params());
-        for (int i = 0; i < fileList.size(); i++) {
-            request.add(key,new FileBinary(fileList.get(i)));
-        }
         request.setCancelSign(sign);
+
+        Iterator<Map.Entry<String, Binary>> iterator = binaryParams.params().entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, Binary> next = iterator.next();
+            request.add(next.getKey(), next.getValue());
+        }
+
         requestQueue.add(200, request, hcb);
     }
 

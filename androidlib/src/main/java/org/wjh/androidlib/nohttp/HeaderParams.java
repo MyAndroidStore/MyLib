@@ -11,6 +11,9 @@ public class HeaderParams {
 
     private Map<String, String> map = new HashMap<String, String>();
 
+    private HeaderParams() {
+    }
+
     public static HeaderParams create() {
         return new HeaderParams();
     }
@@ -21,11 +24,6 @@ public class HeaderParams {
         return hp;
     }
 
-    public static HeaderParams create(Map<String, String> map) {
-        HeaderParams hp = new HeaderParams();
-        hp.map = map;
-        return hp;
-    }
 
     public HeaderParams put(String key, String val) {
         this.map.put(key, val);
