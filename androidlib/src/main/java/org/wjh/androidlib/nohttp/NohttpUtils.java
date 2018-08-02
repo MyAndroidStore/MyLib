@@ -94,14 +94,6 @@ public class NohttpUtils {
         requestQueue.add(200, request, hcb);
     }
 
-    // get请求String,支持优先级
-    public void doGetStringByPriority(String url, RequestParams params, Object sign, Priority priority, NoHttpCallBack hcb) {
-        Request<String> request = NoHttp.createStringRequest(url);
-        request.add(params.params());
-        request.setPriority(priority);
-        request.setCancelSign(sign);
-        requestQueue.add(200, request, hcb);
-    }
 
     // post请求String
     public void doPostString(String url, RequestParams params, Object sign, NoHttpCallBack hcb) {
@@ -112,21 +104,33 @@ public class NohttpUtils {
         requestQueue.add(200, request, hcb);
     }
 
-    // post请求String,支持优先级
-    public void doPostStringByPriority(String url, RequestParams params, Object sign, Priority priority, NoHttpCallBack hcb) {
+    // json方式请求
+    public void doByJson(String url, JSONObject jsonObject, Object sign, NoHttpCallBack hcb) {
+
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
-        request.add(params.params());
-        request.setPriority(priority);
+        request.setPriority(Priority.DEFAULT);
         request.setCancelSign(sign);
+        request.setDefineRequestBodyForJson(jsonObject); // 传入JSONObject即可。
         requestQueue.add(200, request, hcb);
     }
 
+    // json方式请求
     public void doByJson(String url, String JsonString, Object sign, NoHttpCallBack hcb) {
 
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
         request.setPriority(Priority.DEFAULT);
         request.setCancelSign(sign);
         request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
+        requestQueue.add(200, request, hcb);
+    }
+
+    // 文件上传
+    public void filesUpload(String url, RequestParams params, Object sign, NoHttpCallBack hcb) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(Priority.DEFAULT);
+        request.add(params.params());
+        request.setCancelSign(sign);
         requestQueue.add(200, request, hcb);
     }
 
@@ -149,33 +153,6 @@ public class NohttpUtils {
         requestQueue.add(200, request, hcb);
     }
 
-    public void doByJsonAndPriority(String url, String JsonString, Object sign, Priority priority, NoHttpCallBack hcb) {
-
-        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
-        request.setPriority(priority);
-        request.setCancelSign(sign);
-        request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
-        requestQueue.add(200, request, hcb);
-    }
-
-    public void doByJson(String url, JSONObject jsonObject, Object sign, NoHttpCallBack hcb) {
-
-        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
-        request.setPriority(Priority.DEFAULT);
-        request.setCancelSign(sign);
-        request.setDefineRequestBodyForJson(jsonObject); // 传入JSONObject即可。
-        requestQueue.add(200, request, hcb);
-    }
-
-    public void doByJsonAndPriority(String url, JSONObject jsonObject, Object sign, Priority priority, NoHttpCallBack hcb) {
-
-        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
-        request.setPriority(priority);
-        request.setCancelSign(sign);
-        request.setDefineRequestBodyForJson(jsonObject); // 传入JSONObject即可。
-        requestQueue.add(200, request, hcb);
-    }
-
 
     public void upLoadFileByCustomType(String url, Object sign, String contentType, File file, NoHttpCallBack hcb) throws FileNotFoundException {
 
@@ -186,14 +163,6 @@ public class NohttpUtils {
         requestQueue.add(200, request, hcb);
     }
 
-    public void upLoadFileByCustomTypeAndPriority(String url, Object sign, Priority priority, String contentType, File file, NoHttpCallBack hcb) throws FileNotFoundException {
-
-        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
-        request.setPriority(priority);
-        request.setCancelSign(sign);
-        request.setDefineRequestBody(new FileInputStream(file), contentType);
-        requestQueue.add(200, request, hcb);
-    }
 
     // file文件下载,支持取消,断点续传
     public void downLoadFile(String url, String fileFolder, String fileName, Object sign, boolean isRange, DownloadListener hcb) {
