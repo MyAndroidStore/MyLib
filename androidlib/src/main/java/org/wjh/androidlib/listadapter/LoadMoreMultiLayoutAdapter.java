@@ -67,12 +67,18 @@ public abstract class LoadMoreMultiLayoutAdapter<T> extends RecyclerView.Adapter
     // 加载无数据
     private final int LOAD_NODATA = 5;
 
+    // params
+    private LinearLayout.LayoutParams wrapParams;
+    private LinearLayout.LayoutParams matchParams;
+
 
     // 初始化无需数据源
     public LoadMoreMultiLayoutAdapter(Context context) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mDatas = new ArrayList<>();
         mContext = context;
+        wrapParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        matchParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     // 初始化需数据源
@@ -147,60 +153,60 @@ public abstract class LoadMoreMultiLayoutAdapter<T> extends RecyclerView.Adapter
             FrameLayout layout = footViewHolder.getFrameLayout(R.id.mylib_layout);
             switch (loadState) {
                 case LOAD_FIRST:
-                    layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    layout.setLayoutParams(matchParams);
                     layout.setBackgroundColor(0);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.VISIBLE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_lading).setVisibility(View.GONE);
                     footViewHolder.getLinearLayout(R.id.mylib_ll_end).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_error).setVisibility(View.GONE);
-                    footViewHolder.getLinearLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
+                    footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
                 case LOADING: // 正在加载
-                    layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_lading).setVisibility(View.VISIBLE);
                     footViewHolder.getLinearLayout(R.id.mylib_ll_end).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_error).setVisibility(View.GONE);
-                    footViewHolder.getLinearLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
+                    footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
 
                 case LOAD_COMPLETE: // 加载完成
-                    layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(0);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_lading).setVisibility(View.INVISIBLE);
                     footViewHolder.getLinearLayout(R.id.mylib_ll_end).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_error).setVisibility(View.GONE);
-                    footViewHolder.getLinearLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
+                    footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
 
                 case LOAD_END: // 加载到底
-                    layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_lading).setVisibility(View.GONE);
                     footViewHolder.getLinearLayout(R.id.mylib_ll_end).setVisibility(View.VISIBLE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_error).setVisibility(View.GONE);
-                    footViewHolder.getLinearLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
+                    footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
                 case LOAD_ERROR: // 加载出错
-                    layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_lading).setVisibility(View.GONE);
                     footViewHolder.getLinearLayout(R.id.mylib_ll_end).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_error).setVisibility(View.VISIBLE);
-                    footViewHolder.getLinearLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
+                    footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
                 case LOAD_NODATA:
-                    layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                    layout.setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
+                    layout.setLayoutParams(matchParams);
+                    layout.setBackgroundColor(0);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_lading).setVisibility(View.GONE);
                     footViewHolder.getLinearLayout(R.id.mylib_ll_end).setVisibility(View.GONE);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_error).setVisibility(View.GONE);
-                    footViewHolder.getLinearLayout(R.id.mylib_ll_no_data).setVisibility(View.VISIBLE);
+                    footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.VISIBLE);
                     break;
             }
         } else {

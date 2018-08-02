@@ -27,8 +27,8 @@
         android:id="@+id/mylib_rl_lading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/mylib_pb_loading"
@@ -115,48 +115,20 @@
 
     <!--无数据-->
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/mylib_ll_no_data"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="15dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:gravity="center"
         android:visibility="gone">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0.3dp"
-            android:layout_weight="1"
-            android:alpha="0.5"
-            android:background="@color/bg_line" />
-
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/no_data_discribe"
-            android:textColor="@color/text_color"
-            android:textSize="14dp" />
+            android:src="@drawable/mylib_none" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0.3dp"
-            android:layout_weight="1"
-            android:background="@color/bg_line" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </FrameLayout>
