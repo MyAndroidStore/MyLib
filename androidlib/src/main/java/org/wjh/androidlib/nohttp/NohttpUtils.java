@@ -12,6 +12,9 @@ import com.yanzhenjie.nohttp.rest.RequestQueue;
 
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -65,7 +68,7 @@ public class NohttpUtils {
     }
 
 
-    public static void cancleDownLoadBySign(Object sign) {
+    public void cancleDownLoadBySign(Object sign) {
         NoHttp.getDownloadQueueInstance().cancelBySign(sign);
     }
 
@@ -76,7 +79,7 @@ public class NohttpUtils {
         requestQueue.cancelAll();
     }
 
-    public static void cancleDownLoadAll() {
+    public void cancleDownLoadAll() {
         NoHttp.getDownloadQueueInstance().cancelAll();
     }
 
@@ -123,9 +126,8 @@ public class NohttpUtils {
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
         request.setPriority(Priority.DEFAULT);
         request.setCancelSign(sign);
-        requestQueue.add(200, request, hcb);
-
         request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
+        requestQueue.add(200, request, hcb);
     }
 
     public void doByJsonAndHeader(String url, String JsonString, HeaderParams headerParams, Object sign, NoHttpCallBack hcb) {
@@ -143,9 +145,8 @@ public class NohttpUtils {
             request.addHeader(next.getKey(), next.getValue());
         }
 
-        requestQueue.add(200, request, hcb);
-
         request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
+        requestQueue.add(200, request, hcb);
     }
 
     public void doByJsonAndPriority(String url, String JsonString, Object sign, Priority priority, NoHttpCallBack hcb) {
@@ -153,9 +154,8 @@ public class NohttpUtils {
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
         request.setPriority(priority);
         request.setCancelSign(sign);
-        requestQueue.add(200, request, hcb);
-
         request.setDefineRequestBodyForJson(JsonString); // 传入json格式的字符串即可。
+        requestQueue.add(200, request, hcb);
     }
 
     public void doByJson(String url, JSONObject jsonObject, Object sign, NoHttpCallBack hcb) {
@@ -163,9 +163,8 @@ public class NohttpUtils {
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
         request.setPriority(Priority.DEFAULT);
         request.setCancelSign(sign);
-        requestQueue.add(200, request, hcb);
-
         request.setDefineRequestBodyForJson(jsonObject); // 传入JSONObject即可。
+        requestQueue.add(200, request, hcb);
     }
 
     public void doByJsonAndPriority(String url, JSONObject jsonObject, Object sign, Priority priority, NoHttpCallBack hcb) {
@@ -173,9 +172,27 @@ public class NohttpUtils {
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
         request.setPriority(priority);
         request.setCancelSign(sign);
-        requestQueue.add(200, request, hcb);
-
         request.setDefineRequestBodyForJson(jsonObject); // 传入JSONObject即可。
+        requestQueue.add(200, request, hcb);
+    }
+
+
+    public void upLoadFileByCustomType(String url, Object sign, String contentType, File file, NoHttpCallBack hcb) throws FileNotFoundException {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(Priority.DEFAULT);
+        request.setCancelSign(sign);
+        request.setDefineRequestBody(new FileInputStream(file), contentType);
+        requestQueue.add(200, request, hcb);
+    }
+
+    public void upLoadFileByCustomTypeAndPriority(String url, Object sign, Priority priority, String contentType, File file, NoHttpCallBack hcb) throws FileNotFoundException {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(priority);
+        request.setCancelSign(sign);
+        request.setDefineRequestBody(new FileInputStream(file), contentType);
+        requestQueue.add(200, request, hcb);
     }
 
     // file文件下载,支持取消,断点续传
