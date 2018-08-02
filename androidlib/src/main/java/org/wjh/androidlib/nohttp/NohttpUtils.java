@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -133,11 +134,13 @@ public class NohttpUtils {
         request.add(params.params());
         request.setCancelSign(sign);
 
-        Iterator<Map.Entry<String, Binary>> iterator = binaryParams.params().entrySet().iterator();
+        List<Map<String, Binary>> mapList = binaryParams.params();
 
-        while (iterator.hasNext()) {
-            Map.Entry<String, Binary> next = iterator.next();
-            request.add(next.getKey(), next.getValue());
+        for (int i = 0; i < mapList.size(); i++) {
+            Map<String, Binary> map = mapList.get(i);
+            for (String key : map.keySet()) {
+                request.add(key, map.get(key));
+            }
         }
 
         requestQueue.add(200, request, hcb);
