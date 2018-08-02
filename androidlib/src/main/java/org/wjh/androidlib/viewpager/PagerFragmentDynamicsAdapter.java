@@ -9,13 +9,13 @@ import android.support.v4.view.PagerAdapter;
 import java.util.List;
 
 /**
- * 可动态添加的ViewPager适配器
+ * 可动态添加、删除的ViewPager适配器
  */
-public class PagerFragmentCanAddAdapter extends FragmentStatePagerAdapter {
+public class PagerFragmentDynamicsAdapter extends FragmentStatePagerAdapter {
 
     private List<Fragment> mFragments = null;
 
-    public PagerFragmentCanAddAdapter(FragmentManager fm, @NonNull List<Fragment> fragments) {
+    public PagerFragmentDynamicsAdapter(FragmentManager fm, @NonNull List<Fragment> fragments) {
         super(fm);
         this.mFragments = fragments;
     }
@@ -42,5 +42,13 @@ public class PagerFragmentCanAddAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getItemPosition(@NonNull Object object) {
         return PagerAdapter.POSITION_NONE;
+    }
+
+    /**
+     * 删除指定位置的fragment
+     */
+    public void removeByIndex(int pos) {
+        mFragments.remove(pos);
+        notifyDataSetChanged();
     }
 }
