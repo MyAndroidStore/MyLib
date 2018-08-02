@@ -32,7 +32,7 @@ public class RequestParams {
         return this;
     }
 
-    public RequestParams putBinarys(String key, List<Binary> binaries) {
+    public RequestParams putBinarys(String key, Binary[] binaries) {
         this.map.put(key, binaries);
         return this;
     }
