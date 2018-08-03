@@ -20,11 +20,11 @@ public class PagerFragmentDynamicsAdapter extends FragmentStatePagerAdapter {
         this.mFragments = fragments;
     }
 
-    public void updateData(@NonNull List<Fragment> totalData) {
-        this.mFragments.clear();
+    public void addData(@NonNull List<Fragment> totalData) {
         this.mFragments.addAll(totalData);
         notifyDataSetChanged();
     }
+
 
     @Override
     public Fragment getItem(int position) {
