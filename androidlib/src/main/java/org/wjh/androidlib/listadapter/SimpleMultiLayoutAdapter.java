@@ -26,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by Konfyt on 2016/9/14.
  */
-public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<SimpleMultiLayoutAdapter.ViewHolder> implements View.OnClickListener {
+public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<SimpleMultiLayoutAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     // 数据源
     private List<T> mDatas;
@@ -36,6 +36,7 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
     private RecyclerView mRecyclerView;
     // item的点击事件
     private OnItemClickListener mListener;
+    private OnItemLongClickListener mLongListener;
     // 上下文对象
     private Context mContext;
 
@@ -81,6 +82,7 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
 
         ViewHolder viewHolder = onCreateCustomViewHolder(parent, viewType);
         viewHolder.itemView.setOnClickListener(this);
+        viewHolder.itemView.setOnLongClickListener(this);
         return viewHolder;
     }
 
@@ -118,6 +120,16 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
         if (mListener != null) {
             mListener.onClick(t, position);
         }
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        int position = mRecyclerView.getChildAdapterPosition(view);
+        T t = mDatas.get(position);
+        if (mLongListener != null) {
+            mLongListener.onLongClick(t, position);
+        }
+        return true;
     }
 
 
@@ -210,9 +222,18 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
         this.mListener = listener;
     }
 
+    public void setOnLongItemClickListener(OnItemLongClickListener<T> listener) {
+        this.mLongListener = listener;
+    }
+
     public interface OnItemClickListener<T> {
         // 传递当前点击的对象（List对应位置的数据）与位置
         void onClick(T t, int position);
+    }
+
+    public interface OnItemLongClickListener<T> {
+        // 传递当前点击的对象（List对应位置的数据）与位置
+        void onLongClick(T t, int position);
     }
 
 }

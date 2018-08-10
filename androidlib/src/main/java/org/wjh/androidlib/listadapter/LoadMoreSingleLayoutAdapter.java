@@ -30,7 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by Konfyt on 2016/9/14.
  */
-public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapter<LoadMoreSingleLayoutAdapter.ViewHolder> implements View.OnClickListener {
+public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapter<LoadMoreSingleLayoutAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     // 数据源
     private List<T> mDatas;
@@ -42,6 +42,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
     private RecyclerView mRecyclerView;
     // item的点击事件
     private OnItemClickListener mListener;
+    private OnItemLongClickListener mLongListener;
     // error的点击事件
     private OnFooterErrorListener mErrorListener;
     // 上下文对象
@@ -134,6 +135,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
             View itemView = mInflater.inflate(mLayoutResId, parent, false);
             // 设置item的点击事件
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
             return new ViewHolder(itemView);
         }
 
@@ -262,6 +264,16 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
         }
     }
 
+    @Override
+    public boolean onLongClick(View view) {
+        int position = mRecyclerView.getChildAdapterPosition(view);
+        T t = mDatas.get(position);
+        if (mLongListener != null) {
+            mLongListener.onLongClick(t, position);
+        }
+        return true;
+    }
+
     // 脚布局ViewHoldr类
     private static class FootViewHolder extends LoadMoreSingleLayoutAdapter.ViewHolder {
 
@@ -366,6 +378,10 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
         this.mListener = listener;
     }
 
+    public void setOnItemLongClickListener(OnItemLongClickListener<T> listener) {
+        this.mLongListener = listener;
+    }
+
     // 对外提供设置footer的监听器的方法
     public void setOnFooterErrorListener(OnFooterErrorListener mErrorListener) {
         this.mErrorListener = mErrorListener;
@@ -374,6 +390,11 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
     public interface OnItemClickListener<T> {
         // 传递当前点击的对象（List对应位置的数据）与位置
         void onClick(T t, int position);
+    }
+
+    public interface OnItemLongClickListener<T> {
+        // 传递当前点击的对象（List对应位置的数据）与位置
+        void onLongClick(T t, int position);
     }
 
     // foot 错误的事件
