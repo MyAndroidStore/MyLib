@@ -271,7 +271,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
         if (mLongListener != null) {
             mLongListener.onLongClick(t, position, view);
         }
-        return true;
+        return mLongListener != null;
     }
 
     // 脚布局ViewHoldr类

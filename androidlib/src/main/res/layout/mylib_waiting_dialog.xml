@@ -8,7 +8,6 @@
 
 
     <ProgressBar
-        android:id="@+id/mylib_pb"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:layout_centerHorizontal="true"

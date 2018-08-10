@@ -118,7 +118,7 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
         int position = mRecyclerView.getChildAdapterPosition(v);
         T t = mDatas.get(position);
         if (mListener != null) {
-            mListener.onClick(t, position);
+            mListener.onClick(t, position, v);
         }
     }
 
@@ -127,9 +127,9 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
         int position = mRecyclerView.getChildAdapterPosition(view);
         T t = mDatas.get(position);
         if (mLongListener != null) {
-            mLongListener.onLongClick(t, position);
+            mLongListener.onLongClick(t, position, view);
         }
-        return true;
+        return mLongListener != null;
     }
 
 
@@ -228,12 +228,12 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<S
 
     public interface OnItemClickListener<T> {
         // 传递当前点击的对象（List对应位置的数据）与位置
-        void onClick(T t, int position);
+        void onClick(T t, int position, View view);
     }
 
     public interface OnItemLongClickListener<T> {
         // 传递当前点击的对象（List对应位置的数据）与位置
-        void onLongClick(T t, int position);
+        void onLongClick(T t, int position, View view);
     }
 
 }
