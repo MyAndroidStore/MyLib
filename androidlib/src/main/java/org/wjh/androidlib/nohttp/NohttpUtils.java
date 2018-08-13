@@ -196,6 +196,7 @@ public class NohttpUtils {
 
                 final FileBinary binary = (FileBinary) map.get(key);
                 final int finalI = i;
+                final long finalFileLenth = fileLenth;
                 binary.setUploadListener(200, new OnUploadListener() {
                     @Override
                     public void onStart(int what) {
@@ -215,13 +216,11 @@ public class NohttpUtils {
                     @Override
                     public void onFinish(int what) {
 
-                        if (finalI != mapList.size() - 1) {
-                            int pos = (int) (binary.getLength() * 100 / fileLenth);
-                            uploadListener.onProgress(pos);
-                        } else {
-                            uploadListener.onProgress(100);
+
+                        int pos = (int) (binary.getLength() * 100 / finalFileLenth);
+
+                        if (pos == 100)
                             uploadListener.onFinish();
-                        }
 
                     }
 
