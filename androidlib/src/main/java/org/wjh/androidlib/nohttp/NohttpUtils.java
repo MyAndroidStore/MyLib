@@ -1,8 +1,5 @@
 package org.wjh.androidlib.nohttp;
 
-import android.util.Log;
-
-import com.yanzhenjie.nohttp.Binary;
 import com.yanzhenjie.nohttp.FileBinary;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.OnUploadListener;
@@ -138,10 +135,10 @@ public class NohttpUtils {
         request.add(params.params());
         request.setCancelSign(sign);
 
-        List<Map<String, Binary>> mapList = binaryParams.params();
+        List<Map<String, FileBinary>> mapList = binaryParams.params();
 
         for (int i = 0; i < mapList.size(); i++) {
-            Map<String, Binary> map = mapList.get(i);
+            Map<String, FileBinary> map = mapList.get(i);
             for (String key : map.keySet()) {
                 request.add(key, map.get(key));
             }
@@ -158,12 +155,12 @@ public class NohttpUtils {
         request.add(params.params());
         request.setCancelSign(sign);
 
-        List<Map<String, Binary>> mapList = binaryParams.params();
+        List<Map<String, FileBinary>> mapList = binaryParams.params();
 
         for (int i = 0; i < mapList.size(); i++) {
-            Map<String, Binary> map = mapList.get(i);
+            Map<String, FileBinary> map = mapList.get(i);
             for (String key : map.keySet()) {
-                FileBinary binary = (FileBinary) map.get(key);
+                FileBinary binary = map.get(key);
                 binary.setUploadListener(200, uploadListener);
                 request.add(key, binary);
             }
@@ -180,29 +177,19 @@ public class NohttpUtils {
         request.add(params.params());
         request.setCancelSign(sign);
 
-        final List<Map<String, Binary>> mapList = binaryParams.params();
+        final List<Map<String, FileBinary>> mapList = binaryParams.params();
 
-        long fileLenth = 0;
-
-        for (int i = 0; i < mapList.size(); i++) {
-            Map<String, Binary> map = mapList.get(i);
-            for (String key : map.keySet()) {
-                FileBinary binary = (FileBinary) map.get(key);
-                fileLenth += binary.getBinaryLength();
-            }
-        }
-        Log.e("dddd",fileLenth+"");
+        final long fileLenth = binaryParams.getBinarysLength();
 
         for (int i = 0; i < mapList.size(); i++) {
-            Map<String, Binary> map = mapList.get(i);
+            Map<String, FileBinary> map = mapList.get(i);
             for (String key : map.keySet()) {
 
-                final FileBinary binary = (FileBinary) map.get(key);
-                final long finalFileLenth = fileLenth;
+                final FileBinary binary = map.get(key);
                 binary.setUploadListener(200, new OnUploadListener() {
                     @Override
                     public void onStart(int what) {
-                        uploadListener.onStart();
+
                     }
 
                     @Override
@@ -218,9 +205,8 @@ public class NohttpUtils {
                     @Override
                     public void onFinish(int what) {
 
-
-                        Log.e("Ddd",binary.getBinaryLength()+"");
-                        int pos = (int) (binary.getLength() * 100 / finalFileLenth);
+                        int pos = (int) (binary.getBinaryLength() * 100 / fileLenth);
+                        uploadListener.onProgress(pos);
 
                         if (pos == 100)
                             uploadListener.onFinish();

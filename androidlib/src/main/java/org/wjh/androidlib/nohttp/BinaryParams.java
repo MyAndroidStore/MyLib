@@ -1,7 +1,7 @@
 package org.wjh.androidlib.nohttp;
 
 
-import com.yanzhenjie.nohttp.Binary;
+import com.yanzhenjie.nohttp.FileBinary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,8 @@ import java.util.Map;
 
 public class BinaryParams {
 
-    private List<Map<String, Binary>> binarys = new ArrayList<>();
+    private List<Map<String, FileBinary>> binarys = new ArrayList<>();
+    private long binarysLength = 0;
 
     private BinaryParams() {
     }
@@ -20,24 +21,29 @@ public class BinaryParams {
         return hp;
     }
 
-    public static BinaryParams create(String key, Binary val) {
+    public static BinaryParams create(String key, FileBinary val) {
         BinaryParams hp = new BinaryParams();
-        Map<String, Binary> map = new HashMap<>();
+        Map<String, FileBinary> map = new HashMap<>();
         map.put(key, val);
         hp.binarys.add(map);
+        hp.binarysLength += val.getBinaryLength();
         return hp;
     }
 
 
-    public BinaryParams put(String key, Binary val) {
-        Map<String, Binary> map = new HashMap<>();
+    public BinaryParams put(String key, FileBinary val) {
+        Map<String, FileBinary> map = new HashMap<>();
         map.put(key, val);
         this.binarys.add(map);
+        this.binarysLength += val.getBinaryLength();
         return this;
     }
 
-    public List<Map<String, Binary>> params() {
+    public List<Map<String, FileBinary>> params() {
         return binarys;
     }
 
+    public long getBinarysLength() {
+        return binarysLength;
+    }
 }
