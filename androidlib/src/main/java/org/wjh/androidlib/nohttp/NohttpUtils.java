@@ -1,7 +1,9 @@
 package org.wjh.androidlib.nohttp;
 
 import com.yanzhenjie.nohttp.Binary;
+import com.yanzhenjie.nohttp.FileBinary;
 import com.yanzhenjie.nohttp.NoHttp;
+import com.yanzhenjie.nohttp.OnUploadListener;
 import com.yanzhenjie.nohttp.Priority;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.download.DownloadListener;
@@ -140,6 +142,28 @@ public class NohttpUtils {
             Map<String, Binary> map = mapList.get(i);
             for (String key : map.keySet()) {
                 request.add(key, map.get(key));
+            }
+        }
+
+        requestQueue.add(200, request, hcb);
+    }
+
+    // 文件上传
+    public void doPostStringAndFilesByListener(String url, RequestParams params, BinaryParams binaryParams, Object sign, NoHttpCallBack hcb, OnUploadListener uploadListener) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(Priority.DEFAULT);
+        request.add(params.params());
+        request.setCancelSign(sign);
+
+        List<Map<String, Binary>> mapList = binaryParams.params();
+
+        for (int i = 0; i < mapList.size(); i++) {
+            Map<String, Binary> map = mapList.get(i);
+            for (String key : map.keySet()) {
+                FileBinary binary = (FileBinary) map.get(key);
+                binary.setUploadListener(200, uploadListener);
+                request.add(key, binary);
             }
         }
 
