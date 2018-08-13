@@ -189,19 +189,19 @@ public class XEditText extends AppCompatEditText {
         }
     }
 
-    public void setmLeftListener(DrawableLeftListener mLeftListener) {
+    public void setDrawableLeftListener(DrawableLeftListener mLeftListener) {
         this.mLeftListener = mLeftListener;
     }
 
-    public void setmRightListener(DrawableRightListener mRightListener) {
+    public void setDrawableRightListener(DrawableRightListener mRightListener) {
         this.mRightListener = mRightListener;
     }
 
-    public void setmTopListener(DrawableTopListener mTopListener) {
+    public void setDrawableTopListener(DrawableTopListener mTopListener) {
         this.mTopListener = mTopListener;
     }
 
-    public void setmBottomListener(DrawableBottomListener mBottomListener) {
+    public void setDrawableBottomListener(DrawableBottomListener mBottomListener) {
         this.mBottomListener = mBottomListener;
     }
 }
