@@ -185,11 +185,16 @@ public class NohttpUtils {
         for (int i = 0; i < mapList.size(); i++) {
             Map<String, Binary> map = mapList.get(i);
             for (String key : map.keySet()) {
+                FileBinary binary = (FileBinary) map.get(key);
+                fileLenth += binary.getBinaryLength();
+            }
+        }
+
+        for (int i = 0; i < mapList.size(); i++) {
+            Map<String, Binary> map = mapList.get(i);
+            for (String key : map.keySet()) {
 
                 final FileBinary binary = (FileBinary) map.get(key);
-                fileLenth += binary.getBinaryLength();
-
-                final long finalFileLenth = fileLenth;
                 final int finalI = i;
                 binary.setUploadListener(200, new OnUploadListener() {
                     @Override
@@ -211,7 +216,7 @@ public class NohttpUtils {
                     public void onFinish(int what) {
 
                         if (finalI != mapList.size() - 1) {
-                            int pos = (int) (binary.getLength() * 100 / finalFileLenth);
+                            int pos = (int) (binary.getLength() * 100 / fileLenth);
                             uploadListener.onProgress(pos);
                         } else {
                             uploadListener.onProgress(100);
