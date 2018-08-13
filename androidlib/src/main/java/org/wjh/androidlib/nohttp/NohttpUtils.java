@@ -170,6 +170,68 @@ public class NohttpUtils {
         requestQueue.add(200, request, hcb);
     }
 
+    // 文件上传
+    public void doPostStringAndFilesByTotalListener(String url, RequestParams params, BinaryParams binaryParams, Object sign, NoHttpCallBack hcb, final NoHttpUploadListener uploadListener) {
+
+        Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);
+        request.setPriority(Priority.DEFAULT);
+        request.add(params.params());
+        request.setCancelSign(sign);
+
+        final List<Map<String, Binary>> mapList = binaryParams.params();
+
+        long fileLenth = 0;
+
+        for (int i = 0; i < mapList.size(); i++) {
+            Map<String, Binary> map = mapList.get(i);
+            for (String key : map.keySet()) {
+
+                final FileBinary binary = (FileBinary) map.get(key);
+                fileLenth += binary.getBinaryLength();
+
+                final long finalFileLenth = fileLenth;
+                final int finalI = i;
+                binary.setUploadListener(200, new OnUploadListener() {
+                    @Override
+                    public void onStart(int what) {
+                        uploadListener.onStart();
+                    }
+
+                    @Override
+                    public void onCancel(int what) {
+                        uploadListener.onCancel();
+                    }
+
+                    @Override
+                    public void onProgress(int what, int progress) {
+
+                    }
+
+                    @Override
+                    public void onFinish(int what) {
+
+                        if (finalI != mapList.size() - 1) {
+                            int pos = (int) (binary.getBinaryLength() * 100 / finalFileLenth);
+                            uploadListener.onProgress(pos);
+                        } else {
+                            uploadListener.onProgress(100);
+                            uploadListener.onFinish();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(int what, Exception exception) {
+                        uploadListener.onError(exception);
+                    }
+                });
+                request.add(key, binary);
+            }
+        }
+
+        requestQueue.add(200, request, hcb);
+    }
+
     public void doByJsonAndHeader(String url, String JsonString, HeaderParams headerParams, Object sign, NoHttpCallBack hcb) {
 
         Request<String> request = NoHttp.createStringRequest(url, RequestMethod.POST);

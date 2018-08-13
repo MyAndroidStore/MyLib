@@ -1,31 +1,15 @@
 package org.wjh.androidlib.nohttp;
 
-import com.yanzhenjie.nohttp.OnUploadListener;
+public interface NoHttpUploadListener {
 
-public  class NoHttpUploadListener implements OnUploadListener {
 
-    @Override
-    public void onStart(int what) {
+    void onStart();
 
-    }
+    void onCancel();
 
-    @Override
-    public void onCancel(int what) {
+    void onProgress(int progress);
 
-    }
+    void onFinish();
 
-    @Override
-    public void onProgress(int what, int progress) {
-
-    }
-
-    @Override
-    public void onFinish(int what) {
-
-    }
-
-    @Override
-    public void onError(int what, Exception exception) {
-
-    }
+    void onError(Exception exception);
 }
