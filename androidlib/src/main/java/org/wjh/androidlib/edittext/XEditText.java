@@ -1,0 +1,192 @@
+package org.wjh.androidlib.edittext;
+
+
+import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatEditText;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
+
+public class XEditText extends AppCompatEditText {
+
+
+    // 左边图标的点击事件
+    private DrawableLeftListener mLeftListener;
+    // 右边图标的点击事件
+    private DrawableRightListener mRightListener;
+    // 上边图标的点击事件
+    private DrawableTopListener mTopListener;
+    // 下边图标的点击事件
+    private DrawableBottomListener mBottomListener;
+
+
+    private Context mContext;
+
+
+    final int DRAWABLE_LEFT = 0;
+    final int DRAWABLE_TOP = 1;
+    final int DRAWABLE_RIGHT = 2;
+    final int DRAWABLE_BOTTOM = 3;
+
+    public XEditText(Context context) {
+        super(context);
+        this.mContext = context;
+    }
+
+    public XEditText(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.mContext = context;
+    }
+
+    public XEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        this.mContext = context;
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+
+        Drawable drawableLeft = getCompoundDrawables()[DRAWABLE_LEFT];
+        Drawable drawableRight = getCompoundDrawables()[DRAWABLE_RIGHT];
+        Drawable drawableTop = getCompoundDrawables()[DRAWABLE_TOP];
+        Drawable drawableBottom = getCompoundDrawables()[DRAWABLE_BOTTOM];
+
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_UP:
+
+                // 如开发者未进行监听由父类super.onTouchEvent(event)去控制
+                if (drawableRight != null && mRightListener != null) {
+
+                    // event.getX():抬起时的坐标
+                    // getWidth():得到控件的宽度
+                    // getPaddingRight():图标右边缘至控件右边缘的距离
+
+                    Rect bounds = drawableRight.getBounds();
+                    int left = bounds.left;
+                    int right = bounds.right;
+
+                    boolean touchable = event.getX() > (right - left + getPaddingRight())
+                            && (event.getX() < getPaddingRight());
+
+                    doSomeThing(touchable, DRAWABLE_RIGHT, mRightListener);
+
+                } else if (drawableLeft != null && mLeftListener != null) {
+
+                    Rect bounds = drawableLeft.getBounds();
+                    int left = bounds.left;
+                    int right = bounds.right;
+
+                    // 按下的点 > paddingLeft 并且 < paddingLeft+图标绘制的宽度
+                    boolean touchable = (event.getX() > getPaddingLeft())
+                            && (event.getX() < (right - left + getPaddingLeft()));
+
+                    doSomeThing(touchable, DRAWABLE_LEFT, mLeftListener);
+
+                } else if (drawableTop != null && mTopListener != null) {
+
+                    Rect bounds = drawableTop.getBounds();
+                    int bottom = bounds.bottom;
+                    int top = bounds.top;
+
+                    boolean touchable = (event.getY() > getPaddingTop())
+                            && (event.getY() < (bottom - top + getPaddingTop()));
+
+                    doSomeThing(touchable, DRAWABLE_TOP, mTopListener);
+
+                } else if (drawableBottom != null && mBottomListener != null) {
+
+                    Rect bounds = drawableBottom.getBounds();
+                    int bottom = bounds.bottom;
+                    int top = bounds.top;
+
+                    int draw_hight = bottom - top;
+
+                    boolean touchable = (event.getY() > (getHeight() - getPaddingBottom() - draw_hight))
+                            && (event.getY() < (getHeight() - getPaddingBottom()));
+
+                    doSomeThing(touchable, DRAWABLE_BOTTOM, mBottomListener);
+                }
+
+
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
+
+
+    private void doSomeThing(boolean touchable, int drawableType, BaseDrawableListener listener) {
+
+        if (touchable) {
+
+            //设置点击EditText右侧图标EditText失去焦点，
+            // 防止点击EditText右侧图标EditText获得焦点，软键盘弹出
+            setFocusableInTouchMode(false);
+            setFocusable(false);
+
+            closeKeyboard();
+
+            //点击EditText图标事件接口回调
+            switch (drawableType) {
+
+                case DRAWABLE_LEFT:
+                    ((DrawableLeftListener) listener).onDrawableLeftClick(this);
+                    break;
+                case DRAWABLE_TOP:
+                    ((DrawableTopListener) listener).onDrawableTopClick(this);
+                    break;
+                case DRAWABLE_RIGHT:
+                    ((DrawableRightListener) listener).onDrawableRightClick(this);
+                    break;
+                case DRAWABLE_BOTTOM:
+                    ((DrawableBottomListener) listener).onDrawableBottomClick(this);
+                    break;
+
+            }
+
+        } else {
+            //设置点击EditText输入区域，EditText请求焦点，软键盘弹出，EditText可编辑
+            //setFocusableInTouchMode(true);
+            //setFocusable(true);
+            //设置点击EditText输入区域，EditText不请求焦点，软键盘不弹出，EditText不可编辑
+            setFocusableInTouchMode(true);
+            setFocusable(true);
+        }
+    }
+
+
+    private void closeKeyboard() {
+
+        try {
+            InputMethodManager imm = (InputMethodManager) mContext
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            if (imm != null)
+                imm.hideSoftInputFromWindow(this.getWindowToken(), 0);
+
+        } catch (Exception e) {
+            Log.e("Exception", e.getMessage());
+        }
+    }
+
+    public void setmLeftListener(DrawableLeftListener mLeftListener) {
+        this.mLeftListener = mLeftListener;
+    }
+
+    public void setmRightListener(DrawableRightListener mRightListener) {
+        this.mRightListener = mRightListener;
+    }
+
+    public void setmTopListener(DrawableTopListener mTopListener) {
+        this.mTopListener = mTopListener;
+    }
+
+    public void setmBottomListener(DrawableBottomListener mBottomListener) {
+        this.mBottomListener = mBottomListener;
+    }
+}
