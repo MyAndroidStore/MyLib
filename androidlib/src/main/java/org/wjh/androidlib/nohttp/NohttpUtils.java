@@ -1,5 +1,7 @@
 package org.wjh.androidlib.nohttp;
 
+import android.util.Log;
+
 import com.yanzhenjie.nohttp.FileBinary;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.OnUploadListener;
@@ -179,10 +181,16 @@ public class NohttpUtils {
 
         final List<Map<String, FileBinary>> mapList = binaryParams.params();
 
-        final long fileLenth = binaryParams.getBinarysLength();
+        final long fileLength = binaryParams.getBinarysLength();
+
+        final long[] tempLength = {0};
+
+        Log.e("fileLength", fileLength + "");
 
         for (int i = 0; i < mapList.size(); i++) {
+
             Map<String, FileBinary> map = mapList.get(i);
+
             for (String key : map.keySet()) {
 
                 final FileBinary binary = map.get(key);
@@ -205,11 +213,15 @@ public class NohttpUtils {
                     @Override
                     public void onFinish(int what) {
 
-                        int pos = (int) (binary.getBinaryLength() * 100 / fileLenth);
+                        tempLength[0] += binary.getBinaryLength();
+
+                        int pos = (int) (tempLength[0] * 100 / fileLength);
                         uploadListener.onProgress(pos);
 
-                        if (pos == 100)
+                        if (fileLength == tempLength[0])
                             uploadListener.onFinish();
+
+                        Log.e("tempLength",tempLength[0]+"");
 
                     }
 
