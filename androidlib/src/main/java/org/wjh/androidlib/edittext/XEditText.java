@@ -50,7 +50,6 @@ public class XEditText extends AppCompatEditText {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-
         Drawable drawableLeft = getCompoundDrawables()[DRAWABLE_LEFT];
         Drawable drawableRight = getCompoundDrawables()[DRAWABLE_RIGHT];
         Drawable drawableTop = getCompoundDrawables()[DRAWABLE_TOP];
@@ -71,8 +70,14 @@ public class XEditText extends AppCompatEditText {
                     int left = bounds.left;
                     int right = bounds.right;
 
-                    boolean touchable = event.getX() > (right - left + getPaddingRight())
-                            && (event.getX() < getPaddingRight());
+                    float eventX = event.getX();
+                    int width = getWidth();
+                    int paddingRight = getPaddingRight();
+                    int leftPoint = width - right + left - paddingRight;
+                    int rightPoint = width - paddingRight;
+
+                    boolean touchable = eventX > leftPoint
+                            && (eventX < rightPoint);
 
                     doSomeThing(touchable, DRAWABLE_RIGHT, mRightListener);
 
@@ -82,9 +87,12 @@ public class XEditText extends AppCompatEditText {
                     int left = bounds.left;
                     int right = bounds.right;
 
+                    float eventX = event.getX();
+                    int paddingLeft = getPaddingLeft();
+
                     // 按下的点 > paddingLeft 并且 < paddingLeft+图标绘制的宽度
-                    boolean touchable = (event.getX() > getPaddingLeft())
-                            && (event.getX() < (right - left + getPaddingLeft()));
+                    boolean touchable = (eventX > paddingLeft)
+                            && (eventX < (right - left + paddingLeft));
 
                     doSomeThing(touchable, DRAWABLE_LEFT, mLeftListener);
 
@@ -94,8 +102,11 @@ public class XEditText extends AppCompatEditText {
                     int bottom = bounds.bottom;
                     int top = bounds.top;
 
-                    boolean touchable = (event.getY() > getPaddingTop())
-                            && (event.getY() < (bottom - top + getPaddingTop()));
+                    float eventY = event.getY();
+                    int paddingTop = getPaddingTop();
+
+                    boolean touchable = (eventY > paddingTop)
+                            && (eventY < (bottom - top + paddingTop));
 
                     doSomeThing(touchable, DRAWABLE_TOP, mTopListener);
 
@@ -105,10 +116,14 @@ public class XEditText extends AppCompatEditText {
                     int bottom = bounds.bottom;
                     int top = bounds.top;
 
-                    int draw_hight = bottom - top;
+                    float eventY = event.getY();
 
-                    boolean touchable = (event.getY() > (getHeight() - getPaddingBottom() - draw_hight))
-                            && (event.getY() < (getHeight() - getPaddingBottom()));
+                    int draw_hight = bottom - top;
+                    int paddingBottom = getPaddingBottom();
+                    int height = getHeight();
+
+                    boolean touchable = (eventY > height - paddingBottom - draw_hight)
+                            && (eventY < (height - paddingBottom));
 
                     doSomeThing(touchable, DRAWABLE_BOTTOM, mBottomListener);
                 }
