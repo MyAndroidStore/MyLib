@@ -211,7 +211,7 @@ public class NohttpUtils {
                     public void onFinish(int what) {
 
                         if (finalI != mapList.size() - 1) {
-                            int pos = (int) (binary.getBinaryLength() * 100 / finalFileLenth);
+                            int pos = (int) (binary.getLength() * 100 / finalFileLenth);
                             uploadListener.onProgress(pos);
                         } else {
                             uploadListener.onProgress(100);
