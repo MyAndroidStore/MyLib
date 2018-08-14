@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:background="#e3000000"
-    android:gravity="center"
+    android:layout_width="120dp"
+    android:layout_height="98dp"
+    android:background="@drawable/mylib_waiting_dialog_bg"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
 
     <ProgressBar
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="14dp"
         android:indeterminateDrawable="@drawable/mylib_progress" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="17dp"
         android:gravity="center"
-        android:text="Loading..."
-        android:textColor="#fff" />
+        android:text="正在加载..."
+        android:textColor="#FFA8A9A9"
+        android:textSize="14dp" />
 
 </LinearLayout>
