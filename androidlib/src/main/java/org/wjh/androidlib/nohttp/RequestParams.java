@@ -24,6 +24,12 @@ public class RequestParams {
         return hp;
     }
 
+    public static RequestParams create(Map<String, Object> map) {
+        RequestParams hp = new RequestParams();
+        hp.map = map;
+        return hp;
+    }
+
     public RequestParams put(String key, Object val) {
         this.map.put(key, val);
         return this;
