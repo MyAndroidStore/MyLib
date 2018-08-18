@@ -15,9 +15,19 @@
         android:visibility="gone">
 
         <ProgressBar
+            android:id="@+id/mylib_pb_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateDrawable="@drawable/mylib_progressbar_list" />
+            android:indeterminateDrawable="@drawable/mylib_progressbar_refresh" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/mylib_pb_first"
+            android:text="@string/loading_start"
+            android:textColor="@color/text_color"
+            android:textSize="12dp" />
 
     </RelativeLayout>
 
