@@ -1,6 +1,7 @@
 package org.wjh.androidlib.listadapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -64,7 +65,6 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
         mDatas = new ArrayList<>();
         mContext = context;
         mImageLoader = initImageLoader();
-        params = new LinearLayout.LayoutParams(360, 360);
 
         notifyDataSetChanged();
     }
@@ -144,12 +144,17 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
 
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
-            footViewHolder.getImageView(R.id.mylib_nine_img).setLayoutParams(params);
+
+            if (params != null)
+                footViewHolder.getImageView(R.id.mylib_nine_img).setLayoutParams(params);
+
             mImageLoader.displayImage(getAttachContext(), R.drawable.mylib_nine_image_add, footViewHolder.getImageView(R.id.mylib_nine_img));
         } else {
 
             NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
-            normalViewHolder.getImageView(R.id.mylib_nine_img).setLayoutParams(params);
+
+            if (params != null)
+                normalViewHolder.getImageView(R.id.mylib_nine_img).setLayoutParams(params);
 
             NineImageUrl nineImageUrl = getAttachDatas().get(position);
 
@@ -165,8 +170,17 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         mRecyclerView = recyclerView;
-    }
 
+        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
+        if (manager instanceof GridLayoutManager) {
+            final GridLayoutManager gridManager = ((GridLayoutManager) manager);
+            int spanCount = gridManager.getSpanCount();
+
+            if (params == null) {
+                params = new LinearLayout.LayoutParams(gridManager.getWidth() / spanCount, gridManager.getWidth() / spanCount);
+            }
+        }
+    }
 
     @Override
     public void onClick(View v) {
