@@ -3,5 +3,5 @@
     android:id="@+id/mylib_nine_img"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:adjustViewBounds="true"
+    android:scaleType="centerCrop"
     android:src="@drawable/mylib_nine_image_add" />

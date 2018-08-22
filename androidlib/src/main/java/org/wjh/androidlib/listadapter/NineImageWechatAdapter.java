@@ -3,7 +3,6 @@ package org.wjh.androidlib.listadapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,14 +95,8 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
 
         // size==9特殊处理
         if (mDatas.size() == 9) {
-
-            Log.e("dd","size== 9"+"TYPE_ITEM"+getItemCount());
-
             return TYPE_ITEM;
         } else {
-
-            Log.e("dd","size!= 9"+"TYPE"+getItemCount());
-
             if (position == mDatas.size()) {
                 return TYPE_FOOTER;
             } else {
