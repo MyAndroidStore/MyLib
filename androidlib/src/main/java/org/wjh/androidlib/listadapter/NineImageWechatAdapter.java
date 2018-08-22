@@ -90,7 +90,7 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
     public int getItemViewType(int position) {
 
         // 最后一个item设置为FooterView
-        if (position == mDatas.size()) {
+        if (position == mDatas.size() && mDatas.size() > 1) {
             // 获取数据源最后一条数据
             NineImageUrl nineImageUrl = mDatas.get(position);
             if (nineImageUrl.getResId() == 0 || nineImageUrl.getResId() != R.drawable.mylib_nine_image_add)
