@@ -6,12 +6,6 @@
     android:orientation="vertical"
     tools:context=".simple.ImgChoiceActivity">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="select"
-        android:text="上传" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
