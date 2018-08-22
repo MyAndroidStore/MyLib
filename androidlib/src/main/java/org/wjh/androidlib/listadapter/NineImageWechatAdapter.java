@@ -56,14 +56,16 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
 
 
     // 初始化无需数据源
-    public NineImageWechatAdapter(Context context, ImageLoader imageLoader) {
+    public NineImageWechatAdapter(Context context) {
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mDatas = new ArrayList<>();
         mContext = context;
-        mImageLoader = imageLoader;
+        mImageLoader = initImageLoader();
 
         notifyDataSetChanged();
     }
+
+    protected abstract ImageLoader initImageLoader();
 
 
     // 添加数据源
@@ -75,6 +77,12 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
             mDatas.addAll(data);
             notifyDataSetChanged();
         }
+    }
+
+    public void deleteOneData(int pos) {
+
+        mDatas.remove(pos);
+        notifyDataSetChanged();
     }
 
 
