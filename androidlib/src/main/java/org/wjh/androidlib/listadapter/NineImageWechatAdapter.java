@@ -3,6 +3,7 @@ package org.wjh.androidlib.listadapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,9 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
     // 脚布局
     private final int TYPE_FOOTER = 2;
 
+    // params
+    private LinearLayout.LayoutParams params;
+
 
     // 初始化无需数据源
     public NineImageWechatAdapter(Context context) {
@@ -61,6 +65,7 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
         mDatas = new ArrayList<>();
         mContext = context;
         mImageLoader = initImageLoader();
+        params = new LinearLayout.LayoutParams(360, 360);
 
         notifyDataSetChanged();
     }
@@ -91,8 +96,14 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
 
         // size==9特殊处理
         if (mDatas.size() == 9) {
+
+            Log.e("dd","size== 9"+"TYPE_ITEM"+getItemCount());
+
             return TYPE_ITEM;
         } else {
+
+            Log.e("dd","size!= 9"+"TYPE"+getItemCount());
+
             if (position == mDatas.size()) {
                 return TYPE_FOOTER;
             } else {
@@ -140,10 +151,12 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
 
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
+            footViewHolder.getImageView(R.id.mylib_nine_img).setLayoutParams(params);
             mImageLoader.displayImage(getAttachContext(), R.drawable.mylib_nine_image_add, footViewHolder.getImageView(R.id.mylib_nine_img));
         } else {
 
             NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
+            normalViewHolder.getImageView(R.id.mylib_nine_img).setLayoutParams(params);
 
             NineImageUrl nineImageUrl = getAttachDatas().get(position);
 
