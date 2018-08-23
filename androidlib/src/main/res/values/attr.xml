@@ -44,4 +44,10 @@
         <attr name="isOverParentLayout" format="boolean|reference" />
     </declare-styleable>
 
+    <declare-styleable name="PraiseTextViewStyle">
+        <attr name="nameTextColor" format="color|reference" />
+        <attr name="leftIcon" format="reference" />
+        <attr name="textSizeDp" format="integer" />
+    </declare-styleable>
+
 </resources>
