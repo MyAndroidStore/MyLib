@@ -21,7 +21,6 @@ import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 import com.zhihu.matisse.listener.OnCheckedListener;
 
-import org.wjh.androidlib.listadapter.NineGridItemDecoration;
 import org.wjh.androidlib.listadapter.NineImageUrl;
 import org.wjh.androidlib.listadapter.NineImageWechatAdapter;
 import org.wjh.androidlib.matisse.GifSizeFilter;
@@ -68,7 +67,7 @@ public class ImgChoiceActivity extends AppCompatActivity {
         };
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new NineGridItemDecoration(this));
+//        recyclerView.addItemDecoration(new NineGridItemDecoration(this));
 
         adapter.setOnAddOneImageListener(new NineImageWechatAdapter.OnAddOneImageListener() {
             @Override
