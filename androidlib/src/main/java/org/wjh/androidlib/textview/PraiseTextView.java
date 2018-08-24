@@ -64,7 +64,7 @@ public class PraiseTextView extends AppCompatTextView {
      */
     private void getAttrs(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.PraiseTextViewStyle);
-        mIcon = ta.getResourceId(R.styleable.PraiseTextViewStyle_leftIcon, R.drawable.mylib_praise);
+        mIcon = ta.getResourceId(R.styleable.PraiseTextViewStyle_leftIcon, R.drawable.ic_mylib_praise);
         mNameTextColor = ta.getColor(R.styleable.PraiseTextViewStyle_nameTextColor, getResources().getColor(R.color.praise_color));
         textSize = ta.getInteger(R.styleable.PraiseTextViewStyle_textSizeDp, 15);
         ta.recycle();
@@ -93,9 +93,11 @@ public class PraiseTextView extends AppCompatTextView {
 
     private SpannableStringBuilder getPraiseString() {
 
-        SpannableStringBuilder mBuilder = new SpannableStringBuilder(" 我");
+        SpannableStringBuilder mBuilder = new SpannableStringBuilder("我");
 
-        mBuilder.setSpan(new IconImage(getResources().getDrawable(mIcon)).setDip(textSize), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        Drawable drawable = getResources().getDrawable(mIcon);
+        drawable.setBounds(0, 0, dip2px(textSize + 2.5f), dip2px(textSize + 2.5f));
+        mBuilder.setSpan((new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         mBuilder.append(" ");
 
@@ -150,7 +152,7 @@ public class PraiseTextView extends AppCompatTextView {
 
         @Override
         public Drawable getDrawable() {
-            mDrawable.setBounds(-dip2px(3), -dip2px(3), dip2px(dip - 3), dip2px(dip));
+            mDrawable.setBounds(0, 0, dip2px(dip), dip2px(dip));
             return mDrawable;
         }
 

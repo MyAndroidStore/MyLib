@@ -137,6 +137,11 @@ public class NohttpUtils {
 
         List<Map<String, FileBinary>> mapList = binaryParams.params();
 
+        if (mapList.size() == 0) {
+            requestQueue.add(200, request, hcb);
+            return;
+        }
+
         for (int i = 0; i < mapList.size(); i++) {
             Map<String, FileBinary> map = mapList.get(i);
             for (String key : map.keySet()) {
@@ -156,6 +161,11 @@ public class NohttpUtils {
         request.setCancelSign(sign);
 
         List<Map<String, FileBinary>> mapList = binaryParams.params();
+
+        if (mapList.size() == 0) {
+            requestQueue.add(200, request, hcb);
+            return;
+        }
 
         for (int i = 0; i < mapList.size(); i++) {
             Map<String, FileBinary> map = mapList.get(i);
@@ -178,6 +188,11 @@ public class NohttpUtils {
         request.setCancelSign(sign);
 
         final List<Map<String, FileBinary>> mapList = binaryParams.params();
+
+        if (mapList.size() == 0) {
+            requestQueue.add(200, request, hcb);
+            return;
+        }
 
         final long fileLength = binaryParams.getBinarysLength();
 
