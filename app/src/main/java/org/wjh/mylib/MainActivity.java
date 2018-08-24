@@ -12,6 +12,7 @@ import org.wjh.mylib.simple.Bottom2Activity;
 import org.wjh.mylib.simple.ImgChoiceActivity;
 import org.wjh.mylib.simple.List1Activity;
 import org.wjh.mylib.simple.List2Activity;
+import org.wjh.mylib.simple.PraiseActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,4 +59,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(ImgChoiceActivity.class);
     }
 
+    public void praise(View view) {
+        startActivity(PraiseActivity.class);
+    }
 }

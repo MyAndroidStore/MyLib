@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_launcher"/>
+
+    <org.wjh.androidlib.textview.PraiseTextView
+        android:id="@+id/pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:nameTextColor="@color/badge_red"
+        app:textSizeDp="25"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:gravity="center_vertical"/>
+
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import org.wjh.androidlib.listadapter.LoadMoreSingleLayoutAdapter;
@@ -48,12 +49,11 @@ public class List1Activity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.rv);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        adapter1 = new Adapter1(this, R.layout.item1);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter1 = new Adapter1(this, R.layout.layout);
         recyclerView.setAdapter(adapter1);
 
-        // 模拟设置加载出错
-        adapter1.setLoadState(LoadingState.LOAD_ERROR);
+        request();
 
 
         adapter1.setOnFooterErrorListener(new LoadMoreSingleLayoutAdapter.OnFooterErrorListener() {
@@ -75,14 +75,12 @@ public class List1Activity extends AppCompatActivity {
 
     private void request() {
 
-        adapter1.setLoadState(LoadingState.LOADING);
-
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 handler.sendEmptyMessage(0);
             }
-        }, 2000);
+        }, 100);
 
     }
 
@@ -92,7 +90,7 @@ public class List1Activity extends AppCompatActivity {
         List<String> strings = new ArrayList<>();
 
 
-        for (int i = 0; i < 39; i++) {
+        for (int i = 0; i < 2; i++) {
 
             strings.add("测试" + (++index));
         }

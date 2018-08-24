@@ -35,6 +35,7 @@
         <activity android:name=".simple.List1Activity" />
         <activity android:name=".simple.List2Activity" />
         <activity android:name=".simple.ImgChoiceActivity" />
+        <activity android:name=".simple.PraiseActivity"></activity>
     </application>
 
 </manifest>
