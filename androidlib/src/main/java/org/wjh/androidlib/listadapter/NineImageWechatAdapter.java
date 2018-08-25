@@ -1,37 +1,25 @@
 package org.wjh.androidlib.listadapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.wjh.androidlib.R;
 import org.wjh.androidlib.exceptions.MoreThanNineImageException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Konfyt on 2016/9/14.
  */
-public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineImageWechatAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener {
+public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<RecyclerViewHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     // 数据源(图片选择的本地地址)
     private List<NineImageUrl> mDatas;
@@ -108,9 +96,10 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
     }
 
     // 创建ViewHolder
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
+    @NonNull
+    @Override
+    public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //进行判断显示类型，来创建返回不同的View
         if (viewType == TYPE_FOOTER) {
             View view = mInflater.inflate(R.layout.mylib_nine_image_layout, parent, false);
@@ -130,14 +119,14 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
             itemView.setOnLongClickListener(this);
             return new NormalViewHolder(itemView);
         }
-
     }
 
     // 绑定ViewHolder 需要定义抽象方法来实现里面的操作，
     // 所以LoadMoreLinearBaseAdapter需要声明成抽象类
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
 
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         if (holder instanceof FootViewHolder) {
             FootViewHolder footViewHolder = (FootViewHolder) holder;
             mImageLoader.displayImage(getAttachContext(), R.drawable.mylib_nine_image_add, footViewHolder.getImageView(R.id.mylib_nine_img));
@@ -152,7 +141,6 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
                 mImageLoader.displayImage(getAttachContext(), nineImageUrl.getLocalUrl(), normalViewHolder.getImageView(R.id.mylib_nine_img));
         }
     }
-
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -180,84 +168,17 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
     }
 
     // 脚布局ViewHoldr类
-    private static class FootViewHolder extends NineImageWechatAdapter.ViewHolder {
+    private static class FootViewHolder extends RecyclerViewHolder {
 
         FootViewHolder(View itemView) {
             super(itemView);
         }
     }
 
-    private static class NormalViewHolder extends NineImageWechatAdapter.ViewHolder {
+    private static class NormalViewHolder extends RecyclerViewHolder {
 
         NormalViewHolder(View itemView) {
             super(itemView);
-        }
-    }
-
-    // ViewHoldr类
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private Map<Integer, View> mCacheViews;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            mCacheViews = new HashMap<>();
-        }
-
-
-        //获得常用控件
-        public ImageView getImageView(int id) {
-            return getView(id);
-        }
-
-        public TextView getTextView(int id) {
-            return getView(id);
-        }
-
-        public EditText getEditText(int id) {
-            return getView(id);
-        }
-
-        public Button getButton(int id) {
-            return getView(id);
-        }
-
-        public ImageButton getImageButton(int id) {
-            return getView(id);
-        }
-
-        public CheckBox getCheckBox(int id) {
-            return getView(id);
-        }
-
-        public ProgressBar getProgressBar(int id) {
-            return getView(id);
-        }
-
-        public LinearLayout getLinearLayout(int id) {
-            return getView(id);
-        }
-
-        public RelativeLayout getRelativeLayout(int id) {
-            return getView(id);
-        }
-
-        public FrameLayout getFrameLayout(int id) {
-            return getView(id);
-        }
-
-        public CircleImageView getCircleImageView(int id) {
-            return getView(id);
-        }
-
-        public <T extends View> T getView(int resId) {
-            View view = null;
-            if (mCacheViews.containsKey(resId)) {
-                view = mCacheViews.get(resId);
-            } else {
-                view = itemView.findViewById(resId);
-                mCacheViews.put(resId, view);
-            }
-            return (T) view;
         }
     }
 
@@ -285,16 +206,6 @@ public abstract class NineImageWechatAdapter extends RecyclerView.Adapter<NineIm
     // 对外提供设置添加图片的监听器的方法
     public void setOnAddOneImageListener(OnAddOneImageListener onAddOneImageListener) {
         this.mOnAddOneImageListener = onAddOneImageListener;
-    }
-
-    public interface OnItemClickListener {
-        // 传递当前点击的对象（List对应位置的数据）与位置
-        void onClick(NineImageUrl t, int position, View view);
-    }
-
-    public interface OnItemLongClickListener {
-        // 传递当前点击的对象（List对应位置的数据）与位置
-        void onLongClick(NineImageUrl t, int position, View view);
     }
 
     // foot 添加图片时间
