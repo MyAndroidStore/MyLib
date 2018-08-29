@@ -47,6 +47,10 @@ public abstract class SimpleSingleLayoutAdapter<T> extends RecyclerView.Adapter<
 
     // 添加数据源
     public void addData(List<T> data) {
+
+        if (data == null)
+            return;
+
         mDatas.addAll(data);
         notifyDataSetChanged();
     }

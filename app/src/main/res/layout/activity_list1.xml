@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".simple.List1Activity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_marginTop="100dp"
+    <org.wjh.androidlib.passwordview.SimplePasswordView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

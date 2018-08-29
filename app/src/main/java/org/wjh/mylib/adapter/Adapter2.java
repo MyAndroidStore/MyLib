@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.wjh.androidlib.listadapter.LoadMoreMultiLayoutAdapter;
+import org.wjh.androidlib.listadapter.RecyclerViewHolder;
 import org.wjh.mylib.R;
 
 public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
@@ -21,7 +22,7 @@ public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
     }
 
     @Override
-    public ViewHolder onCreateCustomViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewHolder onCreateCustomViewHolder(ViewGroup parent, int viewType) {
 
         Log.e("Ddd",viewType+"");
 
@@ -36,7 +37,7 @@ public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
     }
 
     @Override
-    public void onBindCustomViewHolder(ViewHolder holder, String s, int position) {
+    public void onBindCustomViewHolder(RecyclerViewHolder holder, String s, int position) {
         if (holder instanceof ViewHolder1){
             holder.getTextView(R.id.tv).setText(s);
         }else if (holder instanceof ViewHolder2){
@@ -46,7 +47,7 @@ public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
 
 
     // 有几个布局就创建几个ViewHolder
-    private static class ViewHolder1 extends ViewHolder {
+    private static class ViewHolder1 extends RecyclerViewHolder {
 
         ViewHolder1(View itemView) {
             super(itemView);
@@ -54,7 +55,7 @@ public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
 
     }
 
-    private static class ViewHolder2 extends ViewHolder {
+    private static class ViewHolder2 extends RecyclerViewHolder {
 
         ViewHolder2(View itemView) {
             super(itemView);

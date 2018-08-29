@@ -83,6 +83,10 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
 
     // 添加数据源
     public void addData(List<T> data) {
+
+        if (data == null)
+            return;
+
         mDatas.addAll(data);
         notifyDataSetChanged();
     }

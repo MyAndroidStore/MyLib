@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import org.wjh.androidlib.listadapter.LoadMoreMultiLayoutAdapter;
 import org.wjh.androidlib.listadapter.LoadingState;
+import org.wjh.androidlib.listadapter.OnFooterErrorListener;
 import org.wjh.androidlib.listadapter.OnSlideUpListener;
 import org.wjh.mylib.R;
 import org.wjh.mylib.adapter.Adapter2;
@@ -56,7 +57,7 @@ public class List2Activity extends AppCompatActivity {
         adapter2.setLoadState(LoadingState.LOAD_ERROR);
 
 
-        adapter2.setOnFooterErrorListener(new LoadMoreMultiLayoutAdapter.OnFooterErrorListener() {
+        adapter2.setOnFooterErrorListener(new OnFooterErrorListener() {
             @Override
             public void onClick() {
                 request();
