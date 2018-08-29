@@ -138,6 +138,7 @@ public final class TSnackbar {
                     public void onDismiss(View view) {
                         mView.clearAnimation();
                         mView.setVisibility(View.GONE);
+                        mParent.removeView(mView);
                     }
 
                     @Override
