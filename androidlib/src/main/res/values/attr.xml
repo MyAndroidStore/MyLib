@@ -50,4 +50,8 @@
         <attr name="textSizeDp" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="NumKeyboardViewStyle">
+        <attr name="random" format="boolean" />
+    </declare-styleable>
+
 </resources>
