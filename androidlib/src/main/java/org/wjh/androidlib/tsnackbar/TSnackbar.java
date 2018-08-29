@@ -21,6 +21,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.SwipeDismissBehavior;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -33,6 +34,7 @@ import android.view.ViewParent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -44,7 +46,6 @@ import org.wjh.androidlib.R;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import static org.wjh.androidlib.tsnackbar.AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR;
 
 /**
  * TSnackbar provides lightweight feedback about an operation. They show a brief message at the
@@ -63,6 +64,7 @@ import static org.wjh.androidlib.tsnackbar.AnimationUtils.FAST_OUT_SLOW_IN_INTER
  */
 public final class TSnackbar {
 
+    Interpolator FAST_OUT_SLOW_IN_INTERPOLATOR = new FastOutSlowInInterpolator();
     /**
      * Callback class for {@link TSnackbar} instances.
      *
