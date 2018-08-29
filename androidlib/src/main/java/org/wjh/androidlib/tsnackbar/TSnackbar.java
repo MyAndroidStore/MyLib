@@ -136,6 +136,7 @@ public final class TSnackbar {
                 sb.setListener(new SwipeDismissBehavior.OnDismissListener() {
                     @Override
                     public void onDismiss(View view) {
+                        mView.setVisibility(View.GONE);
                     }
 
                     @Override
