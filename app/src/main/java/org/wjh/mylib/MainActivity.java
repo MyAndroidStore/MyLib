@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import org.wjh.androidlib.utils.ToastUtils;
-import org.wjh.androidlib.utils.TsnackBarUtils;
 import org.wjh.mylib.simple.BannerActivity;
 import org.wjh.mylib.simple.Bottom1Activity;
 import org.wjh.mylib.simple.Bottom2Activity;
@@ -36,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toast(View view) {
-        TsnackBarUtils.getInstance().showShortSuccessNoIcon(this,"ddd");
+        ToastUtils.getInstance().shortToast(++index + "");
+        ToastUtils.getInstance().longToast(++index + "");
     }
 
     public void bottom1(View view) {

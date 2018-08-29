@@ -6,36 +6,23 @@ public enum Prompt {
     /**
      * 红色,错误
      */
-    ERROR(R.drawable.mylib_common_bounced_icon_error, R.color.prompt_error),
-
-    ERROR_NOICON(0, R.color.prompt_error),
+    ERROR(R.color.prompt_error),
 
     /**
      * 橘黄色,警告
      */
-    WARNING(R.drawable.mylib_common_bounced_icon_warning, R.color.prompt_warning),
-    WARNING_NOICON(0, R.color.prompt_warning),
+    WARNING(R.color.prompt_warning),
 
     /**
      * 绿色,成功
      */
-    SUCCESS(R.drawable.mylib_common_bounced_icon_successful, R.color.prompt_success),
-    SUCCESS_NOICON(0, R.color.prompt_success);
+    SUCCESS(R.color.prompt_success);
 
-    private int resIcon;
+
     private int backgroundColor;
 
-    Prompt(int resIcon, int backgroundColor) {
-        this.resIcon = resIcon;
+    Prompt(int backgroundColor) {
         this.backgroundColor = backgroundColor;
-    }
-
-    public int getResIcon() {
-        return resIcon;
-    }
-
-    public void setResIcon(int resIcon) {
-        this.resIcon = resIcon;
     }
 
     public int getBackgroundColor() {

@@ -11,7 +11,6 @@ import com.yanzhenjie.nohttp.cache.DBCacheStore;
 import com.yanzhenjie.nohttp.cookie.DBCookieStore;
 
 import org.wjh.androidlib.utils.ToastUtils;
-import org.wjh.androidlib.utils.TsnackBarUtils;
 
 /**
  * 作者： macpro  on 2018/6/17.
@@ -32,8 +31,6 @@ public class MyApplication extends Application {
         Logger.setTag("NoHttpSample");
 
         ToastUtils.init(this);
-
-        TsnackBarUtils.init(this, 50);
     }
 
 
