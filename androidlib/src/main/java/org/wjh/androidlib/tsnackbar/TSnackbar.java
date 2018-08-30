@@ -137,7 +137,7 @@ public final class TSnackbar {
                     @Override
                     public void onDismiss(View view) {
                         mView.clearAnimation();
-                        mView.setVisibility(View.GONE);
+                        // 动画完毕移除控件
                         mParent.removeView(mView);
                     }
 
@@ -171,7 +171,8 @@ public final class TSnackbar {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                mView.setVisibility(View.GONE);
+                // 动画完毕移除控件
+                mParent.removeView(mView);
             }
 
             @Override
