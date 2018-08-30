@@ -164,7 +164,7 @@ public final class TSnackbar {
      * 动画
      */
     private Animation getAnimationInFromTopToDown() {
-        return AnimationUtils.loadAnimation(mView.getContext(), R.anim.mylib_snack_in_out);
+        return AnimationUtils.loadAnimation(mContext, R.anim.mylib_snack_in_out);
     }
 
     /**
