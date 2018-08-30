@@ -109,6 +109,12 @@ public class PasswordAdapter extends BaseAdapter {
     }
 
 
+    public void clearAll() {
+        mList.clear();
+        notifyDataSetChanged();
+    }
+
+
     static class ViewHolder0 {
         TextView tv;
     }

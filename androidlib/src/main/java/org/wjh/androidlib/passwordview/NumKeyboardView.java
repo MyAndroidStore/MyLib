@@ -141,4 +141,8 @@ public class NumKeyboardView extends GridView {
     public void setNumKeyboardListener(NumKeyboardListener listener) {
         this.listener = listener;
     }
+
+    public void clearAllPassWords() {
+        passwordAdapter.clearAll();
+    }
 }

@@ -66,4 +66,11 @@ public class PassWordBox extends LinearLayout {
     public void deltePassWordByIndex(int index) {
         tvList[index].setText("");
     }
+
+    public void clearAll() {
+
+        for (int i = 0; i < tvList.length; i++) {
+            tvList[i].setText("");
+        }
+    }
 }
