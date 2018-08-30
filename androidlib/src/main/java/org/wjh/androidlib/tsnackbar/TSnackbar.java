@@ -28,6 +28,8 @@ public final class TSnackbar {
     private final View mView;
     // SnackBar的内容
     private final TextView snackContent;
+    // 管理snackbar
+    private final TsnackManager manager;
 
     // 构造方法私有化
     private TSnackbar(Activity activity) {
@@ -39,7 +41,7 @@ public final class TSnackbar {
         snackContent = mView.findViewById(R.id.snack_content);
         // 设置默认高度
         setMinHeight(0);
-
+        manager = TsnackManager.getInstance();
     }
 
     /**
@@ -117,11 +119,20 @@ public final class TSnackbar {
         return this;
     }
 
+    public ViewGroup getmParent() {
+        return mParent;
+    }
+
+    public View getmView() {
+        return mView;
+    }
 
     /**
      * 显示
      */
     public void show() {
+
+        manager.addTsnackBar(this);
 
         mParent.addView(mView);
         animateViewIn();
