@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.SwipeDismissBehavior;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -182,8 +183,12 @@ public final class TSnackbar {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                // 动画完毕移除控件
-                mParent.removeView(mView);
+                try{
+                    // 动画完毕移除控件
+                    mParent.removeView(mView);
+                }catch (Exception e){
+                    Log.e("DDD","移除发生错误");
+                }
             }
 
             @Override
