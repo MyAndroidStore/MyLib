@@ -1,6 +1,7 @@
 package org.wjh.androidlib.tsnackbar;
 
 
+import android.os.Handler;
 import android.util.Log;
 
 public class TsnackManager {
@@ -8,6 +9,8 @@ public class TsnackManager {
     private static final TsnackManager ourInstance = new TsnackManager();
     // 保证只存一个
     private static final TSnackbar[] tList = new TSnackbar[1];
+
+    private static Handler handler = new Handler();
 
     public static TsnackManager getInstance() {
         return ourInstance;
@@ -39,5 +42,9 @@ public class TsnackManager {
         }
 
         tList[0] = tSnackbar;
+    }
+
+    public Handler getHandler() {
+        return handler;
     }
 }
