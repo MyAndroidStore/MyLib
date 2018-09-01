@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import org.wjh.androidlib.tsnackbar.Prompt;
+import org.wjh.androidlib.tsnackbar.TSnackbar;
 import org.wjh.androidlib.utils.ToastUtils;
 import org.wjh.mylib.simple.BannerActivity;
 import org.wjh.mylib.simple.Bottom1Activity;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TSnackbar.make(this, Prompt.ERROR,"多大的").show();
     }
 
     public void banner(View view) {
