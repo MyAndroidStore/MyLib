@@ -141,7 +141,7 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
                 if (dend == 1) {
 
                     if (editListener != null)
-                        editListener.correct();
+                        editListener.correct(0.00);
 
                 } else {
                     // 需要验证金额
@@ -151,7 +151,7 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
                     }
 
                     if (sumText <= MAX_VALUE && editListener != null) {
-                        editListener.correct();
+                        editListener.correct(sumText);
                     }
                 }
                 return "";
@@ -193,7 +193,7 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
             }
 
             if (sumText <= MAX_VALUE && editListener != null) {
-                editListener.correct();
+                editListener.correct(sumText);
             }
 
             return sourceText;
@@ -203,6 +203,6 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
     public interface EditListener {
         void error(String msg);
 
-        void correct();
+        void correct(double value);
     }
 }
