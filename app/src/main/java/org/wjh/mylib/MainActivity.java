@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import org.wjh.androidlib.edittext.CashEditText;
 import org.wjh.androidlib.tsnackbar.Prompt;
 import org.wjh.androidlib.tsnackbar.TSnackbar;
 import org.wjh.androidlib.utils.ToastUtils;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TSnackbar.make(this, Prompt.ERROR,"多大的").show();
+
+        CashEditText viewById = (CashEditText) findViewById(R.id.et);
+        viewById.setMaxCashAndEditListener(5000,null);
     }
 
     public void banner(View view) {

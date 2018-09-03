@@ -134,8 +134,26 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
             // 输入前的字符串
             String destText = dest.toString();
 
-            //验证删除等按键
-            if (TextUtils.isEmpty(sourceText)) {
+            //删除操作
+            if (TextUtils.isEmpty(sourceText) && dend > dstart) {
+
+                // 全部清空
+                if (dend == 1) {
+
+                    if (editListener != null)
+                        editListener.correct();
+
+                } else {
+                    // 需要验证金额
+                    double sumText = Double.parseDouble(destText.substring(0, dstart));
+                    if (sumText > MAX_VALUE && editListener != null) {
+                        editListener.error("超出可转金额上限");
+                    }
+
+                    if (sumText <= MAX_VALUE && editListener != null) {
+                        editListener.correct();
+                    }
+                }
                 return "";
             }
 
