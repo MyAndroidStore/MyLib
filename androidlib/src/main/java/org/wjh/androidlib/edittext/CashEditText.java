@@ -40,7 +40,7 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
     /**
      * 设置最大金额以及监听
      */
-    public void setMaxCashAndErrorListener(int max, ErrorInfoListener listener) {
+    public void setMaxCashAndEditListener(int max, EditListener listener) {
         InputFilter[] inputFilter = new InputFilter[1];
         inputFilter[0] = new CashierInputFilter(max, listener);
         this.setFilters(inputFilter);
@@ -110,12 +110,12 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
 
         private static final String ZERO = "0";
 
-        private ErrorInfoListener errorInfoListener;
+        private EditListener editListener;
 
-        public CashierInputFilter(int MAX_VALUE, ErrorInfoListener errorInfoListener) {
+        public CashierInputFilter(int MAX_VALUE, EditListener editListener) {
             mPattern = Pattern.compile("([0-9]|\\.)*");
             this.MAX_VALUE = MAX_VALUE;
-            this.errorInfoListener = errorInfoListener;
+            this.editListener = editListener;
         }
 
         /**
@@ -170,15 +170,21 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
 
             //验证输入金额的大小
             double sumText = Double.parseDouble(destText + sourceText);
-            if (sumText > MAX_VALUE && errorInfoListener != null) {
-                errorInfoListener.error("超出可转金额上限");
+            if (sumText > MAX_VALUE && editListener != null) {
+                editListener.error("超出可转金额上限");
+            }
+
+            if (sumText <= MAX_VALUE && editListener != null) {
+                editListener.correct();
             }
 
             return sourceText;
         }
     }
 
-    public interface ErrorInfoListener {
+    public interface EditListener {
         void error(String msg);
+
+        void correct();
     }
 }
