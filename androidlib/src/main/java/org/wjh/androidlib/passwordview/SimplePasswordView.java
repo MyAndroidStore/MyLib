@@ -93,6 +93,7 @@ public class SimplePasswordView extends LinearLayout {
 
     public void reset() {
         passWordBox.clearAll();
+        numKeyboardView.reset();
     }
 
     public interface SimplePassWordViewListener {

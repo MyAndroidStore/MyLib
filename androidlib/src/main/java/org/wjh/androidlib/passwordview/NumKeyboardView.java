@@ -142,7 +142,7 @@ public class NumKeyboardView extends GridView {
         this.listener = listener;
     }
 
-    public void clearAllPassWords() {
-        passwordAdapter.clearAll();
+    public void reset() {
+        psd.clear();
     }
 }

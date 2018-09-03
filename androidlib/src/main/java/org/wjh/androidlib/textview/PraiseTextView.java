@@ -85,6 +85,8 @@ public class PraiseTextView extends AppCompatTextView {
         this.mPraiseInfos = mPraiseInfos;
         this.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize);
         this.setText(getPraiseString());
+        //设置选中文本的高亮颜色
+        this.setHighlightColor(getResources().getColor(android.R.color.transparent));
         this.setMovementMethod(LinkMovementMethod.getInstance());
         return this;
     }
