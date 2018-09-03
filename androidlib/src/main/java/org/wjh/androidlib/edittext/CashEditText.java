@@ -40,7 +40,7 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
     /**
      * 设置最大金额以及监听
      */
-    public void setMaxCashAndEditListener(int max, EditListener listener) {
+    public void setMaxCashAndEditListener(double max, EditListener listener) {
         InputFilter[] inputFilter = new InputFilter[1];
         inputFilter[0] = new CashierInputFilter(max, listener);
         this.setFilters(inputFilter);
@@ -102,7 +102,7 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
         Pattern mPattern;
 
         //输入的最大金额
-        private final int MAX_VALUE;
+        private final double MAX_VALUE;
         //小数点后的位数
         private static final int POINTER_LENGTH = 2;
 
@@ -112,7 +112,7 @@ public class CashEditText extends android.support.v7.widget.AppCompatEditText {
 
         private EditListener editListener;
 
-        public CashierInputFilter(int MAX_VALUE, EditListener editListener) {
+        public CashierInputFilter(double MAX_VALUE, EditListener editListener) {
             mPattern = Pattern.compile("([0-9]|\\.)*");
             this.MAX_VALUE = MAX_VALUE;
             this.editListener = editListener;
