@@ -107,10 +107,10 @@ public class DragPhotoView extends PhotoView {
                     float absY = Math.abs(pressY - event.getY());
 
                     if (mLongPressListener != null) {
-                        if (absX < 10 && absY < 10) {
+                        if (absX < 20 && absY < 20) {
                             mLongPressListener.longClickState(true);
                         } else {
-                            mLongPressListener.longClickState(true);
+                            mLongPressListener.longClickState(false);
                         }
                     }
 
