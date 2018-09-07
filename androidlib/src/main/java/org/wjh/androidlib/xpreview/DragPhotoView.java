@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -45,7 +44,9 @@ public class DragPhotoView extends PhotoView {
     private OnExitListener mExitListener;
     private OnLongPressListener mLongPressListener;
 
-    private boolean isLongClick = true;
+
+    float pressX = 0;
+    float pressY = 0;
 
     public DragPhotoView(Context context) {
         this(context, null);
@@ -60,15 +61,7 @@ public class DragPhotoView extends PhotoView {
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
 
-        this.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                if (isLongClick && mLongPressListener != null)
-                    mLongPressListener.onLongClick(view);
-
-            }
-        });
     }
 
     @Override
@@ -96,7 +89,11 @@ public class DragPhotoView extends PhotoView {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
 
-                    isLongClick = true;
+                    pressX = event.getX();
+                    pressY = event.getY();
+
+                    if (mLongPressListener != null)
+                        mLongPressListener.longClickState(true);
 
                     onActionDown(event);
 
@@ -106,7 +103,16 @@ public class DragPhotoView extends PhotoView {
                     break;
                 case MotionEvent.ACTION_MOVE:
 
-                    isLongClick = true;
+                    float absX = Math.abs(pressX - event.getX());
+                    float absY = Math.abs(pressY - event.getY());
+
+                    if (mLongPressListener != null) {
+                        if (absX < 10 && absY < 10) {
+                            mLongPressListener.longClickState(true);
+                        } else {
+                            mLongPressListener.longClickState(true);
+                        }
+                    }
 
                     //in viewpager
                     if (mTranslateY == 0 && mTranslateX != 0) {
@@ -321,7 +327,7 @@ public class DragPhotoView extends PhotoView {
     }
 
     public interface OnLongPressListener {
-        void onLongClick(View view);
+        void longClickState(boolean isLongClick);
     }
 
     public void finishAnimationCallBack() {
