@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -42,6 +43,9 @@ public class DragPhotoView extends PhotoView {
     private boolean isTouchEvent = false;
     private OnTapListener mTapListener;
     private OnExitListener mExitListener;
+    private OnLongPressListener mLongPressListener;
+
+    private boolean isLongClick = true;
 
     public DragPhotoView(Context context) {
         this(context, null);
@@ -55,6 +59,16 @@ public class DragPhotoView extends PhotoView {
         super(context, attr, defStyle);
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
+
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (isLongClick && mLongPressListener != null)
+                    mLongPressListener.onLongClick(view);
+
+            }
+        });
     }
 
     @Override
@@ -81,6 +95,9 @@ public class DragPhotoView extends PhotoView {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+
+                    isLongClick = true;
+
                     onActionDown(event);
 
                     //change the canFinish flag
@@ -88,6 +105,8 @@ public class DragPhotoView extends PhotoView {
 
                     break;
                 case MotionEvent.ACTION_MOVE:
+
+                    isLongClick = true;
 
                     //in viewpager
                     if (mTranslateY == 0 && mTranslateX != 0) {
@@ -289,12 +308,20 @@ public class DragPhotoView extends PhotoView {
         mExitListener = listener;
     }
 
+    public void setOnLongPressListener(OnLongPressListener mLongPressListener) {
+        this.mLongPressListener = mLongPressListener;
+    }
+
     public interface OnTapListener {
         void onTap(DragPhotoView view);
     }
 
     public interface OnExitListener {
         void onExit(DragPhotoView view, float translateX, float translateY, float w, float h);
+    }
+
+    public interface OnLongPressListener {
+        void onLongClick(View view);
     }
 
     public void finishAnimationCallBack() {
