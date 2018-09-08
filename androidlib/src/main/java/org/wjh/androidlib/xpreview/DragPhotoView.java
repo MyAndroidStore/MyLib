@@ -125,11 +125,11 @@ public class DragPhotoView extends PhotoView {
                     }
 
                     //single finger drag  down
-                    if (mTranslateY >= 50 && event.getPointerCount() == 1) {
+                    if (mTranslateY >= 0 && event.getPointerCount() == 1) {
                         onActionMove(event);
 
                         //如果有上下位移 则不交给viewpager
-                        if (mTranslateY != 0) {
+                        if (mTranslateY > 50) {
                             isTouchEvent = true;
                         }
                         return true;
