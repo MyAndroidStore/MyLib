@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TSnackbar.make(this, Prompt.ERROR,"多大的").show();
+        TSnackbar.make(this, Prompt.ERROR, "多大的").show();
 
         CashEditText viewById = (CashEditText) findViewById(R.id.et);
-        viewById.setMaxCashAndEditListener(5000,null);
+        viewById.setMaxCashAndEditListener(5000, null);
     }
 
     public void banner(View view) {

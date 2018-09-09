@@ -7,7 +7,7 @@ import android.graphics.drawable.StateListDrawable;
 
 /**
  * Created by macpro on 2018/1/8.
- *      选择器工具类
+ * 选择器工具类
  */
 
 public class DrawableSelectorUtils {
@@ -28,7 +28,7 @@ public class DrawableSelectorUtils {
 
         states[2] = new int[]{};
 
-        return new ColorStateList(states,colors);
+        return new ColorStateList(states, colors);
     }
 
 

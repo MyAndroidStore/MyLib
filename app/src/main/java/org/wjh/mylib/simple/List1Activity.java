@@ -17,5 +17,4 @@ public class List1Activity extends AppCompatActivity {
     }
 
 
-
 }

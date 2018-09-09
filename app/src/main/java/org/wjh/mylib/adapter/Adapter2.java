@@ -9,7 +9,7 @@ import org.wjh.androidlib.listadapter.LoadMoreMultiLayoutAdapter;
 import org.wjh.androidlib.listadapter.RecyclerViewHolder;
 import org.wjh.mylib.R;
 
-public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
+public class Adapter2 extends LoadMoreMultiLayoutAdapter<String> {
 
     public Adapter2(Context context) {
         super(context);
@@ -18,18 +18,18 @@ public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
     @Override
     public int getCustomItemViewType(int position) {
 
-        return position%2;
+        return position % 2;
     }
 
     @Override
     public RecyclerViewHolder onCreateCustomViewHolder(ViewGroup parent, int viewType) {
 
-        Log.e("Ddd",viewType+"");
+        Log.e("Ddd", viewType + "");
 
-        if (viewType == 1){
+        if (viewType == 1) {
             View inflate = getAttachInflater().inflate(R.layout.item1, parent, false);
             return new ViewHolder1(inflate);
-        }else {
+        } else {
             View inflate = getAttachInflater().inflate(R.layout.item2, parent, false);
             return new ViewHolder2(inflate);
         }
@@ -38,9 +38,9 @@ public class Adapter2 extends LoadMoreMultiLayoutAdapter<String>{
 
     @Override
     public void onBindCustomViewHolder(RecyclerViewHolder holder, String s, int position) {
-        if (holder instanceof ViewHolder1){
+        if (holder instanceof ViewHolder1) {
             holder.getTextView(R.id.tv).setText(s);
-        }else if (holder instanceof ViewHolder2){
+        } else if (holder instanceof ViewHolder2) {
             holder.getTextView(R.id.tv2).setText(s);
         }
     }

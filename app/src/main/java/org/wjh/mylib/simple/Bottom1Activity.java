@@ -35,12 +35,12 @@ public class Bottom1Activity extends AppCompatActivity {
     }
 
 
-    private List<BottomBarEntity> initData(){
+    private List<BottomBarEntity> initData() {
 
         List<BottomBarEntity> list = new ArrayList<>();
-        list.add(new BottomBarEntity(Fragment1.class,new BottomBarItem(this,R.mipmap.msg_normal,R.mipmap.msg_press,"消息")));
-        list.add(new BottomBarEntity(Fragment2.class,new BottomBarItem(this,R.mipmap.application_normal,R.mipmap.application_press,"应用")));
-        list.add(new BottomBarEntity(Fragment3.class,new BottomBarItem(this,R.mipmap.my_normal,R.mipmap.my_press,"我的")));
+        list.add(new BottomBarEntity(Fragment1.class, new BottomBarItem(this, R.mipmap.msg_normal, R.mipmap.msg_press, "消息")));
+        list.add(new BottomBarEntity(Fragment2.class, new BottomBarItem(this, R.mipmap.application_normal, R.mipmap.application_press, "应用")));
+        list.add(new BottomBarEntity(Fragment3.class, new BottomBarItem(this, R.mipmap.my_normal, R.mipmap.my_press, "我的")));
 
 
         return list;

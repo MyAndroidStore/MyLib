@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import org.wjh.androidlib.listadapter.LoadMoreMultiLayoutAdapter;
 import org.wjh.androidlib.listadapter.LoadingState;
 import org.wjh.androidlib.listadapter.OnFooterErrorListener;
 import org.wjh.androidlib.listadapter.OnSlideUpListener;

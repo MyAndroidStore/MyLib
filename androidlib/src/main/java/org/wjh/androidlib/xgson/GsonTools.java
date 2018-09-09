@@ -20,7 +20,6 @@ class GsonTools {
      * 解析jsonArray
      *
      * @param in json数据
-     *
      * @throws IOException
      */
     static void readArray(JsonReader in)
@@ -34,7 +33,6 @@ class GsonTools {
      * 解析jsonObject
      *
      * @param in json数据
-     *
      * @throws IOException
      */
     static void readObject(JsonReader in)
@@ -48,7 +46,6 @@ class GsonTools {
      * 解析整个json数据
      *
      * @param in json数据
-     *
      * @throws IOException
      */
     private static void readJson(JsonReader in)
@@ -74,8 +71,7 @@ class GsonTools {
 
     /**
      * @param type 0(int.class, Integer.class ) 1(short.class, Short.class) 2(long.class,
-     * Long.class) 3(double.class, Double.class) 4(float.class, Float.class)
-     *
+     *             Long.class) 3(double.class, Double.class) 4(float.class, Float.class)
      * @return
      */
     public static TypeAdapter<Number> longAdapter(final int type) {
