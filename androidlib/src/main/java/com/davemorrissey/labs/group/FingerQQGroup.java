@@ -2,7 +2,6 @@ package com.davemorrissey.labs.group;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -142,9 +141,9 @@ public class FingerQQGroup extends LinearLayout {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     reset();
-                    Activity activity = ((Activity) getContext());
-                    activity.finish();
-                    activity.overridePendingTransition(fadeIn, fadeOut);
+                    if (null != mOnAlphaChangedListener) {
+                        mOnAlphaChangedListener.onCloseListener();
+                    }
                 }
 
                 @Override
@@ -178,8 +177,9 @@ public class FingerQQGroup extends LinearLayout {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     reset();
-                    ((Activity) getContext()).finish();
-                    ((Activity) getContext()).overridePendingTransition(fadeIn, fadeOut);
+                    if (null != mOnAlphaChangedListener) {
+                        mOnAlphaChangedListener.onCloseListener();
+                    }
                 }
 
                 @Override
@@ -246,6 +246,8 @@ public class FingerQQGroup extends LinearLayout {
         void onAlphaChanged(float alpha);
 
         void onTranslationYChanged(float translationY);
+
+        void onCloseListener();
     }
 
     //暴露的回调方法（可根据位移距离或者alpha来改变主UI控件的透明度等
