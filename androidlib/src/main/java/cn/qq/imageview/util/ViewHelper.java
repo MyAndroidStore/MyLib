@@ -1,4 +1,4 @@
-package com.davemorrissey.labs.utils;
+package cn.qq.imageview.util;
 
 import android.view.ViewGroup;
 

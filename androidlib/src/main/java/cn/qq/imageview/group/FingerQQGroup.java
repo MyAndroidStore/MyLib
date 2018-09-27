@@ -1,4 +1,4 @@
-package com.davemorrissey.labs.group;
+package cn.qq.imageview.group;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -6,25 +6,26 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 
-import com.davemorrissey.labs.exceptions.BackGroundException;
-import com.davemorrissey.labs.subscaleview.QQScaleImageView;
-import com.davemorrissey.labs.utils.ViewHelper;
+import com.github.chrisbanes.photoview.PhotoView;
 
-import org.wjh.androidlib.R;
+import cn.qq.imageview.exceptions.BackGroundException;
+import cn.qq.imageview.exceptions.ChildException;
+import cn.qq.imageview.util.ViewHelper;
 
 /**
  * Created by sdj on 2018/1/18.
  */
 
-public class FingerQQGroup extends LinearLayout {
+public class FingerQQGroup extends FrameLayout {
     private static final String TAG = FingerQQGroup.class.getSimpleName();
 
-    private QQScaleImageView view3;
+    private PhotoView photoView;
 
     private float mDownY;
     private float mTranslationY;
@@ -33,8 +34,6 @@ public class FingerQQGroup extends LinearLayout {
     private final static int MAX_EXIT_Y = 300;
     private final static long DURATION = 150;
     private boolean isAnimate = false;
-    private int fadeIn = R.anim.mylib_fade_in;
-    private int fadeOut = R.anim.mylib_fade_out;
     private int mTouchslop;
     private onAlphaChangedListener mOnAlphaChangedListener;
 
@@ -59,19 +58,28 @@ public class FingerQQGroup extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        view3 = (QQScaleImageView) getChildAt(0);
+
+        View childAt = getChildAt(0);
+
+        if (childAt != null && childAt instanceof PhotoView) {
+            photoView = (PhotoView) childAt;
+        } else {
+            throw new ChildException();
+        }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+
         boolean isIntercept = false;
         int action = ev.getAction() & ev.getActionMasked();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mDownY = ev.getRawY();
+
             case MotionEvent.ACTION_MOVE:
-                if (null != view3) {
-                    isIntercept = view3.getScale() <= view3.getMinScale() && (view3.getMaxTouchCount() == 0 || view3.getMaxTouchCount() == 1) && Math.abs(ev.getRawY() - mDownY) > 2 * mTouchslop && view3.atYEdge;
+                if (null != photoView) {
+                    isIntercept = photoView.getScale() == 1 && ev.getPointerCount() == 1 && Math.abs(ev.getRawY() - mDownY) > 2 * mTouchslop;
                 }
                 break;
         }
@@ -85,7 +93,7 @@ public class FingerQQGroup extends LinearLayout {
             case MotionEvent.ACTION_DOWN:
                 mDownY = event.getRawY();
             case MotionEvent.ACTION_MOVE:
-                if (null != view3) {
+                if (null != photoView) {
                     onOneFingerPanActionMove(event);
                 }
                 break;
@@ -99,7 +107,7 @@ public class FingerQQGroup extends LinearLayout {
     private void onOneFingerPanActionMove(MotionEvent event) {
         float moveY = event.getRawY();
         mTranslationY = moveY - mDownY + mLastTranslationY;
-        float percent = Math.abs(mTranslationY / (MAX_TRANSLATE_Y + view3.getHeight()));
+        float percent = Math.abs(mTranslationY / (MAX_TRANSLATE_Y + photoView.getHeight()));
         float mAlpha = (1 - percent);
         if (mAlpha > 1) {
             mAlpha = 1;
