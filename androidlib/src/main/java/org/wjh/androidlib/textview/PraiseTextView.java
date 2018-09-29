@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 
@@ -63,23 +62,16 @@ public class PraiseTextView extends AppCompatTextView {
     }
 
     /**
-     * 设置点赞昵称监听
-     */
-    public PraiseTextView setOnPraiseListener(OnPraiseClickListener mListener) {
-        this.mListener = mListener;
-        return this;
-    }
-
-    /**
      * 设置点赞的数据
      */
-    public PraiseTextView setData(List<PraiseInfo> mPraiseInfos) {
+    public PraiseTextView setData(List<PraiseInfo> mPraiseInfos, OnPraiseClickListener mListener) {
         this.mPraiseInfos = mPraiseInfos;
         this.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize);
+        this.mListener = mListener;
         this.setText(getPraiseString());
         //设置选中文本的高亮颜色
         this.setHighlightColor(getResources().getColor(android.R.color.transparent));
-        this.setMovementMethod(LinkMovementMethod.getInstance());
+        this.setMovementMethod(new TextMovementMethod());
         return this;
     }
 
