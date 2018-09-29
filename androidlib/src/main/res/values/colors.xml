@@ -10,4 +10,5 @@
     <color name="prompt_warning">#f0633d</color>
     <color name="praise_color">#7888a9</color>
     <color name="password_box">#999999</color>
+    <color name="click_bg">#B5B5B5</color>
 </resources>
