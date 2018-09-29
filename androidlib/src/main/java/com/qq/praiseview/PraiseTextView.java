@@ -1,4 +1,4 @@
-package org.wjh.androidlib.textview;
+package com.qq.praiseview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

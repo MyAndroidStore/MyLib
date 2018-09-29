@@ -1,4 +1,4 @@
-package org.wjh.androidlib.textview;
+package com.qq.praiseview;
 
 /**
  * 人名的实体类

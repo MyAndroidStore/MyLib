@@ -1,4 +1,4 @@
-package org.wjh.androidlib.textview;
+package com.qq.praiseview;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -36,7 +36,7 @@ public class TextClickSpan extends ClickableSpan {
     public void updateDrawState(TextPaint ds) {
         super.updateDrawState(ds);
         ds.bgColor = mPressed ? ContextCompat.getColor(mContext, R.color.click_bg) : Color.TRANSPARENT;
-        ds.setColor(ContextCompat.getColor(mContext, mTextColor));
+        ds.setColor(mTextColor);
         ds.setUnderlineText(false);
     }
 

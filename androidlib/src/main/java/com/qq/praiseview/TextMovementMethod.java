@@ -1,4 +1,4 @@
-package org.wjh.androidlib.textview;
+package com.qq.praiseview;
 
 import android.text.Layout;
 import android.text.Selection;
