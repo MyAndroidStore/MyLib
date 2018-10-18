@@ -10,8 +10,6 @@ import org.wjh.androidlib.tsnackbar.Prompt;
 import org.wjh.androidlib.tsnackbar.TSnackbar;
 import org.wjh.androidlib.utils.ToastUtils;
 import org.wjh.mylib.simple.BannerActivity;
-import org.wjh.mylib.simple.Bottom1Activity;
-import org.wjh.mylib.simple.Bottom2Activity;
 import org.wjh.mylib.simple.ImgChoiceActivity;
 import org.wjh.mylib.simple.List1Activity;
 import org.wjh.mylib.simple.List2Activity;
@@ -44,14 +42,6 @@ public class MainActivity extends AppCompatActivity {
     public void toast(View view) {
         ToastUtils.getInstance().shortToast(++index + "");
         ToastUtils.getInstance().longToast(++index + "");
-    }
-
-    public void bottom1(View view) {
-        startActivity(Bottom1Activity.class);
-    }
-
-    public void bottom2(View view) {
-        startActivity(Bottom2Activity.class);
     }
 
     public void rv1(View view) {
