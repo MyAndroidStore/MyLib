@@ -29,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".simple.BannerActivity" />
         <activity android:name=".simple.List1Activity" />
         <activity android:name=".simple.List2Activity" />
         <activity android:name=".simple.ImgChoiceActivity" />

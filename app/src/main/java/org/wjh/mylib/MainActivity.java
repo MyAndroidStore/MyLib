@@ -9,7 +9,6 @@ import org.wjh.androidlib.edittext.CashEditText;
 import org.wjh.androidlib.tsnackbar.Prompt;
 import org.wjh.androidlib.tsnackbar.TSnackbar;
 import org.wjh.androidlib.utils.ToastUtils;
-import org.wjh.mylib.simple.BannerActivity;
 import org.wjh.mylib.simple.ImgChoiceActivity;
 import org.wjh.mylib.simple.List1Activity;
 import org.wjh.mylib.simple.List2Activity;
@@ -28,12 +27,6 @@ public class MainActivity extends AppCompatActivity {
         CashEditText viewById = (CashEditText) findViewById(R.id.et);
         viewById.setMaxCashAndEditListener(5000, null);
     }
-
-    public void banner(View view) {
-
-        startActivity(BannerActivity.class);
-    }
-
 
     private void startActivity(Class jumpClass) {
         startActivity(new Intent(this, jumpClass));
