@@ -33,6 +33,10 @@ public abstract class ViewPagerLazyFragment extends Fragment {
      * 是否是第一页
      */
     private boolean isFirstPage = false;
+    /**
+     * 是否已经加载过
+     */
+    private boolean isHasLoaded = false;
 
     @Override
     public void onAttach(Context context) {
@@ -112,8 +116,17 @@ public abstract class ViewPagerLazyFragment extends Fragment {
 
         if (isFragmentVisible && isFirstViewCreated) {
             isFirstViewCreated = false;
+            isHasLoaded = true;
             initData();
         }
+    }
+
+    public boolean isHasLoaded() {
+        return isHasLoaded;
+    }
+
+    public void setHasLoaded(boolean hasLoaded) {
+        isHasLoaded = hasLoaded;
     }
 
     protected abstract void initData();
