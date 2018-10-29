@@ -75,8 +75,10 @@ public abstract class ViewPagerLazyFragment extends Fragment {
         // view已初始化完成
         isFirstViewCreated = true;
         // 第一页数据立即去执行加载
-        if (isFirstPage)
+        if (isFirstPage) {
             initData();
+            isHasLoaded = true;
+        }
     }
 
     /**
@@ -116,8 +118,8 @@ public abstract class ViewPagerLazyFragment extends Fragment {
 
         if (isFragmentVisible && isFirstViewCreated) {
             isFirstViewCreated = false;
-            isHasLoaded = true;
             initData();
+            isHasLoaded = true;
         }
     }
 
