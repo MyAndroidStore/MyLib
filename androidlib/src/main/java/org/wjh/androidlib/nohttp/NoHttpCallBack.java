@@ -52,7 +52,7 @@ public abstract class NoHttpCallBack implements OnResponseListener<String> {
 
 
             if (TextUtils.isEmpty(json)) {
-                ToastUtils.getInstance().shortToast("获取数据为空(json)");
+                ToastUtils.getInstance().shortToast("获取服务器数据发生异常");
                 onFailed();
             } else {
 
