@@ -33,7 +33,8 @@ public abstract class NoHttpCallBack implements OnResponseListener<String> {
     public NoHttpCallBack(Context context, LoadingDialog loadingDialog) {
         this.mContext = context;
         this.mLoadingDialog = loadingDialog;
-        this.mLoadingDialog.setContext(context);
+        if (mLoadingDialog != null)
+            this.mLoadingDialog.setContext(context);
     }
 
     @Override
