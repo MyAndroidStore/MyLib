@@ -30,7 +30,7 @@ public class WaitDialog extends LoadingDialog implements DialogInterface.OnKeyLi
 
     @Override
     public void dismiss() {
-        if (dialog != null && dialog.isShowing())
+        if (dialog != null && dialog.isShowing() && getmContext() != null)
             dialog.dismiss();
     }
 

@@ -29,7 +29,7 @@ public class NormalLoadingDialog {
 
 
     public void dismiss() {
-        if (dialog != null && dialog.isShowing())
+        if (dialog != null && dialog.isShowing() && mContext != null)
             dialog.dismiss();
     }
 
