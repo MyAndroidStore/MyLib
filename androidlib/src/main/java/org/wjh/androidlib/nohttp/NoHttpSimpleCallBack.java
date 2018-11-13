@@ -15,7 +15,7 @@ public abstract class NoHttpSimpleCallBack extends NoHttpCallBack {
     }
 
     @Override
-    public void onSucceed(String json) {
+    public void onFailed() {
 
     }
 }
