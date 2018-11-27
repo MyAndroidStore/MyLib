@@ -9,12 +9,11 @@ import android.media.MediaRecorder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Setting;
-
-import org.wjh.androidlib.utils.ToastUtils;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -48,7 +47,7 @@ public class PermissionUtils {
                         if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
                             showSettingDialog(context, permissionDiscribeName, listener, permissions);
                         } else {
-                            ToastUtils.getInstance().shortToast("权限授予失败");
+                            Toast.makeText(context, "权限授予失败", Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
@@ -76,7 +75,7 @@ public class PermissionUtils {
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ToastUtils.getInstance().shortToast("权限授予失败");
+                        Toast.makeText(context, "权限授予失败", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .show();
@@ -107,7 +106,7 @@ public class PermissionUtils {
                                 .onDenied(new Action<List<String>>() {
                                     @Override
                                     public void onAction(List<String> data) {
-                                        ToastUtils.getInstance().shortToast("权限授予失败");
+                                        Toast.makeText(context, "权限授予失败", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .start();
@@ -120,7 +119,6 @@ public class PermissionUtils {
     /**
      * Request permissions.
      *
-     * @param context                上下文对象
      * @param permissionDiscribeName 权限描述：eg.存储、拍照
      * @param listener               权限回调
      * @param permissions            需要申请的权限
@@ -144,7 +142,7 @@ public class PermissionUtils {
                         if (AndPermission.hasAlwaysDeniedPermission(fragment, permissions)) {
                             showSettingDialog(fragment, permissionDiscribeName, listener, permissions);
                         } else {
-                            ToastUtils.getInstance().shortToast("权限授予失败");
+                            Toast.makeText(fragment.getActivity(), "权限授予失败", Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
@@ -172,7 +170,7 @@ public class PermissionUtils {
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ToastUtils.getInstance().shortToast("权限授予失败");
+                        Toast.makeText(fragment.getActivity(), "权限授予失败", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .show();
@@ -203,7 +201,7 @@ public class PermissionUtils {
                                 .onDenied(new Action<List<String>>() {
                                     @Override
                                     public void onAction(List<String> data) {
-                                        ToastUtils.getInstance().shortToast("权限授予失败");
+                                        Toast.makeText(fragment.getActivity(), "权限授予失败", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .start();

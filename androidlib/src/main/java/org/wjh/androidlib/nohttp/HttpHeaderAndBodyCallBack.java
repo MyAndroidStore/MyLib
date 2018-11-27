@@ -1,6 +1,7 @@
 package org.wjh.androidlib.nohttp;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.yanzhenjie.nohttp.Headers;
 import com.yanzhenjie.nohttp.error.NetworkError;
@@ -12,7 +13,6 @@ import com.yanzhenjie.nohttp.rest.Response;
 
 import org.wjh.androidlib.R;
 import org.wjh.androidlib.dialog.LoadingDialog;
-import org.wjh.androidlib.utils.ToastUtils;
 
 import java.net.HttpCookie;
 import java.util.List;
@@ -51,18 +51,18 @@ public abstract class HttpHeaderAndBodyCallBack extends NoHttpCallBack {
 
             Exception exception = response.getException();
             if (exception instanceof NetworkError) {// 网络不好
-                ToastUtils.getInstance().shortToast(R.string.error_please_check_network);
+                Toast.makeText(mContext, R.string.error_please_check_network, Toast.LENGTH_SHORT).show();
             } else if (exception instanceof TimeoutError) {// 请求超时
-                ToastUtils.getInstance().shortToast(R.string.error_timeout);
+                Toast.makeText(mContext, R.string.error_timeout, Toast.LENGTH_SHORT).show();
             } else if (exception instanceof UnKnownHostError) {// 找不到服务器
-                ToastUtils.getInstance().shortToast(R.string.error_not_found_server);
+                Toast.makeText(mContext, R.string.error_not_found_server, Toast.LENGTH_SHORT).show();
             } else if (exception instanceof URLError) {// URL是错的
-                ToastUtils.getInstance().shortToast(R.string.error_url_error);
+                Toast.makeText(mContext, R.string.error_url_error, Toast.LENGTH_SHORT).show();
             } else if (exception instanceof NotFoundCacheError) {
                 // 这个异常只会在仅仅查找缓存时没有找到缓存时返回
                 // 没有缓存一般不提示用户，如果需要随你。
             } else {
-                ToastUtils.getInstance().shortToast("出错了");
+                Toast.makeText(mContext, "出错了", Toast.LENGTH_SHORT).show();
             }
 
             onFailed();

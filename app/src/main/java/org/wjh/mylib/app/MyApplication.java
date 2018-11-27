@@ -10,8 +10,6 @@ import com.yanzhenjie.nohttp.OkHttpNetworkExecutor;
 import com.yanzhenjie.nohttp.cache.DBCacheStore;
 import com.yanzhenjie.nohttp.cookie.DBCookieStore;
 
-import org.wjh.androidlib.utils.ToastUtils;
-
 /**
  * 作者： macpro  on 2018/6/17.
  * 邮箱： xxx.com
@@ -29,8 +27,6 @@ public class MyApplication extends Application {
         Logger.setDebug(true);
         // 设置NoHttp打印Log的TAG
         Logger.setTag("NoHttpSample");
-
-        ToastUtils.init(this);
     }
 
 

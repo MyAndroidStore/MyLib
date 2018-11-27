@@ -8,7 +8,6 @@ import android.view.View;
 import org.wjh.androidlib.edittext.CashEditText;
 import org.wjh.androidlib.tsnackbar.Prompt;
 import org.wjh.androidlib.tsnackbar.TSnackbar;
-import org.wjh.androidlib.utils.ToastUtils;
 import org.wjh.mylib.simple.ImgChoiceActivity;
 import org.wjh.mylib.simple.List1Activity;
 import org.wjh.mylib.simple.List2Activity;
@@ -33,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toast(View view) {
-        ToastUtils.getInstance().shortToast(++index + "");
-        ToastUtils.getInstance().longToast(++index + "");
+
     }
 
     public void rv1(View view) {
