@@ -32,7 +32,7 @@ allprojects {
 `module build.gradle `
 ```
 dependencies {
-    implementation 'com.github.MyAndroidStore:MyLib:3.3.8'
+    implementation 'com.github.MyAndroidStore:MyLib:3.3.7'
 }
 ```
 `如果报错，如下：v4、v7包冲突`
@@ -50,10 +50,17 @@ NoHttp.initialize(this);
 Logger.setDebug(true);
 // 设置NoHttp打印Log的TAG
 Logger.setTag("NoHttpSample");
+// ToastUtils全局初始化
+ToastUtils.init(this);
 ```
 > 轮播图的使用
 
 https://www.jianshu.com/p/8e566da74b3e
+> Toast的使用
+```
+ToastUtils.getInstance().shortToast("Toast详细内容");
+ToastUtils.getInstance().longToast("Toast详细内容");
+```
 > Base64ConvertUtils的使用(文件转换成base64)
 ```
 Base64ConvertUtils.file2Base64();
