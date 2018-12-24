@@ -4,6 +4,7 @@ package org.wjh.androidlib.textview;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class XTextView extends AppCompatTextView {
 
     private Context mContext;
 
+    // 拦截图标的点击事件
+    private boolean isInterrupt = false;
 
     final int DRAWABLE_LEFT = 0;
     final int DRAWABLE_TOP = 1;
@@ -55,6 +58,9 @@ public class XTextView extends AppCompatTextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        if (isInterrupt)
+            return super.onTouchEvent(event);
 
         Drawable drawableLeft = getCompoundDrawables()[DRAWABLE_LEFT];
         Drawable drawableRight = getCompoundDrawables()[DRAWABLE_RIGHT];
@@ -209,5 +215,11 @@ public class XTextView extends AppCompatTextView {
 
     public void setDrawableBottomListener(DrawableBottomListener mBottomListener) {
         this.mBottomListener = mBottomListener;
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+        isInterrupt = true;
     }
 }
