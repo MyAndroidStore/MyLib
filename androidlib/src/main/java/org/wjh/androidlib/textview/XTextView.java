@@ -59,6 +59,7 @@ public class XTextView extends AppCompatTextView {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
+        // 如果设置了整个控件的监听事件 拦截drawable图片的事件
         if (isInterrupt)
             return super.onTouchEvent(event);
 
@@ -67,11 +68,9 @@ public class XTextView extends AppCompatTextView {
         Drawable drawableTop = getCompoundDrawables()[DRAWABLE_TOP];
         Drawable drawableBottom = getCompoundDrawables()[DRAWABLE_BOTTOM];
 
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
 
-                // 如开发者未进行监听由父类super.onTouchEvent(event)去控制
                 if (drawableRight != null && mRightListener != null) {
 
                     // event.getX():抬起时的坐标
@@ -143,7 +142,7 @@ public class XTextView extends AppCompatTextView {
 
                 break;
         }
-        return super.onTouchEvent(event);
+        return true;
     }
 
 
