@@ -14,7 +14,7 @@ import android.view.ViewGroup;
  * 用于ViewPager懒加载的Fragment
  * 1.如果此fragment是ViewPager中的第一页 public abstract boolean isFirstPage()请返回true
  * 其他页面返回false
- * 2.
+ * 2.一定要设置 viewPager.setOffscreenPageLimit(所有页数);
  */
 public abstract class ViewPagerLazyFragment extends Fragment {
 
