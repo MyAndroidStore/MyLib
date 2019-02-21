@@ -83,8 +83,10 @@ public abstract class LoadMoreMultiLayoutAdapter<T> extends RecyclerView.Adapter
         if (data == null)
             return;
 
+        int start = mDatas.size();
+
         mDatas.addAll(data);
-        notifyDataSetChanged();
+        notifyItemRangeInserted(start, mDatas.size());
     }
 
 

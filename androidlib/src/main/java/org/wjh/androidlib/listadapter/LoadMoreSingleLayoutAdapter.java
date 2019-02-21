@@ -87,8 +87,10 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
         if (data == null)
             return;
 
+        int start = mDatas.size();
+
         mDatas.addAll(data);
-        notifyDataSetChanged();
+        notifyItemRangeInserted(start, mDatas.size());
     }
 
 
