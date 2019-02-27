@@ -65,6 +65,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
     // params
     private LinearLayout.LayoutParams wrapParams;
     private LinearLayout.LayoutParams matchParams;
+    private LinearLayout.LayoutParams noParams;
 
 
     // 初始化无需数据源
@@ -75,6 +76,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
         mContext = context;
         wrapParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         matchParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        noParams = new LinearLayout.LayoutParams(0, 0);
     }
 
     // 初始化需数据源
@@ -150,7 +152,6 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
             FrameLayout layout = footViewHolder.getFrameLayout(R.id.mylib_layout);
             switch (loadState) {
                 case LOAD_FIRST:
-                    footViewHolder.getFrameLayout(R.id.mylib_layout).setVisibility(View.VISIBLE);
                     layout.setLayoutParams(matchParams);
                     layout.setBackgroundColor(0);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.VISIBLE);
@@ -160,7 +161,6 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
                 case LOADING: // 正在加载
-                    footViewHolder.getFrameLayout(R.id.mylib_layout).setVisibility(View.VISIBLE);
                     layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
@@ -171,7 +171,6 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     break;
 
                 case LOAD_COMPLETE: // 加载完成
-                    footViewHolder.getFrameLayout(R.id.mylib_layout).setVisibility(View.VISIBLE);
                     layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(0);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
@@ -182,7 +181,6 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     break;
 
                 case LOAD_END: // 加载到底
-                    footViewHolder.getFrameLayout(R.id.mylib_layout).setVisibility(View.VISIBLE);
                     layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
@@ -192,7 +190,6 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
                 case LOAD_ERROR: // 加载出错
-                    footViewHolder.getFrameLayout(R.id.mylib_layout).setVisibility(View.VISIBLE);
                     layout.setLayoutParams(wrapParams);
                     layout.setBackgroundColor(mContext.getResources().getColor(R.color.bg_color));
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
@@ -202,7 +199,6 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.GONE);
                     break;
                 case LOAD_NODATA:
-                    footViewHolder.getFrameLayout(R.id.mylib_layout).setVisibility(View.VISIBLE);
                     layout.setLayoutParams(matchParams);
                     layout.setBackgroundColor(0);
                     footViewHolder.getRelativeLayout(R.id.mylib_rl_first).setVisibility(View.GONE);
@@ -212,7 +208,7 @@ public abstract class LoadMoreSingleLayoutAdapter<T> extends RecyclerView.Adapte
                     footViewHolder.getRelativeLayout(R.id.mylib_ll_no_data).setVisibility(View.VISIBLE);
                     break;
                 case LOAD_NOFOOTER:
-                    footViewHolder.getFrameLayout(R.id.mylib_layout).setVisibility(View.GONE);
+                    layout.setLayoutParams(noParams);
                     break;
             }
         } else {
