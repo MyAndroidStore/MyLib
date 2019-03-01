@@ -1,11 +1,13 @@
 package org.wjh.androidlib.edittext;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
@@ -24,6 +26,7 @@ public class XEditText extends AppCompatEditText {
 
 
     private Context mContext;
+    private Activity mActivity;
 
 
     final int DRAWABLE_LEFT = 0;
@@ -141,6 +144,8 @@ public class XEditText extends AppCompatEditText {
 
         if (touchable) {
 
+            boolean isShowing = isSoftShowing();
+
             //设置点击EditText右侧图标EditText失去焦点，
             // 防止点击EditText右侧图标EditText获得焦点，软键盘弹出
             setFocusableInTouchMode(false);
@@ -164,6 +169,11 @@ public class XEditText extends AppCompatEditText {
 
             }
 
+            if (isShowing) {
+                setFocusableInTouchMode(true);
+                setFocusable(true);
+            }
+
         } else {
             //设置点击EditText输入区域，EditText请求焦点，软键盘弹出，EditText可编辑
             //setFocusableInTouchMode(true);
@@ -174,6 +184,37 @@ public class XEditText extends AppCompatEditText {
         }
     }
 
+
+    private boolean isSoftShowing() {
+        //获取当前屏幕内容的高度
+        int screenHeight = mActivity.getWindow().getDecorView().getHeight();
+        //获取View可见区域的bottom
+        Rect rect = new Rect();
+        //DecorView即为activity的顶级view
+        mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        //考虑到虚拟导航栏的情况（虚拟导航栏情况下：screenHeight = rect.bottom + 虚拟导航栏高度）
+        //选取screenHeight*2/3进行判断
+        return screenHeight > (rect.bottom + getSoftButtonsBarHeight());
+    }
+
+
+    /**
+     * 底部虚拟按键栏的高度
+     */
+    private int getSoftButtonsBarHeight() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        //这个方法获取可能不是真实屏幕的高度
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int usableHeight = metrics.heightPixels;
+        //获取当前屏幕的真实高度
+        mActivity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
+        int realHeight = metrics.heightPixels;
+        if (realHeight > usableHeight) {
+            return realHeight - usableHeight;
+        } else {
+            return 0;
+        }
+    }
 
     private void closeKeyboard() {
 
@@ -189,19 +230,23 @@ public class XEditText extends AppCompatEditText {
         }
     }
 
-    public void setDrawableLeftListener(DrawableLeftListener mLeftListener) {
+    public void setDrawableLeftListener(DrawableLeftListener mLeftListener, Activity activity) {
         this.mLeftListener = mLeftListener;
+        this.mActivity = activity;
     }
 
-    public void setDrawableRightListener(DrawableRightListener mRightListener) {
+    public void setDrawableRightListener(DrawableRightListener mRightListener, Activity activity) {
         this.mRightListener = mRightListener;
+        this.mActivity = activity;
     }
 
-    public void setDrawableTopListener(DrawableTopListener mTopListener) {
+    public void setDrawableTopListener(DrawableTopListener mTopListener, Activity activity) {
         this.mTopListener = mTopListener;
+        this.mActivity = activity;
     }
 
-    public void setDrawableBottomListener(DrawableBottomListener mBottomListener) {
+    public void setDrawableBottomListener(DrawableBottomListener mBottomListener, Activity activity) {
         this.mBottomListener = mBottomListener;
+        this.mActivity = activity;
     }
 }
