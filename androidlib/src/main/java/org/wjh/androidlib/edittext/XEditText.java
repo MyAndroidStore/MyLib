@@ -126,8 +126,10 @@ public class XEditText extends AppCompatEditText {
                             && (eventY < (height - paddingBottom));
 
                     doSomeThing(touchable, DRAWABLE_BOTTOM, mBottomListener);
+                } else {
+                    setFocusableInTouchMode(true);
+                    setFocusable(true);
                 }
-
 
                 break;
         }
@@ -143,8 +145,6 @@ public class XEditText extends AppCompatEditText {
             // 防止点击EditText右侧图标EditText获得焦点，软键盘弹出
             setFocusableInTouchMode(false);
             setFocusable(false);
-
-            closeKeyboard();
 
             //点击EditText图标事件接口回调
             switch (drawableType) {
