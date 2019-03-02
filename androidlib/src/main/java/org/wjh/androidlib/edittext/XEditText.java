@@ -5,15 +5,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
-import android.view.inputmethod.InputMethodManager;
+
+import java.lang.reflect.Method;
 
 public class XEditText extends AppCompatEditText {
-
 
     // 左边图标的点击事件
     private DrawableLeftListener mLeftListener;
@@ -24,10 +24,7 @@ public class XEditText extends AppCompatEditText {
     // 下边图标的点击事件
     private DrawableBottomListener mBottomListener;
 
-
     private Context mContext;
-    private Activity mActivity;
-
 
     final int DRAWABLE_LEFT = 0;
     final int DRAWABLE_TOP = 1;
@@ -130,8 +127,12 @@ public class XEditText extends AppCompatEditText {
 
                     doSomeThing(touchable, DRAWABLE_BOTTOM, mBottomListener);
                 } else {
+
+                    // 请求焦点
                     setFocusableInTouchMode(true);
                     setFocusable(true);
+                    // 重置可弹出键盘功能
+                    configureShowInput(true);
                 }
 
                 break;
@@ -142,8 +143,10 @@ public class XEditText extends AppCompatEditText {
 
     private void doSomeThing(boolean touchable, int drawableType, BaseDrawableListener listener) {
 
+        // 点击了drawable
         if (touchable) {
 
+            // 是否显示键盘了
             boolean isShowing = isSoftShowing();
 
             //设置点击EditText右侧图标EditText失去焦点，
@@ -170,8 +173,15 @@ public class XEditText extends AppCompatEditText {
             }
 
             if (isShowing) {
+                // 继续显示键盘
                 setFocusableInTouchMode(true);
                 setFocusable(true);
+                configureShowInput(true);
+            } else {
+                // 不显示键盘，但显示光标
+                setFocusableInTouchMode(true);
+                setFocusable(true);
+                configureShowInput(false);
             }
 
         } else {
@@ -181,20 +191,27 @@ public class XEditText extends AppCompatEditText {
             //设置点击EditText输入区域，EditText不请求焦点，软键盘不弹出，EditText不可编辑
             setFocusableInTouchMode(true);
             setFocusable(true);
+            // 重置可弹出键盘功能
+            configureShowInput(true);
         }
     }
 
 
     private boolean isSoftShowing() {
-        //获取当前屏幕内容的高度
-        int screenHeight = mActivity.getWindow().getDecorView().getHeight();
-        //获取View可见区域的bottom
-        Rect rect = new Rect();
-        //DecorView即为activity的顶级view
-        mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        //考虑到虚拟导航栏的情况（虚拟导航栏情况下：screenHeight = rect.bottom + 虚拟导航栏高度）
-        //选取screenHeight*2/3进行判断
-        return screenHeight > (rect.bottom + getSoftButtonsBarHeight());
+
+        if (mContext instanceof Activity) {
+
+            //获取当前屏幕内容的高度
+            int screenHeight = ((Activity) mContext).getWindow().getDecorView().getHeight();
+            //获取View可见区域的bottom
+            Rect rect = new Rect();
+            //DecorView即为activity的顶级view
+            ((Activity) mContext).getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+            //考虑到虚拟导航栏的情况（虚拟导航栏情况下：screenHeight = rect.bottom + 虚拟导航栏高度）
+            //选取screenHeight*2/3进行判断
+            return screenHeight > (rect.bottom + getSoftButtonsBarHeight());
+        }
+        return true;
     }
 
 
@@ -204,10 +221,10 @@ public class XEditText extends AppCompatEditText {
     private int getSoftButtonsBarHeight() {
         DisplayMetrics metrics = new DisplayMetrics();
         //这个方法获取可能不是真实屏幕的高度
-        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        ((Activity) mContext).getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int usableHeight = metrics.heightPixels;
         //获取当前屏幕的真实高度
-        mActivity.getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
+        ((Activity) mContext).getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
         int realHeight = metrics.heightPixels;
         if (realHeight > usableHeight) {
             return realHeight - usableHeight;
@@ -216,37 +233,58 @@ public class XEditText extends AppCompatEditText {
         }
     }
 
-    private void closeKeyboard() {
-
+    public void configureShowInput(boolean isCanShow) {
+        Class<XEditText> cls = XEditText.class;
+        Method method;
         try {
-            InputMethodManager imm = (InputMethodManager) mContext
-                    .getSystemService(Context.INPUT_METHOD_SERVICE);
-
-            if (imm != null)
-                imm.hideSoftInputFromWindow(this.getWindowToken(), 0);
-
-        } catch (Exception e) {
-            Log.e("Exception", e.getMessage());
+            method = cls.getMethod("setShowSoftInputOnFocus", boolean.class);
+            method.setAccessible(true);
+            method.invoke(this, isCanShow);
+        } catch (Exception e) {//TODO: handle exception
         }
     }
 
-    public void setDrawableLeftListener(DrawableLeftListener mLeftListener, Activity activity) {
+    public void setDrawableLeftListener(DrawableLeftListener mLeftListener) {
         this.mLeftListener = mLeftListener;
-        this.mActivity = activity;
     }
 
-    public void setDrawableRightListener(DrawableRightListener mRightListener, Activity activity) {
+    public void setDrawableRightListener(DrawableRightListener mRightListener) {
         this.mRightListener = mRightListener;
-        this.mActivity = activity;
     }
 
-    public void setDrawableTopListener(DrawableTopListener mTopListener, Activity activity) {
+    public void setDrawableTopListener(DrawableTopListener mTopListener) {
         this.mTopListener = mTopListener;
-        this.mActivity = activity;
     }
 
-    public void setDrawableBottomListener(DrawableBottomListener mBottomListener, Activity activity) {
+    public void setDrawableBottomListener(DrawableBottomListener mBottomListener) {
         this.mBottomListener = mBottomListener;
-        this.mActivity = activity;
+    }
+
+    public void clearAllDrawable() {
+        setCompoundDrawables(null, null, null, null);
+    }
+
+    public void setDrawableLeft(@DrawableRes int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        setCompoundDrawables(drawable, null, null, null);
+    }
+
+    public void setDrawableRight(@DrawableRes int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        setCompoundDrawables(null, null, drawable, null);
+    }
+
+    public void setDrawableTop(@DrawableRes int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        setCompoundDrawables(null, drawable, null, null);
+    }
+
+    public void setDrawableBottom(@DrawableRes int resId) {
+        Drawable drawable = getResources().getDrawable(resId);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        setCompoundDrawables(null, null, null, drawable);
     }
 }
