@@ -7,17 +7,15 @@ public class OnNoDoubleClickUtils {
     private static long lastClickTime;
 
 
-    public static boolean isDoubleClick() {
+    public static synchronized boolean isDoubleClick() {
 
-        synchronized (OnNoDoubleClickUtils.class) {
-            long curClickTime = System.currentTimeMillis();
-            if ((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
-                // 超过点击间隔后再将lastClickTime重置为当前点击时间
-                lastClickTime = curClickTime;
-                return false;
-            }
-
-            return true;
+        long curClickTime = System.currentTimeMillis();
+        if ((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
+            // 超过点击间隔后再将lastClickTime重置为当前点击时间
+            lastClickTime = curClickTime;
+            return false;
         }
+
+        return true;
     }
 }
