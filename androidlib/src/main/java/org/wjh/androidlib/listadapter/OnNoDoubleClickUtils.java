@@ -2,8 +2,8 @@ package org.wjh.androidlib.listadapter;
 
 public class OnNoDoubleClickUtils {
 
-    // 两次点击按钮之间的点击间隔不能少于500毫秒
-    private static final int MIN_CLICK_DELAY_TIME = 500;
+    // 两次点击按钮之间的点击间隔不能少于800毫秒
+    private static final int MIN_CLICK_DELAY_TIME = 800;
     private static long lastClickTime;
 
 
