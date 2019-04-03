@@ -111,6 +111,10 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<R
 
     @Override
     public void onClick(View v) {
+
+        if (OnNoDoubleClickUtils.isDoubleClick())
+            return;
+
         int position = mRecyclerView.getChildAdapterPosition(v);
         T t = mDatas.get(position);
         if (mListener != null) {

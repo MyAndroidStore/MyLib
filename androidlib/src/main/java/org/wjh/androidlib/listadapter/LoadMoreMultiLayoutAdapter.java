@@ -263,6 +263,10 @@ public abstract class LoadMoreMultiLayoutAdapter<T> extends RecyclerView.Adapter
 
     @Override
     public void onClick(View v) {
+
+        if (OnNoDoubleClickUtils.isDoubleClick())
+            return;
+
         int position = mRecyclerView.getChildAdapterPosition(v);
         T t = mDatas.get(position);
         if (mListener != null) {
