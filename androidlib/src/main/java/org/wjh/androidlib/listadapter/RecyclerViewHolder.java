@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -68,6 +70,14 @@ public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     }
 
     public CircleImageView getCircleImageView(int id) {
+        return getView(id);
+    }
+
+    public Switch getSwitch(int id) {
+        return getView(id);
+    }
+
+    public ToggleButton getToggleButton(int id) {
         return getView(id);
     }
 
