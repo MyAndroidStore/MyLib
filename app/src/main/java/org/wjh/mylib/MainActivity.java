@@ -16,7 +16,6 @@ import org.wjh.androidlib.tsnackbar.TSnackbar;
 import org.wjh.mylib.simple.ImgChoiceActivity;
 import org.wjh.mylib.simple.List1Activity;
 import org.wjh.mylib.simple.List2Activity;
-import org.wjh.mylib.simple.PraiseActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -64,12 +63,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        xv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.e("ddd","all");
-//            }
-//        });
 
     }
 
@@ -77,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, jumpClass));
     }
 
-    public void toast(View view) {
-
-    }
 
     public void rv1(View view) {
         startActivity(List1Activity.class);
@@ -93,7 +83,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(ImgChoiceActivity.class);
     }
 
-    public void praise(View view) {
-        startActivity(PraiseActivity.class);
-    }
 }
