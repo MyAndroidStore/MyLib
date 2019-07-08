@@ -39,10 +39,6 @@ implementation ('com.github.MyAndroidStore:MyLib:4.7.0'){
     exclude group: 'com.android.support'
 }
 ```
-> 轮播图的使用
-
-https://www.jianshu.com/p/8e566da74b3e
-
 > Base64ConvertUtils的使用(文件转换成base64)
 ```
 Base64ConvertUtils.file2Base64();
