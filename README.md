@@ -39,19 +39,10 @@ implementation ('com.github.MyAndroidStore:MyLib:4.7.0'){
     exclude group: 'com.android.support'
 }
 ```
-> 框架初始化(Application进行初始化)
-```
-// ToastUtils全局初始化
-ToastUtils.init(this);
-```
 > 轮播图的使用
 
 https://www.jianshu.com/p/8e566da74b3e
-> Toast的使用
-```
-ToastUtils.getInstance().shortToast("Toast详细内容");
-ToastUtils.getInstance().longToast("Toast详细内容");
-```
+
 > Base64ConvertUtils的使用(文件转换成base64)
 ```
 Base64ConvertUtils.file2Base64();
