@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.wjh.androidlib.R;
-import org.wjh.androidlib.bottomtab.CircleStyle;
 
 
 /**

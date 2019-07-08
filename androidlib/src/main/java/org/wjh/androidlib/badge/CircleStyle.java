@@ -1,4 +1,4 @@
-package org.wjh.androidlib.bottomtab;
+package org.wjh.androidlib.badge;
 
 /**
  * Created by macpro on 2018/1/6.
