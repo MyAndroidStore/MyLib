@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.wjh.androidlib.R;
@@ -18,6 +19,8 @@ public class SimplePasswordView extends LinearLayout {
     //忘记密码按钮
     private TextView mForget;
     private TextView mTitle;
+    private RelativeLayout mRl;
+    private View mLine;
 
     private NumKeyboardView numKeyboardView;
     private PassWordBox passWordBox;
@@ -65,6 +68,8 @@ public class SimplePasswordView extends LinearLayout {
         mForget = findViewById(R.id.mylib_forgetPwd);
         mCancel = findViewById(R.id.mylib_cancle);
         mTitle = findViewById(R.id.mylib_psd_title);
+        mLine = findViewById(R.id.simple_psd_line);
+        mRl = findViewById(R.id.simple_psd_rl);
     }
 
     public void setTitle(String title) {
@@ -73,6 +78,11 @@ public class SimplePasswordView extends LinearLayout {
 
     public void setForgetTextVisibility(int visibility) {
         mForget.setVisibility(visibility);
+    }
+
+    public void setToolbarVisibility(int visibility) {
+        mLine.setVisibility(visibility);
+        mRl.setVisibility(visibility);
     }
 
     public int getFrameLayoutRes() {
