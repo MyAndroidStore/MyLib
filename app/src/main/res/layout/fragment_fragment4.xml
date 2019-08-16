@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".simple.List1Activity">
+    tools:context=".fragment.Fragment4">
 
-    <org.wjh.androidlib.passwordview.SimplePasswordView
-        android:id="@+id/spv"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="动态添加布局" />
 
 </FrameLayout>

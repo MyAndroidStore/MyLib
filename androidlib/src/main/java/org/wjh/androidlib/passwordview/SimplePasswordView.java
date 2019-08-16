@@ -17,6 +17,7 @@ public class SimplePasswordView extends LinearLayout {
     private ImageView mCancel;
     //忘记密码按钮
     private TextView mForget;
+    private TextView mTitle;
 
     private NumKeyboardView numKeyboardView;
     private PassWordBox passWordBox;
@@ -63,6 +64,19 @@ public class SimplePasswordView extends LinearLayout {
         numKeyboardView = findViewById(R.id.mylib_num_keyboard_view);
         mForget = findViewById(R.id.mylib_forgetPwd);
         mCancel = findViewById(R.id.mylib_cancle);
+        mTitle = findViewById(R.id.mylib_psd_title);
+    }
+
+    public void setTitle(String title) {
+        mTitle.setText(title);
+    }
+
+    public void setForgetTextVisibility(int visibility) {
+        mForget.setVisibility(visibility);
+    }
+
+    public int getFrameLayoutRes() {
+        return R.id.mylib_psd_fl;
     }
 
     private void initEvents() {
