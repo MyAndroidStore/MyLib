@@ -79,6 +79,10 @@ public class SimplePasswordView extends LinearLayout {
         return R.id.mylib_psd_fl;
     }
 
+    public int getFrameLayoutRes2() {
+        return R.id.mylib_psd_fl2;
+    }
+
     private void initEvents() {
 
         mForget.setOnClickListener(new OnClickListener() {
