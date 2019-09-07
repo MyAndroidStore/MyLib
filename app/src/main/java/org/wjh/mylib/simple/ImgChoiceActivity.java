@@ -11,6 +11,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -107,6 +108,11 @@ public class ImgChoiceActivity extends AppCompatActivity {
                                     }
                                 })
                                 .forResult(REQUEST_CODE_CHOOSE);
+                    }
+
+                    @Override
+                    public void failure() {
+                        Toast.makeText(ImgChoiceActivity.this, "失败回调", Toast.LENGTH_SHORT).show();
                     }
 
                 },

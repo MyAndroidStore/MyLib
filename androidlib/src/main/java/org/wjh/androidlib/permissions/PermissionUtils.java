@@ -47,7 +47,7 @@ public class PermissionUtils {
                         if (AndPermission.hasAlwaysDeniedPermission(context, permissions)) {
                             showSettingDialog(context, permissionDiscribeName, listener, permissions);
                         } else {
-                            Toast.makeText(context, "权限授予失败", Toast.LENGTH_SHORT).show();
+                            listener.failure();
                         }
                     }
                 })
@@ -75,7 +75,7 @@ public class PermissionUtils {
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "权限授予失败", Toast.LENGTH_SHORT).show();
+                        listener.failure();
                     }
                 })
                 .show();
@@ -106,7 +106,7 @@ public class PermissionUtils {
                                 .onDenied(new Action<List<String>>() {
                                     @Override
                                     public void onAction(List<String> data) {
-                                        Toast.makeText(context, "权限授予失败", Toast.LENGTH_SHORT).show();
+                                        listener.failure();
                                     }
                                 })
                                 .start();
