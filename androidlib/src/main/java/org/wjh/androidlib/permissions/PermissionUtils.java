@@ -1,5 +1,6 @@
 package org.wjh.androidlib.permissions;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.Camera;
@@ -54,6 +55,34 @@ public class PermissionUtils {
                 .start();
     }
 
+
+    public static void showExitAppDialog(final Activity context, String permissionName, final GrantedListener listener, final String... permissions) {
+
+        String message = "当前应用缺少必要权限(" + permissionName + "权限)。"
+                + "\n" + "\n"
+                + "请点击" + "\"设置\"-"
+                + "\"权限\"-" + "打开所需权限。"
+                + "\n" + "\n"
+                + "最后点击两次后退按钮，即可返回。";
+
+        new AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setTitle("提示")
+                .setMessage(message)
+                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setPermission(context, listener, permissions);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        context.finish();
+                    }
+                })
+                .show();
+    }
 
     /**
      * Display setting dialog.

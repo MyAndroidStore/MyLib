@@ -29,13 +29,13 @@ allprojects {
 `module build.gradle `
 ```
 dependencies {
-    implementation 'com.github.MyAndroidStore:MyLib:4.7.8'
+    implementation 'com.github.MyAndroidStore:MyLib:4.7.9'
 }
 ```
 `如果报错，如下：v4、v7包冲突`
 ![error.png](https://github.com/MyAndroidStore/MyLib/blob/master/pictures/20180720_103110.png?raw=true)
 ```
-implementation ('com.github.MyAndroidStore:MyLib:4.7.8'){
+implementation ('com.github.MyAndroidStore:MyLib:4.7.9'){
     exclude group: 'com.android.support'
 }
 ```
