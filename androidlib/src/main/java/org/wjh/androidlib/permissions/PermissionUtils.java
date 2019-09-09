@@ -44,7 +44,7 @@ public class PermissionUtils {
                 .onDenied(new Action<List<String>>() {
                     @Override
                     public void onAction(@NonNull List<String> permissionList) {
-                        showExitAppDialog(context, permissionDiscribeName, listener, permissions);
+                        openAppShowDialog(context, permissionDiscribeName, listener, permissions);
                     }
                 })
                 .start();
@@ -85,7 +85,7 @@ public class PermissionUtils {
     }
 
 
-    private static void showExitAppDialog(final Activity context, String permissionName, final GrantedListener listener, final String... permissions) {
+    public static void openAppShowDialog(final Activity context, String permissionName, final GrantedListener listener, final String... permissions) {
 
         String message = "当前应用缺少必要权限(" + permissionName + "权限)。"
                 + "\n" + "\n"
