@@ -29,7 +29,7 @@ public class PermissionUtils {
      * @param listener               权限回调
      * @param permissions            需要申请的权限
      */
-    public static void openApprequestPermission(final Activity context, final String permissionDiscribeName, final GrantedListener listener, final String... permissions) {
+    public static void openAppRequestPermission(final Activity context, final String permissionDiscribeName, final GrantedListener listener, final String... permissions) {
 
         AndPermission.with(context)
                 .runtime()
@@ -85,7 +85,7 @@ public class PermissionUtils {
     }
 
 
-    public static void showExitAppDialog(final Activity context, String permissionName, final GrantedListener listener, final String... permissions) {
+    private static void showExitAppDialog(final Activity context, String permissionName, final GrantedListener listener, final String... permissions) {
 
         String message = "当前应用缺少必要权限(" + permissionName + "权限)。"
                 + "\n" + "\n"
