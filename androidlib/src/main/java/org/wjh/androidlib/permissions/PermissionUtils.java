@@ -22,6 +22,35 @@ import java.util.List;
 public class PermissionUtils {
 
     /**
+     * 第一次打开App时调用
+     *
+     * @param context                上下文对象
+     * @param permissionDiscribeName 权限描述：eg.存储、拍照
+     * @param listener               权限回调
+     * @param permissions            需要申请的权限
+     */
+    public static void openApprequestPermission(final Activity context, final String permissionDiscribeName, final GrantedListener listener, final String... permissions) {
+
+        AndPermission.with(context)
+                .runtime()
+                .permission(permissions)
+                .rationale(new RuntimeRationale())
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        listener.successfully();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(@NonNull List<String> permissionList) {
+                        showExitAppDialog(context, permissionDiscribeName, listener, permissions);
+                    }
+                })
+                .start();
+    }
+
+    /**
      * Request permissions.
      *
      * @param context                上下文对象
