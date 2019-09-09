@@ -29,7 +29,7 @@ public class PermissionUtils {
      * @param listener               权限回调
      * @param permissions            需要申请的权限
      */
-    public static void openAppRequestPermission(final Activity context, final String permissionDiscribeName, final GrantedListener listener, final String... permissions) {
+    public static void openAppRequestPermission(final Activity context, final String permissionDiscribeName, final GrantedListener2 listener, final String... permissions) {
 
         AndPermission.with(context)
                 .runtime()
@@ -49,6 +49,91 @@ public class PermissionUtils {
                 })
                 .start();
     }
+
+    private static void openAppShowDialog(final Activity context, final String permissionName, final GrantedListener2 listener, final String... permissions) {
+
+        String message = "当前应用缺少必要权限(" + permissionName + "权限)。"
+                + "\n" + "\n"
+                + "请点击" + "\"设置\"-"
+                + "\"权限\"-" + "打开所需权限。"
+                + "\n" + "\n"
+                + "最后点击两次后退按钮，即可返回。";
+
+        new AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setTitle("提示")
+                .setMessage(message)
+                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setOpenAppPermission(context, permissionName, listener, permissions);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        context.finish();
+                    }
+                })
+                .show();
+    }
+
+    private static void setOpenAppPermission(final Activity context, final String permissionName, final GrantedListener2 listener, final String... permissions) {
+        AndPermission.with(context)
+                .runtime()
+                .setting()
+                .onComeback(new Setting.Action() {
+                    @Override
+                    public void onAction() {
+
+                        AndPermission.with(context)
+                                .runtime()
+                                .permission(permissions)
+                                .rationale(new RuntimeRationale())
+                                .onGranted(new Action<List<String>>() {
+                                    @Override
+                                    public void onAction(List<String> permissions) {
+                                        listener.successfully();
+                                    }
+                                })
+                                .onDenied(new Action<List<String>>() {
+                                    @Override
+                                    public void onAction(List<String> data) {
+                                        openAppShowDialog(context, permissionName, listener, permissions);
+                                    }
+                                })
+                                .start();
+                    }
+                })
+                .start();
+    }
+
+    /**
+     * Display setting dialog.
+     */
+    private static void showSettingDialog(final Context context, String permissionName, final GrantedListener listener, final String... permissions) {
+
+        String message = "请在设置中开启" + permissionName + "权限";
+
+        new AlertDialog.Builder(context)
+                .setCancelable(false)
+                .setTitle("提示")
+                .setMessage(message)
+                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setPermission(context, listener, permissions);
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        listener.failure();
+                    }
+                })
+                .show();
+    }
+
 
     /**
      * Request permissions.
@@ -82,61 +167,6 @@ public class PermissionUtils {
                     }
                 })
                 .start();
-    }
-
-
-    public static void openAppShowDialog(final Activity context, String permissionName, final GrantedListener listener, final String... permissions) {
-
-        String message = "当前应用缺少必要权限(" + permissionName + "权限)。"
-                + "\n" + "\n"
-                + "请点击" + "\"设置\"-"
-                + "\"权限\"-" + "打开所需权限。"
-                + "\n" + "\n"
-                + "最后点击两次后退按钮，即可返回。";
-
-        new AlertDialog.Builder(context)
-                .setCancelable(false)
-                .setTitle("提示")
-                .setMessage(message)
-                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        setPermission(context, listener, permissions);
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        context.finish();
-                    }
-                })
-                .show();
-    }
-
-    /**
-     * Display setting dialog.
-     */
-    private static void showSettingDialog(final Context context, String permissionName, final GrantedListener listener, final String... permissions) {
-
-        String message = "请在设置中开启" + permissionName + "权限";
-
-        new AlertDialog.Builder(context)
-                .setCancelable(false)
-                .setTitle("提示")
-                .setMessage(message)
-                .setPositiveButton("设置", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        setPermission(context, listener, permissions);
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        listener.failure();
-                    }
-                })
-                .show();
     }
 
 
