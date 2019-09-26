@@ -15,7 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import org.wjh.androidlib.R;
-import org.wjh.androidlib.utils.ActionBarUtil;
+import org.wjh.androidlib.utils.BarUtil;
 import org.wjh.androidlib.utils.StatusBarUtil;
 import org.wjh.androidlib.utils.UiUtils;
 
@@ -52,7 +52,7 @@ public final class TSnackbar {
         int stateBarHeight = StatusBarUtil.getStatusBarHeight(mContext);
 
         if (actionBarHeight <= 0) {
-            actionBarHeight = ActionBarUtil.getActionBarHeight(mContext);
+            actionBarHeight = BarUtil.getStatusBarHeight(mContext);
         }
 
         // 大于4.4版本 顶部开始显示 反之 则状态栏下开始显示
