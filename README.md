@@ -29,6 +29,17 @@ allprojects {
 ```
 `module build.gradle `
 ```
+
+android {
+    ...
+    defaultConfig {
+        ...
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+}
 dependencies {
     implementation 'com.github.MyAndroidStore:MyLib:4.8.4'
 }
