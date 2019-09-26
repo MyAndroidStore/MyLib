@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
-import com.github.chrisbanes.photoview.PhotoView;
+import com.luck.picture.lib.photoview.PhotoView;
 
 import cn.qq.imageview.exceptions.BackGroundException;
 import cn.qq.imageview.exceptions.ChildException;
