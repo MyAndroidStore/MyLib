@@ -54,7 +54,7 @@ public abstract class SimpleSingleLayoutAdapter<T> extends RecyclerView.Adapter<
         int start = mDatas.size();
 
         mDatas.addAll(data);
-        notifyItemRangeInserted(start, mDatas.size());
+        notifyItemRangeInserted(start, data.size());
     }
 
 

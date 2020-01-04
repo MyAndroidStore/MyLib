@@ -50,7 +50,7 @@ public abstract class SimpleMultiLayoutAdapter<T> extends RecyclerView.Adapter<R
         int start = mDatas.size();
 
         mDatas.addAll(data);
-        notifyItemRangeInserted(start, mDatas.size());
+        notifyItemRangeInserted(start, data.size());
     }
 
 
